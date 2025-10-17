@@ -1,0 +1,133 @@
+---
+import Boton from './Boton.astro'
+import Container from './Container.astro'
+---
+
+<main class="flex items-center my-5 mx-auto">
+  <Container>
+    <div class="flex flex-col gap-5">
+      <section>
+        <div>
+          <h2>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse,
+            adipisci id cumque accusantium quia totam perferendis debitis quo
+            dolore quibusdam excepturi quam.
+          </h2>
+          <p class="mt-2 mb-5 lg:mb-15">
+            accusantium quia totam perferendis debitis quo dolore quibusdam
+            excepturi quam.
+          </p>
+          <Boton href="/" text="Leer más..." />
+        </div>
+      </section>
+      <h3 class="text-lg text-white font-extrabold text-center">
+        Ultimas noticias
+      </h3>
+      <section>
+        <article>
+          <img src="images/red.jpg" alt="" />
+          <div>
+            <h4>Lorem ipsum dolor</h4>
+            <p>Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolor</p>
+          </div>
+        </article>
+        <article>
+          <img src="images/red.jpg" alt="" />
+          <div>
+            <h4>Lorem ipsum dolor</h4>
+            <p>Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolor</p>
+          </div>
+        </article>
+        <article>
+          <img src="images/red.jpg" alt="" />
+          <div>
+            <h4>Lorem ipsum dolor</h4>
+            <p>Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolor</p>
+          </div>
+        </article>
+      </section>
+    </div>
+  </Container>
+</main>
+
+<style>
+  main section:first-child {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5),
+        rgba(226, 223, 223, 0)
+      ),
+      url('/images/red.jpg');
+
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 17 / 9;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 32px;
+    overflow: hidden;
+  }
+
+  section > div h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  main section:last-child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding-inline: 16px;
+  }
+
+  main article {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  main article img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  main article div {
+    padding: 10px 0;
+  }
+
+  main article div h4 {
+    color: #fff;
+    font-weight: 500;
+    font-size: 19px;
+  }
+
+  main article div p {
+    color: var(--letter);
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    main section:first-child {
+      aspect-ratio: unset;
+      padding: 16px 20px;
+    }
+    section > div h2 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    section > div p {
+      color: var(--letter);
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+</style>

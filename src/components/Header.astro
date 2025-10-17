@@ -1,0 +1,36 @@
+---
+import Logo from '../assets/icons/Logo.astro'
+import Boton from './Boton.astro'
+import Container from './Container.astro'
+---
+
+<div class="border-b-1 border-gray-500/30">
+  <Container>
+    <header class="flex justify-between items-center py-4 px-8">
+      <div class="flex justify-between items-center gap-5">
+        <a href="/">
+          <Logo class="size-10" />
+        </a>
+        <nav>
+          <ul class="flex justify-between items-center gap-5">
+            <li>
+              <a href="/">Inicio</a>
+            </li>
+            <li>
+              <a href="/">Cursos</a>
+            </li>
+            <li>
+              <a href="/">Blog</a>
+            </li>
+            <li>
+              <a href="/">Acerca de</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <Boton href="/" text="Login" />
+      </div>
+    </header>
+  </Container>
+</div>
