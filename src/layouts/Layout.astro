@@ -1,22 +1,38 @@
+---
+// @ts-ignore
+import '@fontsource-variable/outfit'
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Tecnico en Sistemas IFE</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @import 'tailwindcss';
+
+  :root {
+    --fondo: #0b192f;
+    --letter: #cdd7f7;
+    --font: 'Outfit Variable', sans-serif;
+  }
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--fondo);
+    font-family: var(--font);
+    color: var(--letter);
+  }
+  a:hover {
+    opacity: 0.8;
+  }
 </style>
