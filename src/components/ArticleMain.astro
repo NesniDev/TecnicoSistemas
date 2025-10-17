@@ -1,5 +1,5 @@
 ---
-import Boton from './Boton.astro'
+import Button from './Button.astro'
 import ArrowNews from '../assets/icons/ArrowNews.astro'
 
 const { url, image_url, title, description, published_at, source } = Astro.props
@@ -18,9 +18,9 @@ const { url, image_url, title, description, published_at, source } = Astro.props
       <span class="text-[8px]">
         {published_at.slice(0, 10)}
       </span>
-      <Boton href={source} className="px-2 py-1 text-[10px]">
+      <Button href={source} className="px-2 py-1 text-[10px]">
         <ArrowNews />
-      </Boton>
+      </Button>
     </p>
   </div>
 </article>
