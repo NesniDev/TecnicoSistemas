@@ -32,7 +32,19 @@ import '@fontsource-variable/outfit'
     font-family: var(--font);
     color: var(--letter);
   }
-  a:hover {
+  a:empty {
     opacity: 0.8;
+  }
+
+  div > a:not(p ~ :last-child),
+  ul li a {
+    display: inline-block;
+    color: var(--letter);
+    transform: translateY(0);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      text-shadow: 0 0 10px var(--letter);
+      transform: translateY(-2px);
+    }
   }
 </style>
