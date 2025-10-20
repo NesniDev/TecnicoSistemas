@@ -12,8 +12,8 @@ interface NewsItem {
   source: string
 }
 
-// const resNews = await fetch('http://localhost:4321/api/getNews.json')
-// const dataNews: NewsItem[] = await resNews.json()
+const resNews = await fetch('http://localhost:4321/api/get-news')
+const dataNews: NewsItem[] = await resNews.json()
 ---
 
 <main class="flex items-center my-5 mx-auto">
@@ -37,7 +37,8 @@ interface NewsItem {
       </h3>
       <section>
         {
-          dataNewsJson.map((item: NewsItem) => {
+          /* @ignore */
+          dataNews.map((item: NewsItem) => {
             return <ArticleMain {...item} />
           })
         }
