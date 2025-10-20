@@ -7,7 +7,11 @@ const { url, image_url, title, description, published_at, source } = Astro.props
 
 <article>
   <a href={url} target="_blank" class="flex flex-col justify-between">
-    <img src={image_url} alt={title} class="rounded-lg object-cover h-full" />
+    <img
+      src={image_url}
+      alt={`Imagen sobre: ${title}`}
+      class="rounded-lg object-cover h-full"
+    />
   </a>
   <div class="flex flex-col min-h-full">
     <h4 class="text-white text-base font-bold">{title}</h4>
