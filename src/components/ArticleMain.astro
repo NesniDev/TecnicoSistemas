@@ -1,28 +1,36 @@
 ---
 import Button from '@components/Button.astro'
 import ArrowNews from '@assets/icons/ArrowNews.astro'
+import { Image } from 'astro:assets'
 
-const { url, image_url, title, description, published_at, source } = Astro.props
+const { url, image_url, title, description, published_at, snippet } =
+  Astro.props
 ---
 
 <article>
   <a href={url} target="_blank" class="flex flex-col justify-between">
-    <img
+    <!-- <img
       src={image_url}
       alt={`Imagen sobre: ${title}`}
       class="rounded-lg object-cover h-full"
+    /> -->
+    <Image
+      src={image_url}
+      alt={`Imagen sobre: ${title}`}
+      inferSize
+      class="rounded-lg object-cover h-full"
     />
   </a>
-  <div class="flex flex-col min-h-full">
+  <div class="flex flex-col max-h-full">
     <h4 class="text-white text-base font-bold">{title}</h4>
     <div class="flex flex-1">
-      <p class="mt-2">{description}</p>
+      <p class="mt-2">{description === '' ? snippet : description}</p>
     </div>
     <p class="flex justify-between items-center my-2">
-      <span class="text-[8px]">
+      <span class="button text-[8px]">
         {published_at.slice(0, 10)}
       </span>
-      <Button href={source} className="px-2 py-1 text-[10px]">
+      <Button href={url} openBlank className="button px-2 py-1 text-[10px]">
         <ArrowNews />
       </Button>
     </p>
@@ -33,20 +41,20 @@ const { url, image_url, title, description, published_at, source } = Astro.props
   article {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    height: fit-content;
-    width: 100%;
-    /*overflow: hidden;*/
   }
 
   article img {
-    width: 100%;
+    max-width: 100%;
     height: 150px;
     object-fit: cover;
   }
 
   article div {
     padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    flex: 1;
   }
 
   article div p {
