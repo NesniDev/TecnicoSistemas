@@ -29,77 +29,79 @@ const dataNews: NewsItem[] = await resNews.json()
             principal es asegurar la integración y el correcto funcionamiento de
             todos los sistemas tecnológicos en la empresa.
           </p>
-          <Button href="/"> Leer más...</Button>
+          <Button href="/post/infoSistemas"> Leer más...</Button>
         </div>
       </section>
-      <h3 class="text-lg text-white font-extrabold text-center">
+      <h3 class="text-xl text-center md:text-left text-white font-extrabold">
         Ultimas noticias
       </h3>
       <section>
         {
-          /* @ignore */
-          dataNews.map((item: NewsItem) => {
+          // @ts-ignore
+          dataNews.data.map((item: NewsItem) => {
             return <ArticleMain {...item} />
           })
         }
       </section>
     </div>
   </Container>
-</main>
 
-<style>
-  main section:first-child {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.5),
-        rgba(226, 223, 223, 0)
-      ),
-      url('/images/tecnico sistemas.jpg');
-
-    border-radius: 20px;
-    background-position: center;
-    background-size: cover;
-    aspect-ratio: 17 / 9;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-inline: 32px;
-    overflow: hidden;
-  }
-
-  section > div h2 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 40px;
-  }
-
-  section > div p {
-    color: var(--letter);
-    font-weight: 400;
-    font-size: 18px;
-  }
-
-  main section:last-child {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding-inline: 16px;
-  }
-
-  @media (max-width: 768px) {
+  <style>
     main section:first-child {
-      aspect-ratio: unset;
-      padding: 16px 20px;
+      background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(226, 223, 223, 0)
+        ),
+        url('/images/tecnico sistemas.webp');
+
+      border-radius: 20px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      aspect-ratio: 8 / 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 32px;
+      /* overflow: hidden; */
     }
+
     section > div h2 {
       color: #fff;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 40px;
     }
+
     section > div p {
-      font-size: 12px;
+      color: var(--letter);
+      font-weight: 400;
+      font-size: 18px;
     }
-  }
-</style>
+
+    main section:last-child {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      main section:first-child {
+        margin-inline: 20px;
+      }
+      section > div h2 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      section > div p {
+        font-size: 12px;
+      }
+
+      main section:last-child {
+        margin-inline: 20px;
+      }
+    }
+  </style>
+</main>
