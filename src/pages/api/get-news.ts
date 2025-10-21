@@ -2,6 +2,9 @@
 
 import type { APIRoute } from "astro";
 
+export const prerender = false
+
+
 export const GET: APIRoute = async () => {
     
     const API_KEY = 'i2Vrvbmpz55P6g0HEyJ0b7n0BW8mEEJ0VmQeCUgK'
