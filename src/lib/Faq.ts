@@ -14,9 +14,5 @@ export const faq = [
     {
         question: '¿Cuáles son las habilidades clave?',
         answer: 'Resolución de problemas, atención al detalle, trabajo bajo presión y comunicación efectiva.'
-    },
-    {
-        question: '¿Cuál es la diferencia entre un técnico de sistemas y un técnico informático?',
-        answer: 'El técnico de sistemas se enfoca en la administración y mantenimiento de redes y servidores, mientras que el técnico informático se centra más en la reparación de equipos y asistencia técnica.'
     }
 ]
