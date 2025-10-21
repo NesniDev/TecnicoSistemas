@@ -2,15 +2,21 @@
 import Logo from '@assets/icons/Logo.astro'
 import Button from '@components/Button.astro'
 import Container from '@components/Container.astro'
+import LogoPrincipal from '/public/systems.svg'
+import { Picture } from 'astro:assets'
 ---
 
 <div class="border-b-1 border-gray-500/30">
   <Container>
     <header class="flex justify-between items-center py-4 px-8">
       <div class="flex justify-between items-center gap-5">
-        <a href="/">
-          <img src="systems.svg" alt="" class="size-10" />
-        </a>
+        <Picture
+          src={LogoPrincipal}
+          alt=""
+          class="size-10"
+          inferSize
+          formats={['webp', 'avif', 'jpg']}
+        />
         <nav>
           <ul class="flex justify-between items-center gap-5">
             <li>
