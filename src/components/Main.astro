@@ -11,8 +11,8 @@ interface NewsItem {
   snippet: string
 }
 
-const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
-const dataNews: NewsItem[] = await resNews.json()
+// const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
+// const dataNews: NewsItem[] = await resNews.json()
 ---
 
 <main class="flex items-center my-5 mx-auto">
@@ -35,12 +35,12 @@ const dataNews: NewsItem[] = await resNews.json()
         Ultimas noticias
       </h3>
       <section>
-        {
+        <!-- {
           // @ts-ignore
           dataNews.data.map((item: NewsItem) => {
             return <ArticleMain {...item} />
           })
-        }
+        } -->
       </section>
     </div>
   </Container>
