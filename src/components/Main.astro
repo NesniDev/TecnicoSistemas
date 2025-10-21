@@ -1,7 +1,6 @@
 ---
 import Button from '@components/Button.astro'
 import Container from '@components/Container.astro'
-import { dataNewsJson } from '@pages/api/getNews'
 import ArticleMain from '@components/ArticleMain.astro'
 interface NewsItem {
   title: string
@@ -9,7 +8,7 @@ interface NewsItem {
   url: string
   image_url: string
   published_at: string
-  source: string
+  snippet: string
 }
 
 const resNews = await fetch('http://localhost:4321/api/get-news')
@@ -21,15 +20,15 @@ const dataNews: NewsItem[] = await resNews.json()
     <div class="flex flex-col gap-5">
       <section>
         <div>
-          <h2>¿Qué es un técnico de sistemas?</h2>
+          <h2>Técnico de sistemas e informática</h2>
           <p class="mt-2 mb-5 lg:mb-15">
-            El técnico de sistemas es aquella persona encargada de la
-            instalación, configuración y mantenimiento de los sistemas
-            informático, equipo y redes de telecomunicación. Su función
-            principal es asegurar la integración y el correcto funcionamiento de
-            todos los sistemas tecnológicos en la empresa.
+            Es aquella persona encargada de la instalación, configuración y
+            mantenimiento de los sistemas informático, equipo y redes de
+            telecomunicación. Su función principal es asegurar la integración y
+            el correcto funcionamiento de todos los sistemas tecnológicos en la
+            empresa.
           </p>
-          <Button href="/post/infoSistemas"> Leer más...</Button>
+          <Button href="/post/blogTecnicoSistemas"> Leer más...</Button>
         </div>
       </section>
       <h3 class="text-xl text-center md:text-left text-white font-extrabold">
@@ -50,8 +49,8 @@ const dataNews: NewsItem[] = await resNews.json()
     main section:first-child {
       background: linear-gradient(
           to bottom,
-          rgba(0, 0, 0, 0.5),
-          rgba(226, 223, 223, 0)
+          rgba(0, 0, 0, 0.5) 80%,
+          rgba(226, 223, 223, 0) 100%
         ),
         url('/images/tecnico sistemas.webp');
 
@@ -72,6 +71,7 @@ const dataNews: NewsItem[] = await resNews.json()
       color: #fff;
       font-weight: 700;
       font-size: 40px;
+      margin-bottom: 30px;
     }
 
     section > div p {
