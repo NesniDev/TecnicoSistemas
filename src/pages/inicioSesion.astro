@@ -1,6 +1,8 @@
 ---
 import Google from '@assets/socials/Google.astro'
 import AuthLayout from '@layouts/AuthLayout.astro'
+const email = Astro.cookies.get('email')?.value ?? ''
+const rememberMe = !!email
 ---
 
 <AuthLayout title="Inicio de Sesión" page="Inicio de Sesión">
@@ -20,13 +22,19 @@ import AuthLayout from '@layouts/AuthLayout.astro'
       <input
         type="email"
         name="email"
+        value={email}
         placeholder="example@gmail.com"
         autocomplete="off"
       />
     </label>
     <label for="Contraseña" class="flex flex-col">
       <small>Contraseña</small>
-      <input type="password" placeholder="***************" />
+      <input
+        type="password"
+        checked={rememberMe}
+        name="password"
+        placeholder="***************"
+      />
     </label>
     <button
       type="submit"
@@ -34,8 +42,8 @@ import AuthLayout from '@layouts/AuthLayout.astro'
       >Iniciar sesión</button
     >
     <div class="text-center flex justify-center gap-1 mt-3 text-base">
-      <input type="checkbox" name="remember" id="remember" />
-      <label for="remember" class="text-xs">Recordarme</label>
+      <input type="checkbox" name="remember_me" id="remember_me" />
+      <label for="remember_me" class="text-xs">Recordarme</label>
     </div>
     <div class="text-center">
       <small
@@ -65,3 +73,27 @@ import AuthLayout from '@layouts/AuthLayout.astro'
     }
   }
 </style>
+
+<script>
+  import { actions } from 'astro:actions'
+  import { effect } from 'astro:schema'
+
+  const form = document.querySelector('form') as HTMLFormElement
+
+  const btnSubmit = document.querySelector('button') as HTMLButtonElement
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    btnSubmit.setAttribute('disabled', 'disabled')
+
+    const formData = new FormData(form)
+
+    const { data, error } = await actions.registerUser(formData)
+
+    if (error) {
+      console.log(error.message)
+    }
+
+    btnSubmit.removeAttribute('disabled')
+  })
+</script>
