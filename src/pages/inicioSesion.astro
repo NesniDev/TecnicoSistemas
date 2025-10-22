@@ -1,0 +1,67 @@
+---
+import Google from '@assets/socials/Google.astro'
+import AuthLayout from '@layouts/AuthLayout.astro'
+---
+
+<AuthLayout title="Inicio de Sesión" page="Inicio de Sesión">
+  <a
+    href="/"
+    class="active:scale-[0.97] w-sm py-4 bg-[#1073D4] transition hover:bg-[#1073D4]/90 text-white rounded-lg text-center flex justify-center items-center gap-2"
+  >
+    <Google class="size-6" /> Iniciar sesión con Google</a
+  >
+  <div class="my-5">
+    <span class="text-sm">O</span>
+  </div>
+  <form action="/" class="w-sm">
+    <label for="email" class="flex flex-col">
+      <small>Correo electrónico</small>
+
+      <input
+        type="email"
+        name="email"
+        placeholder="example@gmail.com"
+        autocomplete="off"
+      />
+    </label>
+    <label for="Contraseña" class="flex flex-col">
+      <small>Contraseña</small>
+      <input type="password" placeholder="***************" />
+    </label>
+    <button
+      type="submit"
+      class="w-full px-4 cursor-pointer py-3 bg-[#1073D4] transition hover:bg-[#1073D4]/90 text-white rounded-lg active:scale-[0.97]"
+      >Iniciar sesión</button
+    >
+    <div class="text-center flex justify-center gap-1 mt-3 text-base">
+      <input type="checkbox" name="remember" id="remember" />
+      <label for="remember" class="text-xs">Recordarme</label>
+    </div>
+    <div class="text-center">
+      <small
+        >¿No tienes cuenta? <a href="/registro" class="underline"
+          >Crea una cuenta</a
+        ></small
+      >
+    </div>
+  </form>
+</AuthLayout>
+
+<style>
+  form > label {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  form input {
+    padding: 10px 15px;
+    background-color: #1f293a;
+    border-radius: 8px;
+    &:focus {
+      outline: white 1px solid;
+      outline-offset: 2px;
+    }
+  }
+</style>
