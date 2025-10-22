@@ -1,0 +1,66 @@
+---
+// @ts-ignore
+import '@fontsource-variable/outfit'
+import { ClientRouter } from 'astro:transitions'
+
+interface Props {
+  title: string
+  page: string
+}
+
+const { title, page } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/systems.svg" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <section
+      class="max-w-[450px] mx-auto flex flex-col justify-center items-center h-screen"
+    >
+      <h1 class="text-3xl text-white text-center">
+        Bienvenido al {page} de Estudiantes
+      </h1>
+      <p class="text-center mt-5 mb-10">
+        Inicia sesión para acceder a tu panel de estudiante personalizado,
+        guardar tu progreso y conectarte con la comunidad estudiantil.
+      </p>
+
+      <slot />
+
+      <div class="flex flex-col justify-between gap-5 mt-10">
+        <p>📊 Acceso instantáneo a tu panel de estudiante personalizado.</p>
+        <p>💾 Guarda tu progreso y realiza un seguimiento de tu aprendizaje.</p>
+        <p>🔐 Protege tus datos y privacidad.</p>
+        <p>💻 Acceso a herramientas y recursos de aprendizaje.</p>
+      </div>
+    </section>
+  </body>
+</html>
+
+<style is:global>
+  @import 'tailwindcss';
+
+  :root {
+    --fondo: #0b192f;
+    --letter: #cdd7f7;
+    --colorAquamarine: #64ffda;
+    --font: 'Outfit Variable', sans-serif;
+  }
+  html,
+  body {
+    margin: 0;
+    background-color: var(--fondo);
+    font-family: var(--font);
+    color: var(--letter);
+  }
+  p {
+    font-size: 15px;
+  }
+</style>
