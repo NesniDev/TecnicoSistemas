@@ -1,0 +1,56 @@
+---
+import AuthLayout from '@layouts/AuthLayout.astro'
+---
+
+<AuthLayout title="Registrarse" page="Registro">
+  <form action="/" class="w-sm">
+    <label for="text" class="flex flex-col">
+      <small>Nombre</small>
+
+      <input
+        type="email"
+        name="name"
+        placeholder="Carlos Rodríguez"
+        autocomplete="off"
+      />
+    </label>
+    <label for="email" class="flex flex-col">
+      <small>Correo electrónico</small>
+
+      <input
+        type="email"
+        name="email"
+        placeholder="example@gmail.com"
+        autocomplete="off"
+      />
+    </label>
+    <label for="Contraseña" class="flex flex-col">
+      <small>Contraseña</small>
+      <input type="password" placeholder="***************" />
+    </label>
+    <button
+      type="submit"
+      class="w-full px-4 cursor-pointer py-3 bg-[#1073D4] transition hover:bg-[#1073D4]/90 mb-15 text-white rounded-lg active:scale-[0.97]"
+      >Iniciar sesión</button
+    >
+  </form>
+</AuthLayout>
+
+<style>
+  form > label {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  form input {
+    padding: 10px 15px;
+    background-color: #1f293a;
+    border-radius: 8px;
+    &:focus {
+      outline: white 1px solid;
+      outline-offset: 2px;
+    }
+  }
+</style>
