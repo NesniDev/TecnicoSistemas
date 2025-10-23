@@ -1,13 +1,152 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import { firebase } from '../firebase/config'
+import Container from '@components/Container.astro'
+import { Picture } from 'astro:assets'
+import LogoPrincipal from '/public/systems.svg'
+import SearchInput from '@assets/icons/SearchInput.astro'
+import Logout from '@assets/icons/Logout.astro'
+
+const firebaseUser = firebase.auth.currentUser
+
+if (firebaseUser === null) {
+  return Astro.redirect('/inicioSesion')
+}
+
+const { displayName, email, photoURL, emailVerified } = firebaseUser
+
+const name = displayName ?? 'Anonimo'
 ---
 
 <Layout title="Login Estudiante">
-  <h1>Login Estudiante protegido</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-    consequuntur eum adipisci commodi. Placeat ipsum quaerat eveniet earum
-    repellat a, minima rem delectus, necessitatibus ut velit iste assumenda
-    natus? Quae.
-  </p>
+  <Container>
+    <header class="flex justify-between items-center py-4">
+      <Picture src={LogoPrincipal} alt={'Logo Principal'} class={'size-15'} />
+      <a href="/">Inicio</a>
+      <div class="flex justify-between items-center gap-5">
+        <form role="search">
+          <div class="flex">
+            <SearchInput />
+            <input type="text" placeholder="Busca cursos o recursos" />
+            <button type="submit">Buscar</button>
+          </div>
+        </form>
+
+        {
+          photoURL ? (
+            <div class="bg-amber-100 px-1 rounded-full">
+              <Picture
+                src={LogoPrincipal}
+                alt={'Logo Principal'}
+                class={'size-10 rounded-full'}
+              />
+            </div>
+          ) : (
+            <div>
+              <Picture
+                src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${name}`}
+                alt={'Logo Principal'}
+                inferSize
+                class={'w-14 h-11 rounded-full'}
+              />
+            </div>
+          )
+        }
+        <div
+          class="hover:bg-[#64748b]/90 bg-[#64748b] rounded-lg p-1 cursor-pointer active:scale-95 transition"
+        >
+          <Logout id="logout" />
+        </div>
+      </div>
+    </header>
+    <h1>Bienvenido, {name}!!</h1>
+    <p>
+      {email}
+    </p>
+    <p>
+      {
+        emailVerified
+          ? 'Su correo electrónico está verificado'
+          : 'Su correo electrónico no ha sido verificado'
+      }
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+      consequuntur eum adipisci commodi. Placeat ipsum quaerat eveniet earum
+      repellat a, minima rem delectus, necessitatibus ut velit iste assumenda
+      natus? Quae.
+    </p>
+  </Container>
 </Layout>
+
+<style>
+  /* Formulario de Búsqueda */
+  form {
+    max-width: 42rem;
+    width: 100%;
+    margin: 0 auto;
+    padding-inline: 1rem;
+  }
+
+  form > div {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 1px #64748b;
+    padding: 7px;
+    gap: 0.5rem;
+  }
+
+  form input[type='text'] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    padding: 0.75rem 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  form input[type='text']::placeholder {
+    color: #64748b;
+  }
+
+  button {
+    padding: 8px 15px;
+    border-radius: 0.5rem;
+    background-color: #64748b;
+    color: white;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+
+    &:hover, /* pseudo-clase que significa que el ratón está encima */
+    &:focus {
+      /* pseudo-clase que significa que el elemento tiene el foco */
+      background-color: var(--primary-hover);
+      outline: 2px solid white;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+</style>
+<script>
+  import { actions } from 'astro:actions'
+
+  const logout = document.getElementById('logout') as HTMLLIElement
+  logout.addEventListener('click', () => {
+    actions.logout()
+    window.location.href = '/'
+  })
+</script>
