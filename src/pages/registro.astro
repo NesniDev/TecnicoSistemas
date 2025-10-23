@@ -3,7 +3,7 @@ import AuthLayout from '@layouts/AuthLayout.astro'
 ---
 
 <AuthLayout title="Registrarse" page="Registro">
-  <form action="/" class="w-sm">
+  <form class="w-sm">
     <label for="text" class="flex flex-col">
       <small>Nombre</small>
 
@@ -33,13 +33,15 @@ import AuthLayout from '@layouts/AuthLayout.astro'
       class="w-full px-4 cursor-pointer py-3 bg-[#1073D4] transition hover:bg-[#1073D4]/90 mb-3 text-white rounded-lg active:scale-[0.97]"
       >Iniciar sesión</button
     >
-    <div class="text-center flex justify-center gap-1 text-base mb-2">
+    <!-- <div class="text-center flex justify-center gap-1 text-base mb-2">
       <input type="checkbox" name="remember_me" id="remember_me" />
       <label for="remember_me" class="text-xs">Recordarme</label>
-    </div>
+    </div> -->
     <div class="text-center mb-5">
       <small
-        ><a href="/registro" class="underline">¿Ya tienes cuenta? </a></small
+        ><a href="/inicioSesion" class="underline"
+          >¿Ya tienes cuenta?
+        </a></small
       >
     </div>
   </form>
@@ -63,3 +65,33 @@ import AuthLayout from '@layouts/AuthLayout.astro'
     }
   }
 </style>
+
+<script>
+  import { actions } from 'astro:actions'
+  import Swal from 'sweetalert2'
+
+  const form = document.querySelector('form') as HTMLFormElement
+
+  const btnSubmit = document.querySelector('button') as HTMLButtonElement
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    btnSubmit.setAttribute('disabled', 'disabled')
+
+    const formData = new FormData(form)
+
+    const { data, error } = await actions.registerUser(formData)
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Credenciales incorrectas',
+        text: error.message
+      })
+      console.log(error.message)
+      btnSubmit.removeAttribute('disabled')
+      return
+    }
+
+    window.location.replace('/loginEstudiante')
+  })
+</script>
