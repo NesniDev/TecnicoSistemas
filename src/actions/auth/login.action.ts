@@ -28,7 +28,7 @@ export const loginUser = defineAction({
 
             const userCredential = await signInWithEmailAndPassword(firebase.auth, email, password)
 
-
+            
            const user = userCredential.user;
 
             return {

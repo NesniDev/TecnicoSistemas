@@ -37,6 +37,7 @@ export const registerUser = defineAction({
                 url: `${import.meta.env.WEBSITE_URL}/loginEstudiante`
             })
             //retornar
+            
             const user = userCredential.user;
 
             return {
@@ -45,7 +46,6 @@ export const registerUser = defineAction({
               email: user.email,
               name
             };
-
         } catch (error){
             const firebaseError = error as AuthError 
 
