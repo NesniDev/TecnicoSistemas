@@ -2,7 +2,7 @@ import type { MiddlewareNext } from "astro";
 import { defineMiddleware } from "astro:middleware";
 import { firebase } from "../firebase/config";
 
-const privateRoutes = ['/loginEstudiante']
+const privateRoutes = ['/loginEstudiante', '/courses']
 const notAuthenticatedRoutes = ['/inicioSesion', '/registro']
 
 export const onRequest = defineMiddleware((context, next) => {
@@ -16,7 +16,14 @@ export const onRequest = defineMiddleware((context, next) => {
     context.locals.displayName = name
     context.locals.photoURL = photoURL
     console.log(context.url.pathname)
+
+    const isPrivate = privateRoutes.some(route =>
+        context.url.pathname.startsWith(route)
+      );
     
+    if(isPrivate && !isLoggedIn){
+    return context.redirect('/inicioSesion')
+    }
     if(!isLoggedIn && privateRoutes.includes(context.url.pathname)){
         return context.redirect('/inicioSesion')
     }
