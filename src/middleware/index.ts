@@ -9,8 +9,12 @@ export const onRequest = defineMiddleware((context, next) => {
 
     const user = firebase.auth.currentUser
     const isLoggedIn = !!user
+    const name = user?.displayName ?? ''
+    const photoURL = user?.photoURL ?? ''
 
     context.locals.isLoggedIn = isLoggedIn
+    context.locals.displayName = name
+    context.locals.photoURL = photoURL
     console.log(context.url.pathname)
     
     if(!isLoggedIn && privateRoutes.includes(context.url.pathname)){
