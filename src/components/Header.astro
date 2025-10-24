@@ -4,6 +4,9 @@ import Button from '@components/Button.astro'
 import Container from '@components/Container.astro'
 import LogoPrincipal from '/public/systems.svg'
 import { Picture } from 'astro:assets'
+import SearchInput from '@assets/icons/SearchInput.astro'
+
+const { isLoggedIn, displayName, photoURL } = Astro.locals
 ---
 
 <div class="border-b border-gray-500/30">
@@ -34,7 +37,95 @@ import { Picture } from 'astro:assets'
           </ul>
         </nav>
       </div>
-      <Button href="/inicioSesion"> Login </Button>
+      
+      {
+        isLoggedIn ? (
+          <div class="flex justify-center items-center">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex justify-between items-center gap-5">
+          <form role="search">
+            <div class="flex">
+              <SearchInput />
+              <input type="text" placeholder="Busca cursos o recursos..." />
+              <button type="submit">Buscar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+          <Picture
+            transition:name={`image-${displayName}`}
+            src={photoURL}
+            alt={'Logo Principal'}
+            class={'size-12 rounded-full'}
+            inferSize
+          />
+        ) : (
+          <Button href="/inicioSesion"> Login </Button>
+        )
+      }
     </header>
   </Container>
 </div>
+<style>
+  /* Formulario de Búsqueda */
+  form {
+    max-width: 42rem;
+    width: 100%;
+    margin: 0 auto;
+    padding-inline: 1rem;
+  }
+
+  form > div {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 1px #64748b;
+    padding: 7px;
+    gap: 0.5rem;
+  }
+
+  form input[type='text'] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    padding: 0.75rem 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  form input[type='text']::placeholder {
+    color: #64748b;
+  }
+
+  button {
+    padding: 8px 15px;
+    border-radius: 0.5rem;
+    background-color: #64748b;
+    color: white;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+
+    &:hover, /* pseudo-clase que significa que el ratón está encima */
+    &:focus {
+      /* pseudo-clase que significa que el elemento tiene el foco */
+      background-color: var(--primary-hover);
+      outline: 2px solid white;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+</style>
