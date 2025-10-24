@@ -4,6 +4,8 @@ import Container from '@components/Container.astro'
 import Header from '@components/Header.astro'
 import Layout from '@layouts/Layout.astro'
 import { courses } from '@lib/courses'
+import ChevronDown from '@assets/icons/ChevronDown.astro'
+import Badge from '@assets/icons/Badge.astro'
 
 // export const prerender = false
 
@@ -16,73 +18,177 @@ if (!page) {
   return Astro.redirect('/404')
 }
 
-const { title, description, img, name, modules } = page
+const {
+  title,
+  description,
+  img,
+  name,
+  modules,
+  learn,
+  courseSyllabus,
+  targetAudience,
+  prerequisites
+} = page
 ---
 
 <Layout title="Courses">
   <Container>
-    <main>
-      <Header />
-      <section class="my-2">
-        <div class="flex h-[450px] justify-center items-center gap-10">
-          <div id="clippy" class="w-[50%] overflow-hidden">
-            <img
-              src={img}
-              alt={title}
-              class="h-96"
-              transition:name=`image-${slug}`
-            />
-          </div>
-          <div class="w-[50%]">
-            <h2 class="text-5xl text-white my-3">{title}</h2>
-            <p>{description}</p>
-          </div>
-        </div>
-      </section>
-
+    <Header />
+    <main class="mx-10 md:mx-auto">
       <section>
-        <div>
-          <h2 class="text-white text-3xl">Lo que aprenderás</h2>
-          <div class="grid grid-cols-2 gap-10 place-content-center mt-7">
-            {
-              courses.map((item, index) => {
-                return (
-                  <p class="flex gap-2 ">
-                    <Check class="text-[#009dff]" />
-                    <span class="text-[16px]">{item.learn[index]}</span>
-                  </p>
-                )
-              })
-            }
+        <section class="my-2">
+          <div
+            class="flex flex-col md:flex-row h-auto md:h-[450px] justify-center items-center gap-10"
+          >
+            <div id="clippy" class="md:w-[50%] overflow-hidden">
+              <img
+                src={img}
+                alt={title}
+                class="md:w-full md:h-96 size-56"
+                transition:name=`image-${slug}`
+              />
+            </div>
+            <div class="md:w-[50%]">
+              <h2 class="text-center md:text-left text-5xl text-white my-3">
+                {title}
+              </h2>
+              <p class="text-center md:text-left">{description}</p>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section>
+          <div>
+            <h2 class="text-white text-3xl">Lo que aprenderás</h2>
+            <div class="grid grid-cols-2 gap-10 place-content-center mt-7">
+              {
+                learn.map((item) => {
+                  return (
+                    <p class="flex gap-2 ">
+                      <small>
+                        <Check class="text-[#009dff]" />
+                      </small>
+                      <span class="text-[16px]">{item}</span>
+                    </p>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="flex-col flex md:flex-row justify-between gap-7">
+        <section class="my-2">
+          <div>
+            <h2 class="text-white text-3xl">Temario del curso</h2>
+            <div class="space-y-4 mt-6">
+              {
+                courseSyllabus.map((item, index) => {
+                  return (
+                    <details class="group rounded-lg bg-slate-900/80 p-4">
+                      <summary class="cursor-pointer list-none font-bold text-white">
+                        <div class="flex items-center justify-between">
+                          <span>
+                            Módulo {index + 1}:{' '}
+                            <span class="font-light">{item.title}</span>
+                          </span>
+                          <small>
+                            <ChevronDown />
+                          </small>
+                        </div>
+                      </summary>
+                      <p class="mt-4 text-gray-400">{item.description}</p>
+                    </details>
+                  )
+                })
+              }
+            </div>
+          </div>
+
+          <section>
+            <div class="flex flex-col gap-10 mt-5">
+              <h2 class="text-white text-3xl">¿A quién está dirigido</h2>
+              <div class="flex gap-10">
+                <div>
+                  <img src={img} alt={title} class="size-48 rounded-xl" />
+                </div>
+                <div class="flex flex-col justify-evenly gap-2">
+                  {
+                    targetAudience.map((item) => {
+                      return (
+                        <p class="flex gap-2">
+                          <Badge class="text-[#009dff]" />
+                          {item}
+                        </p>
+                      )
+                    })
+                  }
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="my-2 flex flex-col gap-7 flex-1">
+          <div>
+            <h2 class="text-white text-3xl">Instructor</h2>
+          </div>
+          <section>
+            <div>
+              <h3 class="text-white text-3xl mb-4">Prerequisitos</h3>
+              <p>{prerequisites}</p>
+            </div>
+          </section>
+        </section>
       </section>
     </main>
-
-    <style>
-      section > div:first-child {
-        background: linear-gradient(to bottom, #040d1c);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        padding: 20px 32px;
-        border-radius: 10px;
-        /* overflow: hidden; */
-      }
-
-      #clippy {
-        clip-path: polygon(
-          50% 0%,
-          83% 12%,
-          100% 43%,
-          94% 78%,
-          68% 100%,
-          32% 100%,
-          6% 78%,
-          0% 43%,
-          17% 12%
-        );
-      }
-    </style>
   </Container>
 </Layout>
+
+<style>
+  section > div:first-child {
+    background: linear-gradient(to bottom, #040d1c);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px 32px;
+    border-radius: 10px;
+    /* overflow: hidden; */
+  }
+
+  #clippy {
+    clip-path: polygon(
+      50% 0%,
+      83% 12%,
+      100% 43%,
+      94% 78%,
+      68% 100%,
+      32% 100%,
+      6% 78%,
+      0% 43%,
+      17% 12%
+    );
+  }
+
+  details[open] small {
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+  details small {
+    transition: all 0.3s ease;
+  }
+</style>
+
+<script>
+  const details = document.querySelectorAll('details')
+
+  details.forEach((detail) => {
+    detail.addEventListener('click', () => {
+      console.log('detail')
+      details.forEach((item) => {
+        if (item !== detail) {
+          item.removeAttribute('open')
+        }
+      })
+    })
+  })
+</script>
