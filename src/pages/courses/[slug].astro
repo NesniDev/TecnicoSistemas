@@ -1,0 +1,88 @@
+---
+import Check from '@assets/icons/Check.astro'
+import Container from '@components/Container.astro'
+import Header from '@components/Header.astro'
+import Layout from '@layouts/Layout.astro'
+import { courses } from '@lib/courses'
+
+// export const prerender = false
+
+const { slug } = Astro.params
+
+const page = courses.find((item) => item.slug === slug)
+
+console.log(page)
+if (!page) {
+  return Astro.redirect('/404')
+}
+
+const { title, description, img, name, modules } = page
+---
+
+<Layout title="Courses">
+  <Container>
+    <main>
+      <Header />
+      <section class="my-2">
+        <div class="flex h-[450px] justify-center items-center gap-10">
+          <div id="clippy" class="w-[50%] overflow-hidden">
+            <img
+              src={img}
+              alt={title}
+              class="h-96"
+              transition:name=`image-${slug}`
+            />
+          </div>
+          <div class="w-[50%]">
+            <h2 class="text-5xl text-white my-3">{title}</h2>
+            <p>{description}</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <h2 class="text-white text-3xl">Lo que aprenderás</h2>
+          <div class="grid grid-cols-2 gap-10 place-content-center mt-7">
+            {
+              courses.map((item, index) => {
+                return (
+                  <p class="flex gap-2 ">
+                    <Check class="text-[#009dff]" />
+                    <span class="text-[16px]">{item.learn[index]}</span>
+                  </p>
+                )
+              })
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <style>
+      section > div:first-child {
+        background: linear-gradient(to bottom, #040d1c);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 20px 32px;
+        border-radius: 10px;
+        /* overflow: hidden; */
+      }
+
+      #clippy {
+        clip-path: polygon(
+          50% 0%,
+          83% 12%,
+          100% 43%,
+          94% 78%,
+          68% 100%,
+          32% 100%,
+          6% 78%,
+          0% 43%,
+          17% 12%
+        );
+      }
+    </style>
+  </Container>
+</Layout>
