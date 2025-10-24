@@ -2,10 +2,13 @@
 import Layout from '@layouts/Layout.astro'
 import { firebase } from '../firebase/config'
 import Container from '@components/Container.astro'
-import { Picture } from 'astro:assets'
-import LogoPrincipal from '/public/systems.svg'
-import SearchInput from '@assets/icons/SearchInput.astro'
-import Logout from '@assets/icons/Logout.astro'
+import Header from '@components/Header.astro'
+
+import ArticleLogin from '@components/ArticleLogin.astro'
+import { courses } from '../lib/courses'
+import Footer from '@components/Footer.astro'
+import ArchiveExplorer from '@assets/icons/RecursesExplorer.astro'
+import { events } from '../lib/events'
 
 const firebaseUser = firebase.auth.currentUser
 
@@ -22,99 +25,87 @@ const name = displayName ?? 'Anonimo'
 
 <Layout title="Login Estudiante">
   <Container>
-    <header class="flex justify-between items-center py-4">
-      <Picture src={LogoPrincipal} alt={'Logo Principal'} class={'size-15'} />
-      <a href="/">Inicio</a>
-      <div class="flex justify-between items-center gap-5">
-        <form role="search">
-          <div class="flex">
-            <SearchInput />
-            <input type="text" placeholder="Busca cursos o recursos" />
-            <button type="submit">Buscar</button>
-          </div>
-        </form>
-
-        {
-          photoURL ? (
-            <div>
-              <Picture
-                src={photoURL}
-                alt={'Logo Principal'}
-                class={'w-18 h-14 rounded-full'}
-                inferSize
-              />
-            </div>
-          ) : (
-            <div>
-              <Picture
-                src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${name}`}
-                alt={'Logo Principal'}
-                inferSize
-                class={'w-18 h-14 rounded-full'}
-              />
-            </div>
-          )
-        }
-        <div
-          class="hover:bg-[#64748b]/90 bg-[#64748b] rounded-lg p-1 cursor-pointer active:scale-95 transition"
-        >
-          <Logout id="logout" />
-        </div>
+    <Header />
+    <h1 class="text-4xl text-white mx-10 md:mx-0">
+      ¡Bienvenido, {name.split(' ')[0]}!
+    </h1>
+    <main class="flex flex-col md:flex-row flex-1 justify-between gap-5 mb-6">
+      <div class="flex flex-col">
+        <h2 class="text-2xl text-white my-5 mx-10 md:mx-0">Mis Cursos</h2>
+        <section class="mx-10 md:mx-0">
+          {
+            courses.map((item) => {
+              return <ArticleLogin {...item} />
+            })
+          }
+        </section>
       </div>
-    </header>
-    <h1>Bienvenido, {name}!!</h1>
-    <p>
+      <aside class="w-[400px] mx-auto">
+        <div class="flex flex-col">
+          <h2 class="text-2xl text-white my-5 mx-10 md:mx-0">
+            Recursos Educativos
+          </h2>
+          <div
+            class="flex justify-center items-center gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4"
+          >
+            <ArchiveExplorer class="size-10" />
+            <a href="/" class="text-white">
+              <span>Explorar todos los recursos</span>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="text-2xl text-white my-5 mx-10 md:mx-0">
+            Información Importante
+          </h2>
+          <div class="flex flex-col gap-2 w-full">
+            {
+              events.map((item) => {
+                return (
+                  <div class="flex justify-between items-center gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4">
+                    <div />
+                    <div>
+                      <h2 class="mb-2 font-bold">{item.title}</h2>
+                      <p class="text-xs text-[#cdd7f7]">
+                        {item.description} - <span>{item.date}</span>
+                      </p>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="text-2xl text-white my-5 mx-10 md:mx-0">
+            Configuraciones
+          </h2>
+          <div
+            class="text-[15px] flex flex-col gap-5 justify-between bg-[#040d1c] text-white rounded-xl px-6 py-4"
+          >
+            <a href="/">Preferencias de Notificaciones</a>
+            <a href="/"> Configuraciones </a>
+            <button type="button" id="logout"> Cerrar sesión </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <!-- <p>
       {email}
-    </p>
-    <p>
-      {
-        emailVerified
+      </p>
+      <p>
+        {
+          emailVerified
           ? 'Su correo electrónico está verificado'
           : 'Su correo electrónico no ha sido verificado'
-      }
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-      consequuntur eum adipisci commodi. Placeat ipsum quaerat eveniet earum
-      repellat a, minima rem delectus, necessitatibus ut velit iste assumenda
-      natus? Quae.
-    </p>
+          }
+          </p> -->
   </Container>
+
+  <Footer />
 </Layout>
 
 <style>
-  /* Formulario de Búsqueda */
-  form {
-    max-width: 42rem;
-    width: 100%;
-    margin: 0 auto;
-    padding-inline: 1rem;
-  }
-
-  form > div {
-    display: flex;
-    align-items: center;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px 1px #64748b;
-    padding: 7px;
-    gap: 0.5rem;
-  }
-
-  form input[type='text'] {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text-primary);
-    padding: 0.75rem 0.5rem;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-
-  form input[type='text']::placeholder {
-    color: #64748b;
-  }
-
   button {
     padding: 8px 15px;
     border-radius: 0.5rem;
@@ -143,12 +134,33 @@ const name = displayName ?? 'Anonimo'
       pointer-events: none;
     }
   }
+  section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  a:empty {
+    opacity: 0;
+  }
+
+  div > a:not(p ~ :last-child),
+  ul li a {
+    display: block;
+    color: white;
+    transform: translateY(0);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      text-shadow: 0 0 0 white;
+      transform: 0;
+    }
+  }
 </style>
 <script>
   import { actions } from 'astro:actions'
 
   document.addEventListener('astro:page-load', () => {
-    const logout = document.getElementById('logout') as HTMLLIElement
+    const logout = document.getElementById('logout') as HTMLButtonElement
     logout.addEventListener('click', () => {
       actions.logout()
       window.location.href = '/'
