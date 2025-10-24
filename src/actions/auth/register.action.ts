@@ -1,6 +1,6 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { createUserWithEmailAndPassword, type AuthError } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile, type AuthError } from "firebase/auth";
 import { firebase } from "../../firebase/config";
 import { AstroError } from "astro/errors";
 
@@ -23,10 +23,20 @@ export const registerUser = defineAction({
                 
                 )
 
+            if(!firebase.auth.currentUser){
+                throw new AstroError('No hay usuario')
+            }
+        
             //actuyalizar el nombre (displayname)
+            updateProfile(firebase.auth.currentUser, { displayName: name })
 
 
             //verficiar el email
+
+            await sendEmailVerification(firebase.auth.currentUser, {
+                url: `${import.meta.env.WEBSITE_URL}/loginEstudiante`
+            })
+            //retornar
             const user = userCredential.user;
 
             return {
