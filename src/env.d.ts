@@ -4,7 +4,11 @@
 
 declare namespace App {
     interface Locals {
-
-        isLoggedIn: boolean
+        isLoggedIn: boolean,
+        user: any,
+        email: string,
+        displayName: string,
+        photoURL: string,
+        emailVerified: boolean,
     }
 }
