@@ -7,6 +7,10 @@ import { Picture } from 'astro:assets'
 import SearchInput from '@assets/icons/SearchInput.astro'
 
 const { isLoggedIn, displayName, photoURL } = Astro.locals
+
+const photoURL2 = photoURL && photoURL.trim() !== ""
+  ? photoURL
+  : "https://api.dicebear.com/7.x/adventurer/svg?seed=Neider"
 ---
 
 <div class="border-b border-gray-500/30">
@@ -15,7 +19,7 @@ const { isLoggedIn, displayName, photoURL } = Astro.locals
       <div class="flex justify-between items-center gap-5">
         <Picture
           src={LogoPrincipal}
-          alt=""
+          alt="Logo Principal"
           class="size-10"
           inferSize
           formats={['webp', 'avif', 'jpg']}
@@ -32,7 +36,11 @@ const { isLoggedIn, displayName, photoURL } = Astro.locals
               <a href="/post/blogTecnicoSistemas">Blog</a>
             </li>
             <li>
-              <a href="/loginEstudiante">Perfil</a>
+              {
+                isLoggedIn && (
+                  <a href="/loginEstudiante">Perfil</a>
+                )
+              }
             </li>
           </ul>
         </nav>
@@ -55,7 +63,7 @@ const { isLoggedIn, displayName, photoURL } = Astro.locals
     </div>
           <Picture
             transition:name={`image-${displayName}`}
-            src={photoURL}
+            src={photoURL2}
             alt={'Logo Principal'}
             class={'size-12 rounded-full'}
             inferSize
