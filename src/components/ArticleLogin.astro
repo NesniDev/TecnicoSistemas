@@ -1,11 +1,16 @@
 ---
-const { img, title, description, name, modules, url } = Astro.props
+const { img, title, description, name, modules, slug, learn } = Astro.props
 ---
 
 <article
   class="flex flex-col justify-between items-center rounded-lg bg-[#0f2b4f] overflow-hidden"
 >
-  <img src={img} alt="Blog" class="object-cover h-[180px] w-full" />
+  <img
+    src={img}
+    alt="Blog"
+    class="object-cover h-[180px] w-full"
+    transition:name={`image-${slug}`}
+  />
   <div class="flex flex-col justify-between items-start p-5 gap-5">
     <h4 class="text-white text-2xl">{title}</h4>
     <p class="text-xs">
@@ -20,7 +25,7 @@ const { img, title, description, name, modules, url } = Astro.props
       <span>{modules}</span>
     </div>
     <a
-      href={url}
+      href={`/courses/${slug}`}
       class="bg-[#4ba3fc] w-full text-center transition hover:bg-[#4ba3fc]/90 text-white rounded-lg active:scale-[0.97] px-4 py-1"
       >Ir al Curso</a
     >
