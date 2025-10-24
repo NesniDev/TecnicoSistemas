@@ -13,6 +13,8 @@ if (firebaseUser === null) {
   return Astro.redirect('/inicioSesion')
 }
 
+await firebaseUser.reload()
+
 const { displayName, email, photoURL, emailVerified } = firebaseUser
 
 const name = displayName ?? 'Anonimo'
@@ -34,11 +36,12 @@ const name = displayName ?? 'Anonimo'
 
         {
           photoURL ? (
-            <div class="bg-amber-100 px-1 rounded-full">
+            <div>
               <Picture
-                src={LogoPrincipal}
+                src={photoURL}
                 alt={'Logo Principal'}
-                class={'size-10 rounded-full'}
+                class={'w-18 h-14 rounded-full'}
+                inferSize
               />
             </div>
           ) : (
@@ -47,7 +50,7 @@ const name = displayName ?? 'Anonimo'
                 src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${name}`}
                 alt={'Logo Principal'}
                 inferSize
-                class={'w-14 h-11 rounded-full'}
+                class={'w-18 h-14 rounded-full'}
               />
             </div>
           )
@@ -144,9 +147,11 @@ const name = displayName ?? 'Anonimo'
 <script>
   import { actions } from 'astro:actions'
 
-  const logout = document.getElementById('logout') as HTMLLIElement
-  logout.addEventListener('click', () => {
-    actions.logout()
-    window.location.href = '/'
+  document.addEventListener('astro:page-load', () => {
+    const logout = document.getElementById('logout') as HTMLLIElement
+    logout.addEventListener('click', () => {
+      actions.logout()
+      window.location.href = '/'
+    })
   })
 </script>
