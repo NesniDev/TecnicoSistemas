@@ -7,6 +7,7 @@ import { courses } from '@lib/courses'
 import ChevronDown from '@assets/icons/ChevronDown.astro'
 import Badge from '@assets/icons/Badge.astro'
 import { Picture } from 'astro:assets'
+import ProfessionalImpact from '@assets/icons/ProfessionalImpact.astro'
 
 // export const prerender = false
 
@@ -28,7 +29,8 @@ const {
   learn,
   courseSyllabus,
   targetAudience,
-  prerequisites
+  prerequisites,
+  professional
 } = page
 ---
 
@@ -45,7 +47,7 @@ const {
               <img
                 src={img}
                 alt={title}
-                class="md:w-full md:h-96 size-56"
+                class="md:w-full md:h-96 size-56 object-cover"
                 transition:name=`image-${slug}`
               />
             </div>
@@ -98,7 +100,7 @@ const {
                           </small>
                         </div>
                       </summary>
-                      <p class="mt-4 text-gray-400">{item.description}</p>
+                      <p class="mt-2">{item.description}</p>
                     </details>
                   )
                 })
@@ -111,14 +113,18 @@ const {
               <h2 class="text-white text-3xl">¿A quién está dirigido</h2>
               <div class="flex gap-10">
                 <div>
-                  <img src={img} alt={title} class="w-full h-44 rounded-xl" />
+                  <img
+                    src={img}
+                    alt={title}
+                    class="h-44 w-96 shadow-lg shadow-cyan-50 rounded-xl object-cover"
+                  />
                 </div>
-                <div class="flex flex-col justify-evenly gap-2">
+                <div class="flex flex-col justify-evenly gap-2 pb-7">
                   {
                     targetAudience.map((item) => {
                       return (
                         <p class="flex gap-2">
-                          <Badge class="text-[#009dff]" />
+                          <Badge class="text-[#009dff] size-10" />
                           {item}
                         </p>
                       )
@@ -144,8 +150,7 @@ const {
                 El Ing. {name} es un ingeniero de sistemas con experiencia en la
                 instalación y configuración de sistemas informáticos, equipos y redes
                 de telecomunicación. Además, ha trabajado en varias empresas de tecnología
-                y ha sido elegido como el técnico de sistemas de la empresa Tecnico
-                Sistemas.
+                y ha sido elegido como el técnico de sistemas de la empresa.
               </p>
             </div>
           </div>
@@ -157,113 +162,132 @@ const {
           </section>
         </section>
       </section>
-      <div class="w-full max-w-2xl mx-auto font-sans">
-        <!-- 5 estrellas -->
-        <div class="flex items-center mb-2">
-          <span class="text-xl mr-4">★★★★★</span>
-          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-            <div class="h-full bg-yellow-500 rounded-full" style="width: 85%">
-            </div>
-          </div>
-          <span class="text-sm">5 estrellas</span>
+      <section class="my-3">
+        <div>
+          <h2 class="text-white text-3xl mb-6 text-center">
+            Impacto Profesional y Beneficio Clave
+          </h2>
+          <ul
+            class="flex flex-col justify-between gap-3 max-w-2xl mx-auto w-full"
+          >
+            {
+              professional.map((item) => {
+                return (
+                  <li class="flex  items-start gap-4 ">
+                    <div>
+                      <ProfessionalImpact class="text-[#009dff] size-5 mt-1" />
+                    </div>
+                    <div class="flex flex-col gap-2">
+                      <h2 class=" text-white text-lg">{item.title}</h2>
+                      <p>{item.description}</p>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </div>
-
-        <!-- 4 estrellas -->
-        <div class="flex items-center mb-2">
-          <span class="text-xl mr-4">★★★★</span>
-          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-            <div class="h-full bg-yellow-500 rounded-full" style="width: 10%">
+      </section>
+      <!-- <div>
+          <div class="flex items-center mb-2">
+            <span class="text-xl mr-4 text-amber-300">★★★★★</span>
+            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+              <div class="h-full bg-yellow-500 rounded-full" style="width: 85%">
+              </div>
             </div>
+            <span class="text-sm">65%</span>
           </div>
-          <span class="text-sm">4 estrellas</span>
-        </div>
 
-        <!-- 3 estrellas -->
-        <div class="flex items-center mb-2">
-          <span class="text-xl mr-4">★★★</span>
-          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-            <div class="h-full bg-yellow-500 rounded-full" style="width: 3%">
+          <div class="flex items-center mb-2">
+            <span class="text-xl mr-4">★★★★</span>
+            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+              <div class="h-full bg-yellow-500 rounded-full" style="width: 10%">
+              </div>
             </div>
+            <span class="text-sm">10%</span>
           </div>
-          <span class="text-sm">3 estrellas</span>
-        </div>
 
-        <!-- 2 estrellas -->
-        <div class="flex items-center mb-2">
-          <span class="text-xl mr-4">★★</span>
-          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-            <div class="h-full bg-yellow-500 rounded-full" style="width: 2%">
+          <div class="flex items-center mb-2">
+            <span class="text-xl mr-4">★★★</span>
+            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+              <div class="h-full bg-yellow-500 rounded-full" style="width: 3%">
+              </div>
             </div>
+            <span class="text-sm">3%</span>
           </div>
-          <span class="text-sm">2 estrellas</span>
-        </div>
 
-        <!-- 1 estrella -->
+          <div class="flex items-center mb-2">
+            <span class="text-xl mr-4">★★</span>
+            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+              <div class="h-full bg-yellow-500 rounded-full" style="width: 2%">
+              </div>
+            </div>
+            <span class="text-sm">2%</span>
+          </div>
+
         <div class="flex items-center mb-2">
           <span class="text-xl mr-4">★</span>
           <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
             <div class="h-full bg-yellow-500 rounded-full" style="width: 0%">
             </div>
           </div>
-          <span class="text-sm">1 estrella</span>
+          <span class="text-sm">0%</span>
         </div>
-
-        <!-- Resumen -->
         <div class="text-center mt-6">
           <p class="text-2xl font-bold">
             4.8 <span class="text-sm">Basado en 125 opiniones</span>
           </p>
         </div>
-      </div>
+      </section> -->
     </main>
   </Container>
+</Layout>
 
-  <style>
-    section > div:first-child {
-      background: linear-gradient(to bottom, #040d1c);
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      padding: 20px 32px;
-      border-radius: 10px;
-      /* overflow: hidden; */
-    }
+<style>
+  section > div:first-child {
+    background: linear-gradient(to bottom, #040d1c);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px 32px;
+    border-radius: 10px;
+    /* overflow: hidden; */
+  }
 
-    #clippy {
-      clip-path: polygon(
-        50% 0%,
-        83% 12%,
-        100% 43%,
-        94% 78%,
-        68% 100%,
-        32% 100%,
-        6% 78%,
-        0% 43%,
-        17% 12%
-      );
-    }
+  #clippy {
+    clip-path: polygon(
+      50% 0%,
+      83% 12%,
+      100% 43%,
+      94% 78%,
+      68% 100%,
+      32% 100%,
+      6% 78%,
+      0% 43%,
+      17% 12%
+    );
+  }
 
-    details[open] small {
-      transition: all 0.3s ease;
-      transform: rotate(180deg);
-    }
-    details small {
-      transition: all 0.3s ease;
-    }
-  </style>
+  details[open] small {
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+  details small {
+    transition: all 0.3s ease;
+  }
+</style>
 
-  <script>
-    const details = document.querySelectorAll('details')
+<script>
+  const details = document.querySelectorAll('details')
 
-    details.forEach((detail) => {
-      detail.addEventListener('click', () => {
-        console.log('detail')
-        details.forEach((item) => {
-          if (item !== detail) {
-            item.removeAttribute('open')
-          }
-        })
+  details.forEach((detail) => {
+    detail.addEventListener('click', () => {
+      console.log('detail')
+      details.forEach((item) => {
+        if (item !== detail) {
+          item.removeAttribute('open')
+        }
       })
     })
-  </script>
-</Layout>
+  })
+</script>
