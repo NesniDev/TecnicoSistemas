@@ -1,27 +1,40 @@
 export const courses = [
     {
-        img: '/images/blog.webp',
-        title: 'Introducción a la Programación con Python',
-        slug: 'introduccion-a-la-programacion',
-        description: 'Aprende los fundamentos de la programación desde cero con Python. Este curso es ideal para principiantes y te llevará desde los conceptos más básicos hasta la creación de tus primeros programas.',
+        img: '/images/f-programacion.webp',
+        title: 'Fundamentos de Programación',
+        slug: 'Fundamentos-de-programacion',
+        description: 'Domina los conceptos esenciales de la programación, desde la lógica y algoritmos hasta la implementación en un lenguaje moderno como Python, ideal para principiantes.',
         name: 'Neider Nieto',
-        modules: '12 Módulos',
-        url: '/courses/introduccion-a-la-programacion',
+        modules: '8 Módulos',
         learn: [
-            'Comprender los fundamentos de la lógica de programación.',
-            'Dominar la sintaxis y estructuras de datos de Python.',
-            'Crear funciones para modularizar tu código.',
-            'Resolver problemas algorítmicos de manera eficiente.',
+            'Comprender los fundamentos de la lógica y el pensamiento algorítmico.',
+            'Aplicar estructuras de control y tipos de datos para resolver problemas.',
+            'Escribir código limpio y modular mediante la creación de funciones.',
+            'Desarrollar una base sólida para aprender cualquier otro lenguaje de programación.'
+        ],
+        professional: [
+            { 
+                title: 'Nuevas Oportunidades Laborales',
+                description: 'Abre puertas a roles de desarrollador junior, analista de datos y especialista en automatización, sectores con alta demanda.'
+            },
+            { 
+                title: 'Aumento de la Eficiencia',
+                description: 'Permite automatizar tareas repetitivas en cualquier industria, optimizando tu tiempo y recursos.'
+            },
+            { 
+                title: 'Base para el Futuro Tecnológico',
+                description: 'Adquiere una de las habilidades más demandadas y crea una base sólida para aprender tecnologías más avanzadas.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción y configuración del entorno', description: 'Prepara tu ambiente de desarrollo, instala Python y conoce las herramientas básicas que utilizarás.' },
-            { title: 'Variables, tipos de datos y operadores', description: 'Aprende a almacenar información en variables y a manipular diferentes tipos de datos como números, texto y booleanos.' },
-            { title: 'Estructuras de control: condicionales y bucles', description: 'Controla el flujo de tu programa con sentencias `if`, `else`, y bucles `for` y `while` para tomar decisiones y repetir tareas.' },
-            { title: 'Estructuras de datos: listas, tuplas, diccionarios', description: 'Organiza y gestiona colecciones de datos de manera eficiente utilizando las estructuras de datos incorporadas en Python.' },
-            { title: 'Funciones y modularidad', description: 'Escribe código reutilizable y organizado mediante la creación de tus propias funciones.' },
-            { title: 'Manejo de errores y excepciones', description: 'Aprende a anticipar y gestionar errores para que tus programas sean más robustos y confiables.' },
-            { title: 'Introducción a la programación orientada a objetos', description: 'Descubre los conceptos básicos de clases y objetos para crear programas más complejos y escalables.' },
-            { title: 'Proyecto final: Creación de una aplicación de consola', description: 'Aplica todo lo aprendido para desarrollar un proyecto práctico desde cero.' }
+            { title: 'Pensamiento Lógico y Algoritmos', description: 'Desarrolla tu capacidad de resolver problemas de forma estructurada antes de escribir una sola línea de código.' },
+            { title: 'Tipos de Datos y Estructuras de Control', description: 'Aprende a usar variables, condicionales y bucles para crear programas dinámicos.' },
+            { title: 'Funciones y Modularidad', description: 'Organiza tu código en bloques reutilizables para crear programas más limpios y eficientes.' },
+            { title: 'Estructuras de Datos Fundamentales', description: 'Gestiona colecciones de información utilizando listas y diccionarios.' },
+            { title: 'Manejo de Errores y Excepciones', description: 'Aprende a anticipar y gestionar errores para que tus programas sean más robustos.' },
+            { title: 'Introducción a la Programación Orientada a Objetos (POO)', description: 'Introduce los conceptos de clases y objetos para construir software más escalable.' },
+            { title: 'Manejo de Archivos', description: 'Lee y escribe información en archivos de texto para que tus programas puedan persistir datos.' },
+            { title: 'Proyecto Práctico Final', description: 'Aplica todo lo aprendido en un proyecto final para consolidar tus conocimientos.' }
         ],
         targetAudience: [
             'Estudiantes que deseen una base sólida en programación.',
@@ -31,29 +44,40 @@ export const courses = [
         prerequisites: 'No se requieren conocimientos previos de programación. Solo necesitas una computadora y ganas de aprender.'
     },
     {
-        img: '/images/course-database.webp',
-        title: 'Bases de Datos Relacionales con SQL',
+        img: '/images/bd.webp',
+        title: 'Bases de Datos Relacionales',
         slug: 'base-de-datos',
-        description: 'Domina los conceptos fundamentales de las bases de datos relacionales y aprende a gestionar y consultar información utilizando el lenguaje SQL.',
+        description: 'Aprende a diseñar, gestionar y consultar bases de datos relacionales utilizando SQL, el lenguaje estándar para la manipulación de datos.',
         name: 'Neider Nieto',
-        modules: '8 Módulos',
-        url: '/courses/base-de-datos',
+        modules: '7 Módulos',
         learn: [
-            'Entender el modelo relacional y la normalización.',
-            'Diseñar y crear bases de datos desde cero.',
-            'Realizar consultas complejas con SELECT, JOINs, y subconsultas.',
-            'Manipular datos con INSERT, UPDATE y DELETE.',
-            'Asegurar la integridad de los datos con constraints.'
+            'Diseñar modelos de datos eficientes y normalizados.',
+            'Crear y mantener la estructura de una base de datos con SQL.',
+            'Realizar consultas para extraer información valiosa.',
+            'Asegurar la integridad y consistencia de los datos.'
+        ],
+        professional: [
+            { 
+                title: 'Acceso a Roles Clave de Datos',
+                description: 'Esencial para roles como analista de datos, desarrollador de backend y administrador de bases de datos (DBA).'
+            },
+            { 
+                title: 'Toma de Decisiones Estratégicas',
+                description: 'Capacita para extraer y analizar datos que fundamenten decisiones de negocio informadas y precisas.'
+            },
+            { 
+                title: 'Optimización del Rendimiento',
+                description: 'Mejora el rendimiento de las aplicaciones al diseñar bases de datos eficientes y optimizar consultas complejas.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción a las bases de datos relacionales', description: 'Conoce la historia, los conceptos clave y la importancia de las bases de datos en el mundo actual.' },
-            { title: 'Diseño de bases de datos y modelado entidad-relación', description: 'Aprende a diseñar una base de datos eficiente y normalizada utilizando diagramas Entidad-Relación.' },
-            { title: 'Creación de tablas y tipos de datos (DDL)', description: 'Utiliza el Lenguaje de Definición de Datos (DDL) de SQL para crear y modificar la estructura de tu base de datos.' },
-            { title: 'Consultas básicas y avanzadas (DQL)', description: 'Domina el Lenguaje de Consulta de Datos (DQL) para extraer información precisa y compleja de tus tablas.' },
-            { title: 'Manipulación de datos (DML)', description: 'Aprende a insertar, actualizar y eliminar registros en tu base de datos utilizando el Lenguaje de Manipulación de Datos (DML).' },
-            { title: 'Funciones agregadas y agrupación', description: 'Realiza cálculos sobre conjuntos de datos utilizando funciones como COUNT, SUM, AVG, y agrupa los resultados.' },
-            { title: 'Joins y uniones de tablas', description: 'Combina información de múltiples tablas para realizar consultas más potentes y obtener una visión completa de tus datos.' },
-            { title: 'Transacciones y control de concurrencia', description: 'Asegura la integridad y consistencia de tus datos mediante el uso de transacciones y el manejo de múltiples accesos simultáneos.' }
+            { title: 'Modelado de Datos Relacionales', description: 'Aprende los fundamentos del modelo relacional y cómo diseñar diagramas entidad-relación.' },
+            { title: 'Lenguaje de Definición de Datos (DDL)', description: 'Crea y administra tablas, define tipos de datos y establece restricciones para garantizar la integridad.' },
+            { title: 'Consultas con SQL (DQL)', description: 'Domina las sentencias SELECT, filtros, ordenamiento y funciones para extraer información.' },
+            { title: 'Manipulación de Datos (DML)', description: 'Aprende a insertar, actualizar y eliminar registros en tus tablas de forma segura.' },
+            { title: 'Consultas Avanzadas y Joins', description: 'Combina datos de múltiples tablas y realiza subconsultas para obtener análisis complejos.' },
+            { title: 'Índices y Optimización de Consultas', description: 'Aprende a crear índices para acelerar el rendimiento de las consultas en grandes volúmenes de datos.' },
+            { title: 'Transacciones y Control de Concurrencia', description: 'Asegura la atomicidad y consistencia de las operaciones en entornos multiusuario.' }
         ],
         targetAudience: [
             'Desarrolladores que necesiten gestionar bases de datos.',
@@ -63,29 +87,42 @@ export const courses = [
         prerequisites: 'Conocimientos básicos de informática. No es necesario saber programar, aunque puede ser de ayuda.'
     },
     {
-        img: '/images/course-web.webp',
-        title: 'Desarrollo Web Full-Stack con JavaScript',
-        slug: 'desarrollo-de-aplicaciones-web',
-        description: 'Aprende a crear aplicaciones web completas, desde el frontend con HTML, CSS y JavaScript, hasta el backend con Node.js y Express.',
+        img: '/images/web.webp',
+        title: 'Diseño Web',
+        slug: 'diseño-web',
+        description: 'Aprende a crear interfaces de usuario atractivas y funcionales utilizando HTML, CSS y JavaScript, las tecnologías fundamentales de la web.',
         name: 'Neider Nieto',
-        modules: '15 Módulos',
-        url: '/courses/desarrollo-de-aplicaciones-web',
+        modules: '9 Módulos',
         learn: [
-            'Maquetar sitios web semánticos con HTML5.',
-            'Crear diseños web responsivos con CSS3 y Flexbox/Grid.',
-            'Añadir interactividad con JavaScript y el DOM.',
-            'Construir un servidor y APIs RESTful con Node.js y Express.',
-            'Conectar tu aplicación a una base de datos.'
+            'Estructurar contenido web de forma semántica con HTML5.',
+            'Crear diseños visuales modernos y responsivos con CSS3.',
+            'Añadir interactividad y dinamismo a tus sitios con JavaScript.',
+            'Aplicar principios de experiencia de usuario (UX) en tus diseños.'
+        ],
+        professional: [
+            { 
+                title: 'Perfil Full-Stack Altamente Cotizado',
+                description: 'Prepara para roles de desarrollador web full-stack, frontend y backend, perfiles con alta demanda en el mercado.'
+            },
+            { 
+                title: 'Capacidad de Crear Proyectos Completos',
+                description: 'Obtén la habilidad de construir y desplegar aplicaciones web completas, desde la idea hasta la producción.'
+            },
+            { 
+                title: 'Comprensión Integral del Ecosistema Web',
+                description: 'Domina el flujo de trabajo de desarrollo moderno, integrando cliente, servidor y base de datos.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Fundamentos de HTML5 y CSS3', description: 'Construye la estructura y el estilo de tus sitios web utilizando las últimas tecnologías de desarrollo frontend.' },
-            { title: 'Diseño responsivo y frameworks CSS', description: 'Asegúrate de que tus sitios se vean bien en cualquier dispositivo, desde móviles hasta computadoras de escritorio, utilizando técnicas modernas y frameworks como Bootstrap o Tailwind.' },
-            { title: 'JavaScript fundamental y manipulación del DOM', description: 'Añade interactividad y dinamismo a tus páginas web manipulando el Document Object Model (DOM) con JavaScript.' },
-            { title: 'Introducción a Node.js y NPM', description: 'Lleva JavaScript al lado del servidor. Aprende a configurar un entorno de desarrollo con Node.js y a gestionar paquetes con NPM.' },
-            { title: 'Creación de un servidor con Express.js', description: 'Construye un servidor web robusto y escalable utilizando el framework más popular de Node.js, Express.' },
-            { title: 'Rutas y controladores para una API RESTful', description: 'Diseña y desarrolla una API RESTful para que tu frontend y backend se comuniquen de manera eficiente.' },
-            { title: 'Integración con bases de datos NoSQL (MongoDB)', description: 'Conecta tu aplicación a una base de datos NoSQL como MongoDB para almacenar y recuperar datos de forma flexible.' },
-            { title: 'Despliegue de aplicaciones web', description: 'Aprende a poner tu aplicación en producción para que todo el mundo pueda acceder a ella a través de internet.' }
+            { title: 'Maquetación con HTML5', description: 'Aprende a usar las etiquetas semánticas de HTML5 para estructurar correctamente el contenido de un sitio web.' },
+            { title: 'Estilizado con CSS3', description: 'Domina Flexbox y Grid para crear diseños complejos y aplica estilos avanzados para una apariencia profesional.' },
+            { title: 'Diseño Responsivo', description: 'Asegura que tus sitios se vean y funcionen perfectamente en cualquier dispositivo, desde móviles hasta ordenadores.' },
+            { title: 'Interactividad con JavaScript', description: 'Manipula el DOM para crear efectos visuales, validar formularios y responder a las acciones del usuario.' },
+            { title: 'Optimización y Rendimiento Web', description: 'Aprende a optimizar imágenes, minimizar código y aplicar técnicas de carga diferida para un sitio más rápido.' },
+            { title: 'Principios de UX/UI', description: 'Conoce los fundamentos de la experiencia de usuario y el diseño de interfaces para crear sitios intuitivos.' },
+            { title: 'Frameworks CSS', description: 'Introduce el uso de frameworks como Tailwind CSS para acelerar tu flujo de trabajo y mantener la consistencia.' },
+            { title: 'SEO On-Page para Diseñadores', description: 'Aprende a estructurar tu HTML y contenido para mejorar el posicionamiento en buscadores.' },
+            { title: 'Proyecto de Sitio Web Completo', description: 'Diseña y construye un sitio web de varias páginas aplicando todos los conceptos aprendidos.' }
         ],
         targetAudience: [
             'Principiantes que quieran ser desarrolladores web full-stack.',
@@ -95,29 +132,41 @@ export const courses = [
         prerequisites: 'Se recomienda tener conocimientos básicos de programación. El curso de "Introducción a la Programación" es una buena base.'
     },
     {
-        img: '/images/course-security.webp',
+        img: '/images/seguridad.webp',
         title: 'Fundamentos de Seguridad Informática',
         slug: 'seguridad-informatica',
-        description: 'Aprende los conceptos esenciales de la seguridad informática para proteger sistemas y datos contra amenazas y ataques cibernéticos.',
+        description: 'Aprende a proteger sistemas, redes y datos contra amenazas cibernéticas, aplicando las mejores prácticas de la industria.',
         name: 'Neider Nieto',
-        modules: '10 Módulos',
-        url: '/courses/seguridad-informatica',
+        modules: '8 Módulos',
         learn: [
-            'Identificar las principales vulnerabilidades en sistemas y redes.',
-            'Comprender los principios de la criptografía.',
-            'Implementar controles de acceso y autenticación seguros.',
-            'Analizar y responder a incidentes de seguridad.',
-            'Aplicar buenas prácticas de desarrollo seguro.'
+            'Identificar y mitigar vulnerabilidades comunes en sistemas y redes.',
+            'Comprender los principios de la criptografía y su aplicación.',
+            'Implementar controles de acceso y autenticación robustos.',
+            'Aplicar buenas prácticas de desarrollo seguro para prevenir ataques.'
+        ],
+        professional: [
+            { 
+                title: 'Especialización en Ciberseguridad',
+                description: 'Califica para roles como analista de seguridad, consultor de ciberseguridad y pentester, una de las áreas mejor pagadas.'
+            },
+            { 
+                title: 'Construcción de Sistemas Robustos',
+                description: 'Permite a desarrolladores y administradores de sistemas construir y mantener infraestructuras más seguras y confiables.'
+            },
+            { 
+                title: 'Reducción de Riesgos Corporativos',
+                description: 'Protege la información crítica y reduce el riesgo de ataques que pueden tener consecuencias financieras y de reputación.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción a la seguridad y el hacking ético', description: 'Comprende los principios fundamentales de la ciberseguridad y la mentalidad de un hacker ético para defender mejor los sistemas.' },
-            { title: 'Criptografía: simétrica, asimétrica y hashing', description: 'Aprende a proteger la información mediante técnicas de cifrado para garantizar la confidencialidad e integridad de los datos.' },
-            { title: 'Seguridad en redes: firewalls, IDS/IPS y VPNs', description: 'Descubre cómo proteger las redes de comunicación contra accesos no autorizados y ataques.' },
-            { title: 'Autenticación, autorización y control de acceso', description: 'Implementa mecanismos para verificar la identidad de los usuarios y controlar a qué recursos pueden acceder.' },
-            { title: 'Seguridad en aplicaciones web (OWASP Top 10)', description: 'Conoce y aprende a mitigar las vulnerabilidades más comunes en aplicaciones web según el ranking de OWASP.' },
-            { title: 'Análisis de malware y gestión de incidentes', description: 'Aprende a detectar, analizar y eliminar software malicioso, y a responder eficazmente ante un incidente de seguridad.' },
-            { title: 'Seguridad en la nube y en dispositivos móviles', description: 'Entiende los desafíos de seguridad específicos de las plataformas en la nube y los dispositivos móviles.' },
-            { title: 'Cumplimiento normativo y gestión de riesgos', description: 'Conoce las principales regulaciones de seguridad y aprende a gestionar los riesgos de seguridad de una organización.' }
+            { title: 'Panorama de la Ciberseguridad', description: 'Entiende los tipos de amenazas, vectores de ataque y la mentalidad de un hacker ético.' },
+            { title: 'Criptografía Aplicada', description: 'Aprende a usar algoritmos de cifrado y hashing para proteger la confidencialidad e integridad de los datos.' },
+            { title: 'Seguridad en Redes', description: 'Implementa firewalls, sistemas de detección de intrusos (IDS/IPS) y VPNs para proteger la infraestructura de red.' },
+            { title: 'Seguridad en Sistemas Operativos', description: 'Aprende a fortalecer la seguridad en Windows y Linux, gestionando usuarios y permisos.' },
+            { title: 'Seguridad de Aplicaciones Web (OWASP)', description: 'Conoce y aprende a mitigar las 10 vulnerabilidades más críticas en aplicaciones web.' },
+            { title: 'Análisis de Malware', description: 'Comprende los tipos de software malicioso y las técnicas básicas para su análisis.' },
+            { title: 'Gestión de Incidentes y Respuesta', description: 'Desarrolla un plan para detectar, analizar y responder eficazmente a incidentes de seguridad.' },
+            { title: 'Hacking Ético y Pentesting', description: 'Introduce las metodologías y herramientas utilizadas para realizar pruebas de penetración controladas.' }
         ],
         targetAudience: [
             'Desarrolladores que quieran escribir código más seguro.',
@@ -127,28 +176,40 @@ export const courses = [
         prerequisites: 'Conocimientos básicos de redes y sistemas operativos. Se recomienda tener experiencia en programación o administración de sistemas.'
     },
     {
-        img: '/images/course-app-inventor.webp',
+        img: '/images/app.webp',
         title: 'Creación de Apps Móviles con App Inventor',
         slug: 'aplicaciones-con-app-inventor',
-        description: 'Aprende a crear tus propias aplicaciones para Android sin necesidad de escribir código. Con App Inventor, podrás diseñar y programar apps de forma visual e intuitiva.',
+        description: 'Crea aplicaciones para Android de forma visual y sin código con App Inventor. Ideal para principiantes, educadores y emprendedores que quieran prototipar ideas rápidamente.',
         name: 'Neider Nieto',
         modules: '7 Módulos',
-        url: '/courses/aplicaciones-con-app-inventor',
         learn: [
-            'Entender la interfaz de MIT App Inventor.',
-            'Diseñar interfaces de usuario atractivas y funcionales.',
-            'Programar la lógica de la app utilizando bloques.',
-            'Utilizar componentes como sensores, mapas y bases de datos.',
-            'Publicar tus aplicaciones en la Google Play Store.'
+            'Diseñar interfaces de usuario interactivas con el editor visual.',
+            'Programar la lógica de la aplicación usando un sistema de bloques.',
+            'Integrar componentes multimedia y sensores del dispositivo.',
+            'Crear una aplicación funcional lista para ser probada.'
+        ],
+        professional: [
+            { 
+                title: 'Prototipado Rápido de Ideas',
+                description: 'Ideal para emprendedores y diseñadores que necesitan crear prototipos funcionales de sus ideas de apps sin invertir en código.'
+            },
+            { 
+                title: 'Herramienta Educativa Innovadora',
+                description: 'Perfecto para educadores que deseen introducir la programación y el pensamiento computacional en el aula de forma visual y accesible.'
+            },
+            { 
+                title: 'Iniciación al Desarrollo de Software',
+                description: 'Fomenta la creatividad y sirve como una excelente puerta de entrada al mundo del desarrollo de aplicaciones móviles.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción a App Inventor y al desarrollo de apps', description: 'Familiarízate con el entorno de App Inventor y los conceptos básicos para empezar a crear tu primera aplicación.' },
-            { title: 'Diseño de la interfaz de usuario (UI)', description: 'Aprende a utilizar los componentes visuales para diseñar una interfaz de usuario intuitiva y atractiva para tus apps.' },
-            { title: 'Programación con bloques: eventos y lógica', description: 'Descubre cómo dar vida a tu aplicación programando su comportamiento mediante un sistema de bloques visuales.' },
-            { title: 'Trabajo con multimedia: imágenes, sonidos y videos', description: 'Enriquece tus aplicaciones añadiendo elementos multimedia para una experiencia de usuario más completa.' },
-            { title: 'Uso de sensores del dispositivo (GPS, acelerómetro)', description: 'Aprovecha las capacidades del hardware de tu teléfono, como el GPS o el acelerómetro, para crear apps más interactivas.' },
-            { title: 'Almacenamiento de datos con TinyDB', description: 'Aprende a guardar y recuperar información de forma persistente en el dispositivo del usuario.' },
-            { title: 'Proyecto final: Creación de una app completa', description: 'Aplica todos los conocimientos adquiridos para desarrollar una aplicación funcional desde el diseño hasta la programación.' }
+            { title: 'Introducción a App Inventor', description: 'Conoce la interfaz y las funcionalidades clave de la plataforma para empezar a crear tu primera app.' },
+            { title: 'Diseño de Interfaces de Usuario (UI)', description: 'Aprende a arrastrar y soltar componentes para construir la apariencia visual de tu aplicación.' },
+            { title: 'Programación con Bloques', description: 'Ensambla bloques de lógica para definir el comportamiento de tu app y responder a eventos.' },
+            { title: 'Uso de Multimedia y Sensores', description: 'Integra imágenes, sonidos y aprovecha los sensores del teléfono como el GPS o el acelerómetro.' },
+            { title: 'Almacenamiento de Datos con TinyDB', description: 'Aprende a guardar información de forma local en el dispositivo para que persista entre sesiones.' },
+            { title: 'Comunicación con APIs Externas', description: 'Conecta tu aplicación a servicios web para obtener datos en tiempo real, como el clima o noticias.' },
+            { title: 'Proyecto Final: App Completa', description: 'Desarrolla una aplicación completa que integre múltiples pantallas, lógica y almacenamiento de datos.' }
         ],
         targetAudience: [
             'Estudiantes y educadores que buscan una herramienta de iniciación.',
@@ -158,29 +219,41 @@ export const courses = [
         prerequisites: 'No se requieren conocimientos de programación. Solo es necesario un computador con acceso a internet y un dispositivo Android para probar las apps.'
     },
     {
-        img: '/images/course-os.webp',
+        img: '/images/so.webp',
         title: 'Fundamentos de Sistemas Operativos',
         slug: 'sistemas-operativos',
-        description: 'Comprende cómo funcionan los sistemas operativos, su arquitectura, y los conceptos clave como la gestión de procesos, memoria y archivos.',
+        description: 'Explora los conceptos que rigen el software más importante de un computador, aprendiendo sobre gestión de procesos, memoria y archivos.',
         name: 'Neider Nieto',
-        modules: '9 Módulos',
-        url: '/courses/sistemas-operativos',
+        modules: '8 Módulos',
         learn: [
-            'Diferenciar entre los distintos tipos de sistemas operativos.',
-            'Entender la gestión de procesos y la planificación de la CPU.',
-            'Comprender las técnicas de gestión de memoria virtual y paginación.',
-            'Analizar los sistemas de archivos y la gestión de entrada/salida.',
-            'Conocer los mecanismos básicos de seguridad en los SO.'
+            'Entender cómo un SO gestiona los procesos y la planificación del CPU.',
+            'Comprender las técnicas de administración de memoria física y virtual.',
+            'Analizar la estructura y funcionamiento de los sistemas de archivos.',
+            'Conocer la interacción entre el SO y los dispositivos de hardware.'
+        ],
+        professional: [
+            { 
+                title: 'Base para Roles de Infraestructura',
+                description: 'Fundamental para roles de administrador de sistemas, ingeniero de DevOps y desarrollador de sistemas embebidos.'
+            },
+            { 
+                title: 'Optimización Avanzada de Software',
+                description: 'Permite optimizar el rendimiento, la concurrencia y la estabilidad de las aplicaciones a un nivel profundo.'
+            },
+            { 
+                title: 'Resolución de Problemas Complejos',
+                description: 'Otorga la capacidad de diagnosticar y resolver problemas complejos que ocurren a nivel de sistema operativo.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción y historia de los sistemas operativos', description: 'Explora la evolución de los sistemas operativos y su papel fundamental en la informática moderna.' },
-            { title: 'Estructura de un sistema operativo', description: 'Conoce los componentes principales de un SO, como el kernel y los servicios del sistema.' },
-            { title: 'Gestión de procesos e hilos', description: 'Aprende cómo el SO gestiona la ejecución de múltiples programas y tareas simultáneamente.' },
-            { title: 'Planificación de la CPU', description: 'Comprende los algoritmos que utiliza el SO para decidir qué proceso se ejecuta en cada momento.' },
-            { title: 'Sincronización de procesos', description: 'Estudia los mecanismos para evitar problemas de concurrencia cuando varios procesos acceden a recursos compartidos.' },
-            { title: 'Gestión de memoria principal y virtual', description: 'Descubre cómo el SO administra la memoria RAM y utiliza técnicas como la paginación para extenderla.' },
-            { title: 'Sistemas de archivos', description: 'Analiza cómo se organiza, almacena y accede a la información en los dispositivos de almacenamiento.' },
-            { title: 'Gestión de dispositivos de E/S', description: 'Entiende cómo el SO interactúa y gestiona los periféricos como el teclado, el disco duro o la impresora.' }
+            { title: 'Introducción a los Sistemas Operativos', description: 'Conoce la arquitectura, los componentes principales y los servicios que ofrece un SO.' },
+            { title: 'Gestión de Procesos y Planificación', description: 'Aprende cómo el SO administra la ejecución de programas y asigna recursos de CPU.' },
+            { title: 'Sincronización de Procesos', description: 'Estudia los mecanismos como semáforos y monitores para evitar condiciones de carrera.' },
+            { title: 'Administración de Memoria', description: 'Estudia cómo el SO gestiona la memoria RAM y utiliza técnicas como la paginación y segmentación.' },
+            { title: 'Sistemas de Archivos', description: 'Analiza cómo se organiza, almacena y accede a la información en dispositivos de almacenamiento.' },
+            { title: 'Gestión de Entrada/Salida (E/S)', description: 'Comprende cómo el SO interactúa con los periféricos y gestiona las operaciones de E/S.' },
+            { title: 'Seguridad y Protección', description: 'Conoce los mecanismos de protección de memoria, control de acceso y autenticación en un SO.' },
+            { title: 'Virtualización y Contenedores', description: 'Introduce los conceptos de virtualización de hardware y la tecnología de contenedores como Docker.' }
         ],
         targetAudience: [
             'Estudiantes de informática, ingeniería o carreras afines.',
@@ -190,29 +263,40 @@ export const courses = [
         prerequisites: 'Conocimientos básicos de arquitectura de computadores y programación.'
     },
     {
-        img: '/images/course-architecture.webp',
+        img: '/images/arquitectura.webp',
         title: 'Arquitectura de Computadores',
         slug: 'arquitectura-de-computadores',
-        description: 'Explora los componentes fundamentales de un computador, desde la unidad central de procesamiento (CPU) hasta la jerarquía de memoria y los periféricos.',
+        description: 'Descubre cómo están construidos los computadores por dentro, desde la CPU y la memoria hasta los buses de datos y periféricos.',
         name: 'Neider Nieto',
-        modules: '11 Módulos',
-        url: '/courses/arquitectura-de-computadores',
+        modules: '7 Módulos',
         learn: [
-            'Comprender la organización y arquitectura de von Neumann.',
-            'Analizar el funcionamiento de la CPU y su conjunto de instrucciones.',
-            'Entender la jerarquía de memoria: registros, caché, RAM.',
-            'Conocer los diferentes tipos de buses y periféricos.',
-            'Evaluar el rendimiento de un sistema computacional.'
+            'Comprender el funcionamiento interno de la Unidad Central de Procesamiento (CPU).',
+            'Analizar la jerarquía de memoria (caché, RAM) y su impacto en el rendimiento.',
+            'Entender cómo se comunican los diferentes componentes de un computador.',
+            'Evaluar las características de hardware para tomar decisiones de compra o ensamblaje.'
+        ],
+        professional: [
+            { 
+                title: 'Conocimiento Profundo del Hardware',
+                description: 'Esencial para desarrolladores de bajo nivel, ingenieros de hardware y especialistas en optimización de rendimiento.'
+            },
+            { 
+                title: 'Base para el Diseño de Sistemas',
+                description: 'Permite tomar decisiones informadas sobre hardware al diseñar y construir sistemas informáticos eficientes.'
+            },
+            { 
+                title: 'Optimización a Nivel de Máquina',
+                description: 'Otorga la capacidad de escribir código que aproveche al máximo la arquitectura del procesador y la memoria.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Introducción a la arquitectura de computadores', description: 'Descubre los principios de diseño y la organización fundamental de los sistemas informáticos modernos.' },
-            { title: 'Representación de la información y aritmética del computador', description: 'Aprende cómo los computadores representan y manipulan números y caracteres utilizando el sistema binario.' },
-            { title: 'Componentes de la CPU: ALU, unidad de control y registros', description: 'Explora el corazón del computador, la CPU, y entiende el papel de sus componentes clave.' },
-            { title: 'Conjunto de instrucciones (ISA) y modos de direccionamiento', description: 'Comprende el lenguaje que habla el hardware y cómo la CPU accede a los datos en memoria.' },
-            { title: 'Segmentación y paralelismo a nivel de instrucción', description: 'Aprende técnicas avanzadas como el pipelining para mejorar el rendimiento de la CPU.' },
-            { title: 'Jerarquía de memoria: caché, memoria principal y virtual', description: 'Estudia cómo los diferentes niveles de memoria trabajan juntos para proporcionar un acceso rápido y eficiente a los datos.' },
-            { title: 'Sistemas de entrada/salida y buses', description: 'Analiza cómo la CPU se comunica con los periféricos y otros componentes a través de los buses del sistema.' },
-            { title: 'Arquitecturas paralelas y multinúcleo', description: 'Explora las arquitecturas modernas que utilizan múltiples núcleos para aumentar la capacidad de procesamiento.' }
+            { title: 'La Unidad Central de Procesamiento (CPU)', description: 'Explora los componentes de la CPU, como la ALU y la unidad de control, y su ciclo de instrucción.' },
+            { title: 'Conjunto de Instrucciones (ISA)', description: 'Comprende el lenguaje que el hardware ejecuta y cómo se representan las operaciones a bajo nivel.' },
+            { title: 'Jerarquía de Memoria', description: 'Estudia los diferentes niveles de memoria (registros, caché, RAM) y cómo optimizan el acceso a datos.' },
+            { title: 'Buses y Sistemas de Entrada/Salida', description: 'Analiza cómo se comunican los componentes del computador y cómo se gestionan los periféricos.' },
+            { title: 'Pipeline y Paralelismo a Nivel de Instrucción', description: 'Aprende cómo las CPUs modernas ejecutan múltiples instrucciones simultáneamente para mejorar el rendimiento.' },
+            { title: 'Arquitecturas Paralelas y Multinúcleo', description: 'Introduce conceptos de arquitecturas con múltiples procesadores y su impacto en el software.' },
+            { title: 'Medición del Rendimiento', description: 'Aprende a utilizar benchmarks y métricas para evaluar y comparar el rendimiento de diferentes sistemas.' }
         ],
         targetAudience: [
             'Estudiantes de ingeniería, electrónica o informática.',
@@ -222,29 +306,41 @@ export const courses = [
         prerequisites: 'Conocimientos básicos de electrónica digital y lógica booleana.'
     },
     {
-        img: '/images/course-maintenance.webp',
+        img: '/images/mantenimiento.webp',
         title: 'Mantenimiento de Computadores',
         slug: 'mantenimiento-de-computadores',
-        description: 'Aprende a diagnosticar, reparar y mantener computadores de escritorio y portátiles, tanto a nivel de hardware como de software.',
+        description: 'Aprende a ensamblar, diagnosticar, reparar y mantener computadores, tanto a nivel de hardware como de software, para asegurar su óptimo funcionamiento.',
         name: 'Neider Nieto',
         modules: '8 Módulos',
-        url: '/courses/mantenimiento-de-computadores',
         learn: [
-            'Ensamblar un computador desde cero.',
-            'Diagnosticar y solucionar problemas comunes de hardware.',
-            'Instalar y configurar sistemas operativos y software.',
-            'Realizar mantenimiento preventivo para optimizar el rendimiento.',
-            'Implementar copias de seguridad y estrategias de recuperación.'
+            'Ensamblar un computador de escritorio desde cero, seleccionando componentes.',
+            'Diagnosticar y solucionar problemas comunes de hardware y software.',
+            'Instalar y configurar sistemas operativos como Windows y Linux.',
+            'Aplicar mantenimiento preventivo para optimizar el rendimiento y la vida útil.'
+        ],
+        professional: [
+            { 
+                title: 'Salida Laboral como Técnico de Soporte',
+                description: 'Prepara para una carrera como técnico de soporte de TI, un rol con alta demanda en todo tipo de empresas.'
+            },
+            { 
+                title: 'Autonomía en la Gestión de TI',
+                description: 'Permite a pequeños empresarios y usuarios avanzados gestionar y mantener su propia infraestructura tecnológica, ahorrando costos.'
+            },
+            { 
+                title: 'Habilidades Prácticas de Resolución de Problemas',
+                description: 'Desarrolla la capacidad de diagnosticar y solucionar problemas de hardware y software de manera metódica y eficiente.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Componentes de hardware de un PC', description: 'Identifica cada uno de los componentes internos de un computador, desde la placa base hasta la fuente de poder.' },
-            { title: 'Ensamblaje y desmontaje de equipos', description: 'Aprende el proceso paso a paso para armar y desarmar de forma segura un computador de escritorio.' },
-            { title: 'Instalación y configuración de Windows y Linux', description: 'Instala desde cero los sistemas operativos más populares y aprende a configurarlos para un rendimiento óptimo.' },
-            { title: 'Diagnóstico de fallas de hardware (POST, beeps)', description: 'Interpreta las señales de la BIOS y otros indicadores para diagnosticar problemas de hardware de manera efectiva.' },
-            { title: 'Optimización del sistema y limpieza de software malicioso', description: 'Mejora la velocidad y seguridad de un equipo eliminando virus, spyware y software innecesario.' },
-            { title: 'Mantenimiento preventivo y correctivo', description: 'Aplica rutinas de mantenimiento para prevenir fallas futuras y aprende a solucionar problemas cuando ocurren.' },
-            { title: 'Redes básicas y configuración de internet', description: 'Configura una red doméstica o de oficina pequeña y soluciona problemas comunes de conectividad.' },
-            { title: 'Copias de seguridad y recuperación de datos', description: 'Implementa estrategias para proteger la información importante y aprende a recuperarla en caso de una falla del sistema.' }
+            { title: 'Ensamblaje de Hardware', description: 'Aprende a identificar, seleccionar y ensamblar todos los componentes de un PC.' },
+            { title: 'Instalación de Sistemas Operativos', description: 'Instala y configura Windows y Linux, incluyendo drivers y software esencial.' },
+            { title: 'Diagnóstico de Hardware', description: 'Utiliza herramientas como el POST y los códigos de beeps para identificar fallas de hardware.' },
+            { title: 'Solución de Problemas de Software', description: 'Aprende a resolver conflictos de drivers, errores de sistema y problemas de arranque.' },
+            { title: 'Mantenimiento Preventivo', description: 'Optimiza el sistema, elimina malware y configura copias de seguridad para proteger los datos.' },
+            { title: 'Mantenimiento Físico y Limpieza', description: 'Aprende las mejores prácticas para la limpieza y el cuidado de los componentes de hardware.' },
+            { title: 'Redes y Conectividad', description: 'Configura redes locales y soluciona problemas comunes de conexión a internet.' },
+            { title: 'Recuperación de Datos', description: 'Introduce técnicas básicas para recuperar archivos eliminados o de discos dañados.' }
         ],
         targetAudience: [
             'Usuarios que quieran reparar y mantener sus propios computadores.',
@@ -254,27 +350,41 @@ export const courses = [
         prerequisites: 'No se requieren conocimientos previos, solo curiosidad por el hardware y el software.'
     },
     {
-        img: '/images/course-office.webp',
+        img: '/images/office.webp',
         title: 'Herramientas Ofimáticas Esenciales',
         slug: 'herramientas-ofimaticas',
-        description: 'Domina las herramientas de productividad más utilizadas en el entorno laboral: Microsoft Word, Excel y PowerPoint. Aumenta tu eficiencia y crea documentos, hojas de cálculo y presentaciones de alta calidad.',
+        description: 'Domina las herramientas de oficina más demandadas (Word, Excel, PowerPoint) para potenciar tu productividad y crear documentos profesionales.',
         name: 'Neider Nieto',
-        modules: '6 Módulos',
+        modules: '7 Módulos',
         url: '/courses/herramientas-ofimaticas',
         learn: [
-            'Crear y dar formato a documentos profesionales en Word.',
-            'Utilizar fórmulas, funciones y tablas dinámicas en Excel.',
-            'Diseñar presentaciones impactantes y efectivas en PowerPoint.',
-            'Integrar las diferentes herramientas de la suite de Office.',
-            'Aplicar trucos y atajos para mejorar tu productividad.'
+            'Crear documentos estructurados y con formato profesional en Word.',
+            'Analizar datos y generar gráficos utilizando fórmulas en Excel.',
+            'Diseñar presentaciones visualmente atractivas y efectivas en PowerPoint.',
+            'Mejorar tu eficiencia y productividad en tareas de oficina diarias.'
+        ],
+        professional: [
+            { 
+                title: 'Mejora de la Productividad Laboral',
+                description: 'Aumenta tu eficiencia en cualquier rol de oficina, permitiéndote completar tareas de manera más rápida y precisa.'
+            },
+            { 
+                title: 'Habilidad Transversal Indispensable',
+                description: 'Dominar la ofimática es un requisito en la gran mayoría de las ofertas de empleo, sin importar el sector.'
+            },
+            { 
+                title: 'Calidad Profesional en Documentos',
+                description: 'Crea documentos, informes y presentaciones de alta calidad que refuercen tu imagen profesional.'
+            }
         ],
         courseSyllabus: [
-            { title: 'Microsoft Word: Formato, estilos, tablas e inserción de objetos', description: 'Crea documentos de aspecto profesional, aplicando formatos, utilizando estilos y gestionando tablas e imágenes.' },
-            { title: 'Microsoft Excel: Fórmulas, funciones, gráficos y tablas dinámicas', description: 'Analiza datos, realiza cálculos complejos y visualiza información de manera efectiva con las herramientas más potentes de Excel.' },
-            { title: 'Microsoft PowerPoint: Diseño de diapositivas, animaciones y transiciones', description: 'Diseña presentaciones visualmente atractivas que cautiven a tu audiencia utilizando animaciones y transiciones.' },
-            { title: 'Integración entre Word, Excel y PowerPoint', description: 'Aprende a combinar el poder de las tres herramientas para crear informes y presentaciones dinámicas.' },
-            { title: 'Consejos de productividad y colaboración en la nube (OneDrive)', description: 'Descubre atajos y técnicas para trabajar más rápido y colabora en tiempo real con tus compañeros utilizando OneDrive.' },
-            { title: 'Proyecto final: Creación de un informe completo con las tres herramientas', description: 'Aplica todo lo aprendido para construir un informe integrado que demuestre tu dominio de la suite de Office.' }
+            { title: 'Word para Documentos Profesionales', description: 'Aprende a usar estilos, tablas de contenido e insertar objetos para crear informes y cartas impecables.' },
+            { title: 'Excel para el Análisis de Datos', description: 'Domina las fórmulas, funciones y tablas dinámicas para procesar y visualizar información.' },
+            { title: 'Excel Avanzado', description: 'Explora funciones de búsqueda, lógicas y la creación de dashboards interactivos.' },
+            { title: 'PowerPoint para Presentaciones de Impacto', description: 'Diseña diapositivas, aplica animaciones y aprende a comunicar tus ideas de forma efectiva.' },
+            { title: 'Outlook para la Gestión del Tiempo', description: 'Organiza tu correo, calendario y tareas para maximizar tu productividad diaria.' },
+            { title: 'Colaboración en la Nube con OneDrive y Office 365', description: 'Aprende a coeditar documentos en tiempo real y a gestionar archivos en la nube.' },
+            { title: 'Integración y Automatización', description: 'Combina las herramientas de Office y descubre cómo automatizar tareas repetitivas.' }
         ],
         targetAudience: [
             'Estudiantes que necesiten realizar trabajos académicos de calidad.',
