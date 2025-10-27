@@ -8,9 +8,10 @@ import SearchInput from '@assets/icons/SearchInput.astro'
 
 const { isLoggedIn, displayName, photoURL } = Astro.locals
 
-const photoURL2 = photoURL && photoURL.trim() !== ""
-  ? photoURL
-  : "https://api.dicebear.com/7.x/adventurer/svg?seed=Neider"
+const photoURL2 =
+  photoURL && photoURL.trim() !== ''
+    ? photoURL
+    : 'https://api.dicebear.com/7.x/adventurer/svg?seed=Neider'
 ---
 
 <div class="border-b border-gray-500/30">
@@ -36,31 +37,14 @@ const photoURL2 = photoURL && photoURL.trim() !== ""
               <a href="/post/blogTecnicoSistemas">Blog</a>
             </li>
             <li>
-              {
-                isLoggedIn && (
-                  <a href="/loginEstudiante">Perfil</a>
-                )
-              }
+              {isLoggedIn && <a href="/loginEstudiante">Perfil</a>}
             </li>
           </ul>
         </nav>
       </div>
-      
+
       {
         isLoggedIn ? (
-          <div class="flex justify-center items-center">
-      <div class="flex justify-between items-center py-4">
-        <div class="flex justify-between items-center gap-5">
-          <form role="search">
-            <div class="flex">
-              <SearchInput />
-              <input type="text" placeholder="Busca cursos o recursos..." />
-              <button type="submit">Buscar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
           <Picture
             transition:name={`image-${displayName}`}
             src={photoURL2}
@@ -75,65 +59,3 @@ const photoURL2 = photoURL && photoURL.trim() !== ""
     </header>
   </Container>
 </div>
-<style>
-  /* Formulario de Búsqueda */
-  form {
-    max-width: 42rem;
-    width: 100%;
-    margin: 0 auto;
-    padding-inline: 1rem;
-  }
-
-  form > div {
-    display: flex;
-    align-items: center;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px 1px #64748b;
-    padding: 7px;
-    gap: 0.5rem;
-  }
-
-  form input[type='text'] {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text-primary);
-    padding: 0.75rem 0.5rem;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-
-  form input[type='text']::placeholder {
-    color: #64748b;
-  }
-
-  button {
-    padding: 8px 15px;
-    border-radius: 0.5rem;
-    background-color: #64748b;
-    color: white;
-    font-weight: 400;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 1rem;
-
-    &:hover, /* pseudo-clase que significa que el ratón está encima */
-    &:focus {
-      /* pseudo-clase que significa que el elemento tiene el foco */
-      background-color: var(--primary-hover);
-      outline: 2px solid white;
-    }
-
-    &:active {
-      transform: scale(0.9);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-</style>
