@@ -9,14 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.7",
-    "@astrojs/vercel": "^8.2.11",
-    "@fontsource-variable/outfit": "^5.2.8",
-    "@tailwindcss/vite": "^4.1.15",
-    "astro": "^5.14.5",
-    "firebase": "^12.4.0",
-    "sharp": "^0.34.4",
-    "sweetalert2": "^11.26.3",
-    "tailwindcss": "^4.1.15"
+    "@astrojs/mdx": "4.3.7",
+    "@astrojs/vercel": "8.2.11",
+    "@fontsource-variable/outfit": "5.2.8",
+    "@tailwindcss/vite": "4.1.15",
+    "astro": "5.14.5",
+    "firebase": "12.4.0",
+    "sharp": "0.34.4",
+    "sweetalert2": "11.26.3",
+    "tailwindcss": "4.1.15"
   }
 }
