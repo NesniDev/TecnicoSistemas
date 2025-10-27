@@ -6,6 +6,7 @@ import Layout from '@layouts/Layout.astro'
 import { courses } from '@lib/courses'
 import ChevronDown from '@assets/icons/ChevronDown.astro'
 import Badge from '@assets/icons/Badge.astro'
+import { Picture } from 'astro:assets'
 
 // export const prerender = false
 
@@ -110,7 +111,7 @@ const {
               <h2 class="text-white text-3xl">¿A quién está dirigido</h2>
               <div class="flex gap-10">
                 <div>
-                  <img src={img} alt={title} class="size-48 rounded-xl" />
+                  <img src={img} alt={title} class="w-full h-44 rounded-xl" />
                 </div>
                 <div class="flex flex-col justify-evenly gap-2">
                   {
@@ -129,8 +130,24 @@ const {
           </section>
         </section>
         <section class="my-2 flex flex-col gap-7 flex-1">
-          <div>
-            <h2 class="text-white text-3xl">Instructor</h2>
+          <div class="flex flex-col gap-4 justify-center items-center">
+            <h2 class="text-white text-3xl">Docente&nbsp;Sistemas</h2>
+            <div class="flex flex-col justify-center items-center">
+              <img
+                src="/images/instructor.webp"
+                alt="Instructor de sistemas"
+                class="size-48 rounded-full object-cover border-4 border-[#009dff]"
+              />
+              <h3 class="text-white text-2xl mt-3">Ing. {name}</h3>
+              <h4 class="text-[#009dff] text-lg">Ingeniero de sistemas</h4>
+              <p class="text-center text-base mt-3">
+                El Ing. {name} es un ingeniero de sistemas con experiencia en la
+                instalación y configuración de sistemas informáticos, equipos y redes
+                de telecomunicación. Además, ha trabajado en varias empresas de tecnología
+                y ha sido elegido como el técnico de sistemas de la empresa Tecnico
+                Sistemas.
+              </p>
+            </div>
           </div>
           <section>
             <div>
@@ -140,55 +157,113 @@ const {
           </section>
         </section>
       </section>
+      <div class="w-full max-w-2xl mx-auto font-sans">
+        <!-- 5 estrellas -->
+        <div class="flex items-center mb-2">
+          <span class="text-xl mr-4">★★★★★</span>
+          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+            <div class="h-full bg-yellow-500 rounded-full" style="width: 85%">
+            </div>
+          </div>
+          <span class="text-sm">5 estrellas</span>
+        </div>
+
+        <!-- 4 estrellas -->
+        <div class="flex items-center mb-2">
+          <span class="text-xl mr-4">★★★★</span>
+          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+            <div class="h-full bg-yellow-500 rounded-full" style="width: 10%">
+            </div>
+          </div>
+          <span class="text-sm">4 estrellas</span>
+        </div>
+
+        <!-- 3 estrellas -->
+        <div class="flex items-center mb-2">
+          <span class="text-xl mr-4">★★★</span>
+          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+            <div class="h-full bg-yellow-500 rounded-full" style="width: 3%">
+            </div>
+          </div>
+          <span class="text-sm">3 estrellas</span>
+        </div>
+
+        <!-- 2 estrellas -->
+        <div class="flex items-center mb-2">
+          <span class="text-xl mr-4">★★</span>
+          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+            <div class="h-full bg-yellow-500 rounded-full" style="width: 2%">
+            </div>
+          </div>
+          <span class="text-sm">2 estrellas</span>
+        </div>
+
+        <!-- 1 estrella -->
+        <div class="flex items-center mb-2">
+          <span class="text-xl mr-4">★</span>
+          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
+            <div class="h-full bg-yellow-500 rounded-full" style="width: 0%">
+            </div>
+          </div>
+          <span class="text-sm">1 estrella</span>
+        </div>
+
+        <!-- Resumen -->
+        <div class="text-center mt-6">
+          <p class="text-2xl font-bold">
+            4.8 <span class="text-sm">Basado en 125 opiniones</span>
+          </p>
+        </div>
+      </div>
     </main>
   </Container>
-</Layout>
 
-<style>
-  section > div:first-child {
-    background: linear-gradient(to bottom, #040d1c);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px 32px;
-    border-radius: 10px;
-    /* overflow: hidden; */
-  }
+  <style>
+    section > div:first-child {
+      background: linear-gradient(to bottom, #040d1c);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 20px 32px;
+      border-radius: 10px;
+      /* overflow: hidden; */
+    }
 
-  #clippy {
-    clip-path: polygon(
-      50% 0%,
-      83% 12%,
-      100% 43%,
-      94% 78%,
-      68% 100%,
-      32% 100%,
-      6% 78%,
-      0% 43%,
-      17% 12%
-    );
-  }
+    #clippy {
+      clip-path: polygon(
+        50% 0%,
+        83% 12%,
+        100% 43%,
+        94% 78%,
+        68% 100%,
+        32% 100%,
+        6% 78%,
+        0% 43%,
+        17% 12%
+      );
+    }
 
-  details[open] small {
-    transition: all 0.3s ease;
-    transform: rotate(180deg);
-  }
-  details small {
-    transition: all 0.3s ease;
-  }
-</style>
+    details[open] small {
+      transition: all 0.3s ease;
+      transform: rotate(180deg);
+    }
+    details small {
+      transition: all 0.3s ease;
+    }
+  </style>
 
-<script>
-  const details = document.querySelectorAll('details')
+  <script>
+    const details = document.querySelectorAll('details')
 
-  details.forEach((detail) => {
-    detail.addEventListener('click', () => {
-      console.log('detail')
-      details.forEach((item) => {
-        if (item !== detail) {
-          item.removeAttribute('open')
-        }
+    details.forEach((detail) => {
+      detail.addEventListener('click', () => {
+        console.log('detail')
+        details.forEach((item) => {
+          if (item !== detail) {
+            item.removeAttribute('open')
+          }
+        })
       })
     })
-  })
-</script>
+  </script>
+</Layout>
