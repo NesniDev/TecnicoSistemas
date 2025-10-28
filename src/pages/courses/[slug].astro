@@ -41,13 +41,13 @@ const {
       <section>
         <section class="my-2">
           <div
-            class="flex flex-col md:flex-row h-auto md:h-[450px] justify-center items-center gap-10"
+            class="flex flex-col md:flex-row h-auto md:h-96 justify-center items-center gap-10"
           >
-            <div id="clippy" class="md:w-[50%] overflow-hidden">
+            <div id="clippy" class="overflow-hidden">
               <img
                 src={img}
                 alt={title}
-                class="md:w-full md:h-96 size-56 object-cover"
+                class="md:size-72 size-56 object-cover"
                 transition:name=`image-${slug}`
               />
             </div>
@@ -111,7 +111,7 @@ const {
           <section>
             <div class="flex flex-col gap-10 mt-5">
               <h2 class="text-white text-3xl">¿A quién está dirigido</h2>
-              <div class="flex gap-10">
+              <div class="flex items-center justify-between gap-10 pb-5">
                 <div>
                   <img
                     src={img}
@@ -119,7 +119,7 @@ const {
                     class="h-44 w-96 shadow-lg shadow-cyan-50 rounded-xl object-cover"
                   />
                 </div>
-                <div class="flex flex-col justify-evenly gap-2 pb-7">
+                <div class="flex flex-col justify-evenly items-center gap-2">
                   {
                     targetAudience.map((item) => {
                       return (
