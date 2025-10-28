@@ -1,4 +1,6 @@
 ---
+import User from '@assets/icons/User.astro'
+import Modules from '@assets/icons/Modules.astro'
 const { img, title, description, name, modules, slug, learn } = Astro.props
 ---
 
@@ -17,19 +19,19 @@ const { img, title, description, name, modules, slug, learn } = Astro.props
       {description}
     </p>
     <div class="flex flex-col justify-between items-start gap-1">
-      <div class="text-xs">
-        <span>😎</span>
+      <div class="text-xs flex justify-between items-center gap-2">
+        <span><User class="size-5" /></span>
         <span>{name}</span>
       </div>
-      <div class="text-xs">
-        <span>😎</span>
+      <div class="text-xs flex justify-between items-center gap-2">
+        <span><Modules class="size-5" /></span>
         <span>{modules}</span>
       </div>
     </div>
   </div>
   <a
     href={`/courses/${slug}`}
-    class="bg-[#4ba3fc] text-center block transition hover:bg-[#4ba3fc]/90 text-white rounded-lg active:scale-[0.97] px-4 py-1 mb-3"
+    class="bg-[#009dff] text-center block transition hover:bg-[#009dff]/90 text-white rounded-lg active:scale-[0.97] px-4 py-1 mb-3"
     >Ir al Curso</a
   >
 </article>
