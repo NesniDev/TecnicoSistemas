@@ -1,0 +1,26 @@
+---
+import Button from '@components/Button.astro'
+
+interface Props {
+  totalPages: number
+}
+
+const { totalPages } = Astro.props
+
+const url = Astro.url
+const page = Number(url.searchParams.get('page') ?? 1)
+const currentPage = Math.max(page > totalPages ? totalPages : page, 1)
+const path = url.pathname
+---
+
+<div class="flex items-center justify-between my-10">
+  <a
+    class={`px-4 py-2  text-white rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+    href={`${path}?page=${Math.max(currentPage - 1, 1)}`}>Anterior</a
+  >
+  <span>Pagina {currentPage} de {totalPages}</span>
+  <a
+    class={`px-4 py-2  text-white rounded-lg ${currentPage === 3 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+    href={`${path}?page=${Math.min(currentPage + 1, totalPages)}`}>Siguiente</a
+  >
+</div>

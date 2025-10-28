@@ -10,6 +10,8 @@ import Footer from '@components/Footer.astro'
 import ArchiveExplorer from '@assets/icons/RecursesExplorer.astro'
 import { events } from '../lib/events'
 import SearchInput from '@assets/icons/SearchInput.astro'
+import Pagination from '@components/Login/Pagination.astro'
+import { actions } from 'astro:actions'
 
 const firebaseUser = firebase.auth.currentUser
 
@@ -22,6 +24,17 @@ await firebaseUser.reload()
 const { displayName, email, photoURL, emailVerified } = firebaseUser
 
 const name = displayName ?? 'Anonimo'
+
+const searchParams = Astro.url.searchParams
+const page = Number(searchParams.get('page') ?? 1)
+
+const { data, error } = await Astro.callAction(actions.getCourseByPage, {
+  page
+})
+
+if (error) return Astro.redirect('/')
+
+const { courses: coursesData, totalPage } = data
 ---
 
 <Layout title="Login Estudiante">
@@ -48,11 +61,12 @@ const name = displayName ?? 'Anonimo'
         <h2 class="text-2xl text-white my-5 mx-10 md:mx-0">Mis Cursos</h2>
         <section class="mx-10 md:mx-0">
           {
-            courses.map((item) => {
+            coursesData.map((item) => {
               return <ArticleLogin {...item} />
             })
           }
         </section>
+        <Pagination totalPages={totalPage} />
       </div>
       <aside class="w-[400px] mx-auto">
         <div class="flex flex-col">

@@ -1,4 +1,5 @@
 import { loginUser, registerUser, logout, loginWithGoogle } from "./auth";
+import { getCourseByPage } from "./courses/get-courses-by-page";
 
 export const server = {
     //action
@@ -11,6 +12,8 @@ export const server = {
     //auth
     registerUser,
     //google
-    loginWithGoogle
+    loginWithGoogle,
+    //courses
+    getCourseByPage,
     
 }
