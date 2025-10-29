@@ -81,10 +81,11 @@ const dataNews: NewsItem[] = await resNews.json()
       <!--  -->
       <h3
         class="text-2xl mt-7 text-center md:text-left text-white font-extrabold"
+        id="news-latest"
       >
         Ultimas noticias
       </h3>
-      <section class="news" id="news-latest">
+      <section class="news">
         {
           //@ts-ignore
           dataNews.data
