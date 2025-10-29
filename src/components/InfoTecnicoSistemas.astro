@@ -268,13 +268,15 @@ import ImageBlog from '/public/images/blog.webp'
 </style>
 
 <script>
-  const details = document.querySelectorAll('details')
-  details.forEach((targetDetail) => {
-    targetDetail.addEventListener('click', () => {
-      details.forEach((detail) => {
-        if (detail !== targetDetail) {
-          detail.removeAttribute('open')
-        }
+  document.addEventListener('astro:page-load', () => {
+    const details = document.querySelectorAll('details')
+    details.forEach((targetDetail) => {
+      targetDetail.addEventListener('click', () => {
+        details.forEach((detail) => {
+          if (detail !== targetDetail) {
+            detail.removeAttribute('open')
+          }
+        })
       })
     })
   })
