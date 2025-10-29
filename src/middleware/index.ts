@@ -15,7 +15,6 @@ export const onRequest = defineMiddleware((context, next) => {
     context.locals.isLoggedIn = isLoggedIn
     context.locals.displayName = name
     context.locals.photoURL = photoURL
-    console.log(context.url.pathname)
 
     const isPrivate = privateRoutes.some(route =>
         context.url.pathname.startsWith(route)
