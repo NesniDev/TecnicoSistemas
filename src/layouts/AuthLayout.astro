@@ -22,7 +22,7 @@ const { title, page } = Astro.props
   </head>
   <body class="mx-5 md:mx-0">
     <section
-      class="max-w-[450px] mx-auto flex flex-col justify-center items-center h-screen"
+      class="max-w-sm mx-auto flex flex-col justify-center items-center h-screen"
     >
       <h1 class="text-3xl text-white text-center">
         Bienvenido al {page} de Estudiantes
@@ -34,11 +34,8 @@ const { title, page } = Astro.props
 
       <slot />
 
-      <div
-        class="text-center md:text-left flex flex-col justify-between gap-5 mt-10"
-      >
+      <div class="text-center flex flex-col justify-between gap-3 mt-10">
         <p>📊 Acceso instantáneo a tu panel de estudiante personalizado.</p>
-        <p>💾 Guarda tu progreso y realiza un seguimiento de tu aprendizaje.</p>
         <p>🔐 Protege tus datos y privacidad.</p>
         <p>💻 Acceso a herramientas y recursos de aprendizaje.</p>
       </div>
