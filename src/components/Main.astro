@@ -1,7 +1,10 @@
 ---
 import Button from '@components/Button.astro'
 import Container from '@components/Container.astro'
+import ArrowNews from '@assets/icons/ArrowNews.astro'
 import ArticleMain from '@components/ArticleMain.astro'
+import { tips } from '@lib/tips'
+import Check from '@assets/icons/Check.astro'
 interface NewsItem {
   title: string
   description: string
@@ -15,38 +18,97 @@ const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
 const dataNews: NewsItem[] = await resNews.json()
 ---
 
-<main class="flex items-center my-5 mx-auto">
+<main class="flex items-center my-5 mx-5 lg:mx-auto">
   <Container>
     <div class="flex flex-col gap-5">
-      <section>
+      <section
+        class="flex flex-col justify-between items-center gap-3 max-w-xl mx-auto my-16"
+      >
+        <h3 class="text-xs text-[#64FFDB] font-bold">
+          TECNOLOGÍA EN EVOLUCIÓN
+        </h3>
+        <h1
+          class="flex flex-col text-center justify-center items-center text-5xl font-extrabold"
+        >
+          <span>Innovación y Futuro en el </span>
+          <span class="text-[#64FFDB]">Mundo de los Sistemas</span>
+        </h1>
+        <p class="text-center">
+          Un entorno creado para aprendices y expertos del área técnica en
+          sistemas, donde podrás acceder a contenido actualizado sobre
+          innovación tecnológica, soporte informático, hardware y programación.
+          Encuentra artículos, noticias y recursos que impulsarán tu crecimiento
+          profesional.
+        </p>
+        <footer class="flex justify-center items-center gap-2">
+          <Button href="/post/blogTecnicoSistemas">Explorar Artículos</Button>
+          <a
+            href="/post/blogTecnicoSistemas"
+            class="outline-1 rounded-lg outline-[#02348556] bg-transparent hover:bg-gray-800/30 text-[#64FFDA] px-4 py-1.5 flex items-center gap-2"
+            >Ver Noticias <span> <ArrowNews class="size-5" /></span></a
+          >
+        </footer>
+      </section>
+      <section class="mb-6">
+        <h2 class="mt-7 text-center text-2xl text-white font-extrabold">
+          Consejos Prácticos para el Éxito en Sistemas e Informática
+        </h2>
+        <p class="text-center my-5">
+          Pequeñas dosis de conocimiento para fortalecer tus habilidades
+          técnicas y avanzar en tu formación profesional dentro del mundo de la
+          tecnología.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {
+            tips.map((item) => {
+              return (
+                <div class="flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4">
+                  <div class="flex justify-between items-center gap-2">
+                    <Check class="size-8 text-[#00a2ff]" />
+                    <h4 class="text-xl font-bold text-center flex-1">
+                      {item.title}
+                    </h4>
+                  </div>
+                  <p class="text-center">{item.description}</p>
+                </div>
+              )
+            })
+          }
+        </div>
+      </section>
+
+      <!--  -->
+      <h3
+        class="text-2xl mt-7 text-center md:text-left text-white font-extrabold"
+      >
+        Ultimas noticias
+      </h3>
+      <section class="news">
+        {
+          // @ts-ignore
+          await dataNews.data.map((item: NewsItem) => {
+            return <ArticleMain {...item} />
+          })
+        }
+      </section>
+      <section class="imagen-info">
         <div>
           <h2>Técnico de sistemas e informática</h2>
-          <p class="mt-2 mb-5 lg:mb-15">
+          <p class="mb-7">
             Es aquella persona encargada de la instalación, configuración y
             mantenimiento de los sistemas informático, equipo y redes de
             telecomunicación. Su función principal es asegurar la integración y
             el correcto funcionamiento de todos los sistemas tecnológicos en la
             empresa.
           </p>
-          <Button href="/post/blogTecnicoSistemas"> Leer más...</Button>
+          <Button href="/post/blogTecnicoSistemas">Leer más...</Button>
         </div>
-      </section>
-      <h3 class="text-xl text-center md:text-left text-white font-extrabold">
-        Ultimas noticias
-      </h3>
-      <section>
-        {
-          // @ts-ignore
-          dataNews.data.map((item: NewsItem) => {
-            return <ArticleMain {...item} />
-          })
-        }
       </section>
     </div>
   </Container>
 
   <style>
-    main section:first-child {
+    .imagen-info {
       background: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.5) 80%,
@@ -58,12 +120,12 @@ const dataNews: NewsItem[] = await resNews.json()
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      aspect-ratio: 8 / 5;
+      aspect-ratio: 5 / 2;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      padding: 20px 32px;
+      padding: 40px;
       /* overflow: hidden; */
     }
 
@@ -71,35 +133,34 @@ const dataNews: NewsItem[] = await resNews.json()
       color: #fff;
       font-weight: 700;
       font-size: 40px;
-      margin-bottom: 30px;
     }
 
     section > div p {
       color: var(--letter);
       font-weight: 400;
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    main section:last-child {
+    .news {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
     @media (max-width: 768px) {
-      main section:first-child {
+      .imagen-info {
         margin-inline: 20px;
       }
       section > div h2 {
         color: #fff;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 24px;
       }
       section > div p {
-        font-size: 12px;
+        font-size: 16px;
       }
 
-      main section:last-child {
+      .news {
         margin-inline: 20px;
       }
     }
