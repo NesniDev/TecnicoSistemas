@@ -31,13 +31,13 @@ const photoURL2 =
               <a href="/">Inicio</a>
             </li>
             <li>
-              <a href="/">Cursos</a>
-            </li>
-            <li>
               <a href="/post/blogTecnicoSistemas">Blog</a>
             </li>
             <li>
               {isLoggedIn && <a href="/loginEstudiante">Perfil</a>}
+            </li>
+            <li>
+              {isLoggedIn && <a href="/recursos">Recursos</a>}
             </li>
           </ul>
         </nav>
@@ -53,7 +53,7 @@ const photoURL2 =
             inferSize
           />
         ) : (
-          <Button href="/inicioSesion"> Login </Button>
+          <Button href="/inicioSesion"> Ingresar </Button>
         )
       }
     </header>
