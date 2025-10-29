@@ -2,9 +2,22 @@
 import SearchInput from '@assets/icons/SearchInput.astro'
 import Container from '@components/Container.astro'
 import Header from '@components/Header.astro'
-import ArticleRecurses from '@components/recurses/ArticleRecurses.astro'
+import ArticleResources from '@components/resources/ArticleResources.astro'
+import PaginationResources from '@components/resources/PaginationResources.astro'
 import Layout from '@layouts/Layout.astro'
-import { recurses } from '@lib/recurses'
+import { actions } from 'astro:actions'
+
+const page = Number(Astro.url.searchParams.get('page') ?? 1)
+
+const { data, error } = await Astro.callAction(actions.getRecurseByPage, {
+  page
+})
+
+if (error) {
+  return Astro.redirect('/')
+}
+
+const { resourcesByPage, totalPages } = data
 ---
 
 <Layout title="Recursos">
@@ -31,8 +44,9 @@ import { recurses } from '@lib/recurses'
       </form>
     </section>
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-      {recurses.map((item) => <ArticleRecurses {...item} />)}
+      {resourcesByPage.map((item) => <ArticleResources {...item} />)}
     </section>
+    <PaginationResources totalPages={totalPages} />
   </Container>
 </Layout>
 
