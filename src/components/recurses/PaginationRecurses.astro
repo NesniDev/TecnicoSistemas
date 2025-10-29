@@ -1,0 +1,33 @@
+---
+const { totalPages } = Astro.props
+const url = Astro.url
+const page = Number(url.searchParams.get('page') ?? 1)
+const currentPage = Math.max(page > totalPages ? totalPages : page, 1)
+---
+
+<div class="flex items-center justify-center my-10 gap-3">
+  {
+    totalPages !== 0 ? (
+      <>
+        <a
+          href={`${url.pathname}?page=${Math.max(currentPage - 1, 1)}`}
+          class={` px-4 py-2 rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+        >
+          Anterior
+        </a>
+        <span>
+          {' '}
+          Página {currentPage} de {totalPages}{' '}
+        </span>
+        <a
+          href={`${url.pathname}?page=${Math.min(currentPage + 1, totalPages)}`}
+          class={`px-4 py-2 rounded-lg ${currentPage === totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+        >
+          Siguiente
+        </a>
+      </>
+    ) : (
+      <p> No existen Recursos</p>
+    )
+  }
+</div>

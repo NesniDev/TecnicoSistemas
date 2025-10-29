@@ -7,6 +7,118 @@ export const recurses = [
         url: '/recursos/guia-redes.pdf'
     },
     {
+        type: 'pdf',
+        title: 'Manual de Seguridad Informática',
+        description: 'Guía completa sobre seguridad informática para principiantes y expertos.',
+        image: '/images/seguridad-info.jpg',
+        url: '/recursos/manual-seguridad.pdf'
+    },
+    {
+        type: 'pdf',
+        title: 'Introducción a la Programación',
+        description: 'Documento introductorio para aprender los fundamentos de la programación.',
+        image: '/images/programacion.jpg',
+        url: '/recursos/intro-programacion.pdf'
+    },
+    {
+        type: 'excel',
+        title: 'Control de Asistencia',
+        description: 'Plantilla para registrar y controlar la asistencia de empleados o estudiantes.',
+        image: '/images/asistencia.jpg',
+        url: '/recursos/control-asistencia.xlsx'
+    },
+    {
+        type: 'excel',
+        title: 'Presupuesto Familiar',
+        description: 'Plantilla para gestionar y controlar el presupuesto familiar mensual.',
+        image: '/images/presupuesto.jpg',
+        url: '/recursos/presupuesto-familiar.xlsx'
+    },
+    {
+        type: 'word',
+        title: 'Plantilla de Carta Formal',
+        description: 'Formato profesional para cartas formales en Word.',
+        image: '/images/carta-formal.jpg',
+        url: '/recursos/plantilla-carta-formal.docx'
+    },
+    {
+        type: 'word',
+        title: 'Modelo de Contrato',
+        description: 'Plantilla de contrato de servicios profesionales en formato Word.',
+        image: '/images/contrato.jpg',
+        url: '/recursos/modelo-contrato.docx'
+    },
+    {
+        type: 'web',
+        title: 'Cursos Online Gratuitos',
+        description: 'Lista de plataformas con cursos en línea gratuitos de programación.',
+        image: '/images/cursos-online.jpg',
+        url: 'https://ejemplo.com/cursos-gratis'
+    },
+    {
+        type: 'web',
+        title: 'Herramientas para Desarrolladores',
+        description: 'Colección de herramientas útiles para desarrolladores web y móviles.',
+        image: '/images/herramientas-dev.jpg',
+        url: 'https://ejemplo.com/herramientas-dev'
+    },
+    {
+        type: 'libro',
+        title: 'Patrones de Diseño',
+        description: 'Libro digital sobre patrones de diseño de software.',
+        image: '/images/patrones-diseno.jpg',
+        url: '/recursos/patrones-diseno.pdf'
+    },
+    {
+        type: 'libro',
+        title: 'Aprende JavaScript',
+        description: 'Guía completa para aprender JavaScript desde cero.',
+        image: '/images/javascript.jpg',
+        url: '/recursos/aprende-javascript.pdf'
+    },
+    {
+        type: 'access',
+        title: 'Sistema de Biblioteca',
+        description: 'Base de datos para gestión de préstamos de biblioteca en Access.',
+        image: '/images/biblioteca.jpg',
+        url: '/recursos/sistema-biblioteca.accdb'
+    },
+    {
+        type: 'access',
+        title: 'Control de Ventas',
+        description: 'Sistema de gestión de ventas en Access para pequeñas empresas.',
+        image: '/images/ventas.jpg',
+        url: '/recursos/control-ventas.accdb'
+    },
+    {
+        type: 'pdf',
+        title: 'Guía de HTML5 y CSS3',
+        description: 'Manual completo sobre desarrollo web con HTML5 y CSS3.',
+        image: '/images/html-css.jpg',
+        url: '/recursos/guia-html5-css3.pdf'
+    },
+    {
+        type: 'excel',
+        title: 'Calendario Académico',
+        description: 'Plantilla de calendario académico para instituciones educativas.',
+        image: '/images/calendario.jpg',
+        url: '/recursos/calendario-academico.xlsx'
+    },
+    {
+        type: 'word',
+        title: 'Plantilla de Tesis',
+        description: 'Formato profesional para trabajos de grado y tesis en Word.',
+        image: '/images/tesis.jpg',
+        url: '/recursos/plantilla-tesis.docx'
+    },
+    {
+        type: 'web',
+        title: 'Recursos para Diseñadores',
+        description: 'Colección de recursos gratuitos para diseñadores gráficos.',
+        image: '/images/diseno-grafico.jpg',
+        url: 'https://ejemplo.com/recursos-diseno'
+    },
+    {
         type: 'excel',
         title: 'Plantilla de Inventario',
         description: 'Plantilla de Excel para llevar el control de inventario de equipos tecnológicos.',
