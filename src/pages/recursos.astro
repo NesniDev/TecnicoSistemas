@@ -9,7 +9,7 @@ import { actions } from 'astro:actions'
 
 const page = Number(Astro.url.searchParams.get('page') ?? 1)
 
-const { data, error } = await Astro.callAction(actions.getRecurseByPage, {
+const { data, error } = await Astro.callAction(actions.getResourceByPage, {
   page
 })
 
