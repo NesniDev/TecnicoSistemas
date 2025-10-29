@@ -5,6 +5,7 @@ import ArrowNews from '@assets/icons/ArrowNews.astro'
 import ArticleMain from '@components/ArticleMain.astro'
 import { tips } from '@lib/tips'
 import Check from '@assets/icons/Check.astro'
+import { news } from '@lib/news-backup'
 interface NewsItem {
   title: string
   description: string
@@ -85,10 +86,15 @@ const dataNews: NewsItem[] = await resNews.json()
       </h3>
       <section class="news" id="news-latest">
         {
-          // @ts-ignore
-          await dataNews.data.map((item: NewsItem) => {
-            return <ArticleMain {...item} />
-          })
+          //@ts-ignore
+          dataNews.data
+            ? //@ts-ignore
+              dataNews.data.map((item: NewsItem) => {
+                return <ArticleMain {...item} />
+              })
+            : news.slice(0, 3).map((item: NewsItem) => {
+                return <ArticleMain {...item} />
+              })
         }
       </section>
       <section class="imagen-info">
