@@ -1,7 +1,8 @@
 ---
 import SearchInput from '@assets/icons/SearchInput.astro'
-import Container from '@components/Container.astro'
-import Header from '@components/Header.astro'
+import Container from '@components/Shared/Container.astro'
+import Footer from '@components/Shared/Footer.astro'
+import Header from '@components/Shared/Header.astro'
 import ArticleResources from '@components/resources/ArticleResources.astro'
 import PaginationResources from '@components/resources/PaginationResources.astro'
 import Layout from '@layouts/Layout.astro'
@@ -48,6 +49,7 @@ const { resourcesByPage, totalPages } = data
     </section>
     <PaginationResources totalPages={totalPages} />
   </Container>
+  <Footer />
 </Layout>
 
 <style>

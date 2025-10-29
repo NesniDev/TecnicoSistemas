@@ -1,8 +1,8 @@
 ---
-import Button from '@components/Button.astro'
-import Container from '@components/Container.astro'
+import Button from '@components/Shared/Button.astro'
+import Container from '@components/Shared/Container.astro'
 import ArrowNews from '@assets/icons/ArrowNews.astro'
-import ArticleMain from '@components/ArticleMain.astro'
+import ArticleMain from '@components/Index/ArticleMain.astro'
 import { tips } from '@lib/tips'
 import Check from '@assets/icons/Check.astro'
 import { news } from '@lib/news-backup'
@@ -77,99 +77,98 @@ const dataNews: NewsItem[] = await resNews.json()
           }
         </div>
       </section>
-
-      <!--  -->
-      <h3
-        class="text-2xl mt-7 text-center md:text-left text-white font-extrabold"
-        id="news-latest"
-      >
-        Ultimas noticias
-      </h3>
-      <section class="news">
-        {
-          //@ts-ignore
-          dataNews.data
-            ? //@ts-ignore
-              dataNews.data.map((item: NewsItem) => {
-                return <ArticleMain {...item} />
-              })
-            : news.slice(0, 3).map((item: NewsItem) => {
-                return <ArticleMain {...item} />
-              })
-        }
-      </section>
-      <section class="imagen-info">
-        <div>
-          <h2>Técnico de sistemas e informática</h2>
-          <p class="mb-7">
-            Es aquella persona encargada de la instalación, configuración y
-            mantenimiento de los sistemas informático, equipo y redes de
-            telecomunicación. Su función principal es asegurar la integración y
-            el correcto funcionamiento de todos los sistemas tecnológicos en la
-            empresa.
-          </p>
-          <Button href="/post/blogTecnicoSistemas">Leer más...</Button>
-        </div>
-      </section>
     </div>
   </Container>
+</main>
 
-  <style>
-    .imagen-info {
-      background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.5) 80%,
-          rgba(226, 223, 223, 0) 100%
-        ),
-        url('/images/tecnico sistemas.webp');
-
-      border-radius: 20px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      aspect-ratio: 5 / 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 40px;
-      /* overflow: hidden; */
+<section class="imagen-info mb-10">
+  <div class="max-w-2xl text-center">
+    <h2>Técnico en Sistemas e informática</h2>
+    <p class="mb-7">
+      Es aquella persona encargada de la instalación, configuración y
+      mantenimiento de los sistemas informático, equipo y redes de
+      telecomunicación. Su función principal es asegurar la integración y el
+      correcto funcionamiento de todos los sistemas tecnológicos en la empresa.
+    </p>
+    <Button href="/post/blogTecnicoSistemas">Leer más...</Button>
+  </div>
+</section>
+<Container>
+  <h3
+    class="text-2xl mt-7 text-center md:text-left text-white font-extrabold"
+    id="news-latest"
+  >
+    Ultimas noticias
+  </h3>
+  <section class="news">
+    {
+      //@ts-ignore
+      dataNews.data
+        ? //@ts-ignore
+          dataNews.data.map((item: NewsItem) => {
+            return <ArticleMain {...item} />
+          })
+        : news.slice(0, 3).map((item: NewsItem) => {
+            return <ArticleMain {...item} />
+          })
     }
+  </section>
+</Container>
 
+<style>
+  .imagen-info {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 80%,
+        rgba(226, 223, 223, 0) 100%
+      ),
+      url('/images/tecnico sistemas.webp');
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px;
+    /* overflow: hidden; */
+  }
+
+  section > div h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 40px;
+  }
+
+  section > div p {
+    color: var(--letter);
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .news {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .imagen-info {
+      margin-inline: 20px;
+    }
     section > div h2 {
       color: #fff;
       font-weight: 700;
-      font-size: 40px;
+      font-size: 24px;
     }
-
     section > div p {
-      color: var(--letter);
-      font-weight: 400;
       font-size: 16px;
     }
 
     .news {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      margin-inline: 20px;
     }
-
-    @media (max-width: 768px) {
-      .imagen-info {
-        margin-inline: 20px;
-      }
-      section > div h2 {
-        color: #fff;
-        font-weight: 700;
-        font-size: 24px;
-      }
-      section > div p {
-        font-size: 16px;
-      }
-
-      .news {
-        margin-inline: 20px;
-      }
-    }
-  </style>
-</main>
+  }
+</style>

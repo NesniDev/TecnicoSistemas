@@ -1,7 +1,7 @@
 ---
-import Footer from '@components/Footer.astro'
-import Header from '@components/Header.astro'
-import Main from '@components/Main.astro'
+import Footer from '@components/Shared/Footer.astro'
+import Header from '@components/Shared/Header.astro'
+import Main from '@components/Index/Main.astro'
 import Layout from '@layouts/Layout.astro'
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -11,7 +11,7 @@ import Layout from '@layouts/Layout.astro'
 <Layout title="Tecnico en Sistemas IFE">
   <div class="flex min-h-screen flex-col">
     <Header />
-    <div class="flex flex-1">
+    <div>
       <Main />
     </div>
     <Footer />

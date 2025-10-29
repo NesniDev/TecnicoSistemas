@@ -40,17 +40,26 @@ const { type, title, description, url } = Astro.props
     >
   </div>
   <h2 class="text-xl font-bold">{title}</h2>
-  <p class="text-sm flex-1">{description}</p>
+  <p class="text-sm flex-1 text-gray-400">{description}</p>
   <a
     href={url}
     class:list={{
-      'flex items-center gap-2 text-xs text-[#00a2ff]': true,
+      'flex items-center gap-2 text-xs ': true,
       'text-red-800': type === 'pdf',
       'text-blue-800': type === 'word',
       'text-green-800': type === 'excel',
       'text-yellow-800': type === 'web',
       'text-purple-800': type === 'libro',
       'text-pink-800': type === 'access'
-    }}>Read more <ArrowNews class="size-5" /></a
+    }}>Descargar <span><ArrowNews class="size-5" /></span></a
   >
 </article>
+
+<style>
+  a span {
+    transition: all 0.3s ease-in-out;
+  }
+  a:hover span {
+    transform: rotate(90deg);
+  }
+</style>
