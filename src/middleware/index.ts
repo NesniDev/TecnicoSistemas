@@ -2,7 +2,7 @@ import type { MiddlewareNext } from "astro";
 import { defineMiddleware } from "astro:middleware";
 import { firebase } from "../firebase/config";
 
-const privateRoutes = ['/loginEstudiante', '/courses']
+const privateRoutes = ['/loginEstudiante', '/courses', '/recursos']
 const notAuthenticatedRoutes = ['/inicioSesion', '/registro']
 
 export const onRequest = defineMiddleware((context, next) => {
