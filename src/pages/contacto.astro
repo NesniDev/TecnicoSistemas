@@ -1,0 +1,174 @@
+---
+import Container from '@components/Shared/Container.astro'
+import Layout from '../layouts/Layout.astro'
+import Header from '@components/Shared/Header.astro'
+import Footer from '@components/Shared/Footer.astro'
+import Linkedin from '@assets/socials/Linkedin.astro'
+import X from '@assets/socials/X.astro'
+import Github from '@assets/socials/GitHub.astro'
+---
+
+<Layout title="Contacto">
+  <Header />
+  <section
+    class="flex flex-col justify-center items-center mx-10 md:mx-auto mt-10 animate-fade-in-up max-w-3xl"
+  >
+    <h2 class="text-5xl font-bold text-white">Ponte en contacto</h2>
+    <p class="text-lg">
+      Si tienes alguna pregunta o sugerencia, no dudes en contactarnos.
+    </p>
+    <div
+      class="flex flex-col md:flex-row justify-evenly items-start gap-10 my-10"
+    >
+      <form
+        action="https://formspree.io/f/xanlbebn"
+        method="post"
+        class="flex flex-col mx-auto gap-2 p-10"
+      >
+        <h2 class="text-2xl font-bold text-white text-center">
+          Formulario de Contacto
+        </h2>
+        <p class="text-sm text-center mt-1 mb-4">
+          Por favor, complete el siguiente formulario para contactarnos.
+        </p>
+        <label for="nombre">Nombre Completo</label>
+        <input
+          type="text"
+          placeholder="Ingrese su nombre"
+          name="name"
+          id="name"
+        />
+        <label for="email">Correo Electronico</label>
+        <input
+          type="email"
+          placeholder="Ingrese su email"
+          name="email"
+          id="email"
+        />
+        <label for="mensaje">Mensaje</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        <button type="submit"> Enviar </button>
+      </form>
+      <div class="flex flex-col flex-1 text-center">
+        <div>
+          <h2 class="text-2xl font-bold text-white mt-4">
+            Contactar con nosotros
+          </h2>
+          <div class="flex justify-center gap-4 mb-10 mt-2">
+            <a href="https://www.linkedin.com/"><Linkedin class="size-8" /></a>
+            <a href="https://x.com/"><X class="size-8" /></a>
+            <a href="https://www.github.com/"><Github class="size-8" /></a>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h2 class="text-xl font-bold text-white">
+            Correo Electronico Directo
+          </h2>
+          <a href="mailto:nestnidev17@gmail.com" id="correo"
+            >nestnidev17@gmail.com</a
+          >
+        </div>
+        <p class="text-sm text-center mt-10">
+          Si tienes alguna pregunta o sugerencia, no dudes en contactarnos.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+<Footer />
+
+<style>
+  label {
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+  }
+  input {
+    padding: 10px;
+    border: 1px solid #273446;
+    background-color: #040d1c;
+    border-radius: 5px;
+  }
+  textarea {
+    min-height: 80px;
+    padding: 5px;
+    border: 1px solid #273446;
+    background-color: #040d1c;
+    border-radius: 5px;
+    resize: vertical;
+    field-sizing: content;
+    width: 100%;
+  }
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #005bd1;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #0046b3;
+    }
+  }
+  form {
+    background-color: #21283391;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    overflow: hidden;
+  }
+
+  @media (width <= 768px) {
+    form {
+      width: 100%;
+    }
+  }
+
+  a {
+    background-color: #21283391;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  #correo {
+    text-shadow: none;
+    text-decoration: none;
+    transform: translateX(0);
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<script>
+  import Swal from 'sweetalert2'
+
+  document.querySelector('form')?.addEventListener('submit', function (e) {
+    e.preventDefault() // Evitar el envío automático del formulario
+
+    // Obtener los valores de los campos del formulario
+    const name = document.getElementById('name') as HTMLInputElement
+    const email = document.getElementById('email') as HTMLInputElement
+    const message = document.getElementById('message') as HTMLInputElement
+
+    // Validación simple
+    if (name.value === '' || email.value === '' || message.value === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, complete todos los campos.'
+      })
+      return // Detener el envío si hay campos vacíos
+    }
+
+    // Si todo está bien, mostrar un mensaje de confirmación
+    Swal.fire({
+      icon: 'success',
+      title: 'Exito',
+      text: 'Formulario enviado correctamente. ¡Gracias por contactarnos!',
+      timer: 1500
+    })
+  })
+</script>
