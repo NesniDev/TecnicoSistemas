@@ -10,7 +10,6 @@ export default defineConfig({
   integrations: [mdx()],
   adapter: vercel(),
   output: 'server',
-
   vite: {
     plugins: [tailwindcss()]
   }

@@ -1,6 +1,7 @@
 ---
 // @ts-ignore
 import '@fontsource-variable/outfit'
+
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -20,7 +21,7 @@ const { title, page } = Astro.props
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="mx-5 md:mx-0">
+  <body class="mx-5 md:mx-0 animate-blurred-fade-in">
     <section
       class="max-w-sm mx-auto flex flex-col justify-center items-center h-screen"
     >
@@ -45,6 +46,7 @@ const { title, page } = Astro.props
 
 <style is:global>
   @import 'tailwindcss';
+  @plugin '@midudev/tailwind-animations';
 
   :root {
     --fondo: #0b192f;
