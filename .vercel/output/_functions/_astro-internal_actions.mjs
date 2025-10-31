@@ -1,11 +1,11 @@
-import './chunks/_astro_actions_CVQyIgkl.mjs';
+import './chunks/_astro_actions_DNvd_GQf.mjs';
 import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { f as firebase } from './chunks/config_kox2btI2.mjs';
-import { a as defineAction } from './chunks/index_Dbcn-oNh.mjs';
-import { a as anyType, o as objectType, b as booleanType, s as stringType, A as AstroUserError, n as numberType } from './chunks/astro/server_DAp9YVW7.mjs';
+import { a as defineAction } from './chunks/index_BZv0wWh1.mjs';
+import { a as anyType, o as objectType, b as booleanType, s as stringType, A as AstroUserError, n as numberType } from './chunks/astro/server_CgC3iYY4.mjs';
 import { c as courses } from './chunks/courses_C6Ea-vG9.mjs';
 import { createClient } from '@supabase/supabase-js';
-import { A as ActionError } from './chunks/astro-designed-error-pages_C_QwkGqs.mjs';
+import { A as ActionError } from './chunks/astro-designed-error-pages_gczGvZ6D.mjs';
 
 const loginWithGoogle = defineAction({
   accept: "json",

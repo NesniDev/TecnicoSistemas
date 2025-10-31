@@ -1,6 +1,6 @@
-import { c as createComponent, e as createAstro, g as renderComponent, r as renderHead, k as renderSlot, d as renderTemplate } from './astro/server_DAp9YVW7.mjs';
+import { c as createComponent, e as createAstro, g as renderComponent, r as renderHead, k as renderSlot, d as renderTemplate } from './astro/server_CgC3iYY4.mjs';
 /* empty css                                */
-import { $ as $$ClientRouter } from './ClientRouter_DVOqAX5F.mjs';
+import { $ as $$ClientRouter } from './ClientRouter_DvVi95F0.mjs';
 /* empty css                                */
 
 const $$Astro = createAstro();

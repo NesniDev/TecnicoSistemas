@@ -1,4 +1,4 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, f as spreadAttributes, d as renderTemplate } from './astro/server_DAp9YVW7.mjs';
+import { c as createComponent, e as createAstro, m as maybeRenderHead, f as spreadAttributes, d as renderTemplate } from './astro/server_CgC3iYY4.mjs';
 
 const $$Astro = createAstro();
 const $$ArrowNews = createComponent(($$result, $$props, $$slots) => {

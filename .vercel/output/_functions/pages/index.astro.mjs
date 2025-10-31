@@ -1,11 +1,11 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, h as addAttribute, g as renderComponent, d as renderTemplate } from '../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Footer } from '../chunks/Footer_kzEpUzMl.mjs';
-import { c as $$Button, b as $$Container, $ as $$Layout, a as $$Header } from '../chunks/Header_Dzgc_Jk4.mjs';
-import { $ as $$ArrowNews } from '../chunks/ArrowNews_SqusTOds.mjs';
+import { c as createComponent, e as createAstro, m as maybeRenderHead, h as addAttribute, g as renderComponent, d as renderTemplate } from '../chunks/astro/server_CgC3iYY4.mjs';
+import { $ as $$Footer } from '../chunks/Footer_DIYv9LRc.mjs';
+import { c as $$Button, b as $$Container, $ as $$Layout, a as $$Header } from '../chunks/Header_CaGUpBKa.mjs';
+import { $ as $$ArrowNews } from '../chunks/ArrowNews_nUT6WtYa.mjs';
 import '../chunks/index_CYyG6us9.mjs';
-import { a as $$Image } from '../chunks/_astro_assets_DuHHOu88.mjs';
+import { a as $$Image } from '../chunks/_astro_assets_BP84dMq8.mjs';
 /* empty css                                 */
-import { $ as $$Check } from '../chunks/Check_CNJjkqVJ.mjs';
+import { $ as $$Check } from '../chunks/Check_BqAQkBRc.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro$1 = createAstro();
@@ -82,8 +82,19 @@ const news = [
 ];
 
 const $$Main = createComponent(async ($$result, $$props, $$slots) => {
-  const resNews = await fetch("https://tecnico-sistemas.vercel.app/api/get-news");
-  const dataNews = await resNews.json();
+  let dataNews = [];
+  try {
+    const resNews = await fetch("https://tecnico-sistemas.vercel.app/api/get-news");
+    if (resNews.ok) {
+      dataNews = await resNews.json();
+    } else {
+      console.error("Failed to fetch news:", resNews.status, resNews.statusText);
+      dataNews = news;
+    }
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    dataNews = news;
+  }
   return renderTemplate`${maybeRenderHead()}<main class="flex items-center my-5 mx-5 lg:mx-auto animate-fade-in-up" data-astro-cid-re3h7ufa> ${renderComponent($$result, "Container", $$Container, { "data-astro-cid-re3h7ufa": true }, { "default": async ($$result2) => renderTemplate` <div class="flex flex-col gap-5" data-astro-cid-re3h7ufa> <section class="flex flex-col justify-between items-center gap-3 max-w-xl mx-auto my-16" data-astro-cid-re3h7ufa> <h3 class="text-xs text-[#64FFDB] font-bold" data-astro-cid-re3h7ufa>
 TECNOLOGÍA EN EVOLUCIÓN
 </h3> <h1 class="flex flex-col text-center justify-center items-center text-5xl font-extrabold" data-astro-cid-re3h7ufa> <span data-astro-cid-re3h7ufa>Innovación y Futuro en el </span> <span class="text-[#64FFDB]" data-astro-cid-re3h7ufa>Mundo de los Sistemas</span> </h1> <p class="text-center" data-astro-cid-re3h7ufa>

@@ -1,6 +1,6 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, f as spreadAttributes, d as renderTemplate, g as renderComponent, i as renderScript, h as addAttribute, j as renderTransition } from '../../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Check } from '../../chunks/Check_CNJjkqVJ.mjs';
-import { $ as $$Layout, b as $$Container, a as $$Header } from '../../chunks/Header_Dzgc_Jk4.mjs';
+import { c as createComponent, e as createAstro, m as maybeRenderHead, f as spreadAttributes, d as renderTemplate, g as renderComponent, i as renderScript, h as addAttribute, j as renderTransition } from '../../chunks/astro/server_CgC3iYY4.mjs';
+import { $ as $$Check } from '../../chunks/Check_BqAQkBRc.mjs';
+import { $ as $$Layout, b as $$Container, a as $$Header } from '../../chunks/Header_CaGUpBKa.mjs';
 import { c as courses } from '../../chunks/courses_C6Ea-vG9.mjs';
 /* empty css                                     */
 /* empty css                                       */

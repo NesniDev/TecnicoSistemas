@@ -1,5 +1,5 @@
-import { c as createComponent, m as maybeRenderHead, g as renderComponent, d as renderTemplate } from './astro/server_DAp9YVW7.mjs';
-import { b as $$Container } from './Header_Dzgc_Jk4.mjs';
+import { c as createComponent, m as maybeRenderHead, g as renderComponent, d as renderTemplate } from './astro/server_CgC3iYY4.mjs';
+import { b as $$Container } from './Header_CaGUpBKa.mjs';
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<footer class="border-t"> ${renderComponent($$result, "Container", $$Container, {}, { "default": ($$result2) => renderTemplate` <div class="flex flex-col lg:flex-row justify-between py-3 items-center gap-2 text-sm"> <h3 class="actual">

@@ -1,4 +1,4 @@
-import { D as renderJSX, G as createVNode, H as AstroJSX, A as AstroUserError } from './chunks/astro/server_DAp9YVW7.mjs';
+import { D as renderJSX, G as createVNode, H as AstroJSX, A as AstroUserError } from './chunks/astro/server_CgC3iYY4.mjs';
 
 const slotName = (str) => str.trim().replace(/[-_]([a-z])/g, (_, w) => w.toUpperCase());
 async function check(Component, props, { default: children = null, ...slotted } = {}) {

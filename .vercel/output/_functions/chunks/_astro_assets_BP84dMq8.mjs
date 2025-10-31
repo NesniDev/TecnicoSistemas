@@ -1,5 +1,5 @@
 import { j as joinPaths, i as isRemotePath } from './path_De6Se6hL.mjs';
-import { l as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, p as UnsupportedImageConversion, t as toStyleString, N as NoImageMetadata, q as FailedToFetchRemoteImageDimensions, u as ExpectedImageOptions, v as ExpectedNotESMImage, w as InvalidImageService, c as createComponent, e as createAstro, x as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, f as spreadAttributes, d as renderTemplate, y as ExperimentalFontsNotEnabled, z as FontFamilyNotFound, B as unescapeHTML } from './astro/server_DAp9YVW7.mjs';
+import { l as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, p as UnsupportedImageConversion, t as toStyleString, N as NoImageMetadata, q as FailedToFetchRemoteImageDimensions, u as ExpectedImageOptions, v as ExpectedNotESMImage, w as InvalidImageService, c as createComponent, e as createAstro, x as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, f as spreadAttributes, d as renderTemplate, y as ExperimentalFontsNotEnabled, z as FontFamilyNotFound, B as unescapeHTML } from './astro/server_CgC3iYY4.mjs';
 import { i as isRemoteAllowed, t as typeHandlers, a as types } from './index_CYyG6us9.mjs';
 
 const VALID_SUPPORTED_FORMATS = [
@@ -145,15 +145,9 @@ function isLocalService(service) {
   }
   return "transform" in service;
 }
-function parseQuality(quality) {
-  let result = parseInt(quality);
-  if (Number.isNaN(result)) {
-    return quality;
-  }
-  return result;
-}
 const sortNumeric = (a, b) => a - b;
 const baseService = {
+  propertiesToHash: DEFAULT_HASH_PROPS,
   validateOptions(options) {
     if (!options.src || !isRemoteImage(options.src) && !isESMImportedImage(options.src)) {
       throw new AstroError({
@@ -474,7 +468,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_BcXS0mWe.mjs'
+      './build-service_DBlbGSLS.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1183,7 +1177,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${preload && data.preloadData.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
 }, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/node_modules/.pnpm/astro@5.14.5_@types+node@24_ec5ace4d22dda66068ad7e9d83f91cca/node_modules/astro/components/Font.astro", void 0);
 
-const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"responsiveStyles":false};
+const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"@astrojs/vercel/build-image-service","config":{"sizes":[640,768,1024,1280,1536],"formats":["image/avif","image/webp"],"domains":[]}},"domains":[],"remotePatterns":[],"responsiveStyles":false,"breakpoints":[640,768,1024,1280,1536]};
 							const getImage = async (options) => await getImage$1(options, imageConfig);
 
-export { $$Picture as $, $$Image as a, baseService as b, getConfiguredImageService as g, imageConfig as i, lookup as l, parseQuality as p };
+export { $$Picture as $, $$Image as a, isESMImportedImage as b, baseService as c, getConfiguredImageService as g, imageConfig as i, lookup as l };

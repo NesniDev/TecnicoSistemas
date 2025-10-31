@@ -1,4 +1,4 @@
-import { c as createComponent, r as renderHead, d as renderTemplate } from '../chunks/astro/server_DAp9YVW7.mjs';
+import { c as createComponent, r as renderHead, d as renderTemplate } from '../chunks/astro/server_CgC3iYY4.mjs';
 /* empty css                               */
 export { renderers } from '../renderers.mjs';
 

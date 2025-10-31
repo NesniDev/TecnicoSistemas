@@ -1,7 +1,7 @@
-import { d as defineMiddleware, s as sequence } from './chunks/index_Dbcn-oNh.mjs';
+import { d as defineMiddleware, s as sequence } from './chunks/index_BZv0wWh1.mjs';
 import { f as firebase } from './chunks/config_kox2btI2.mjs';
-import './chunks/astro-designed-error-pages_C_QwkGqs.mjs';
-import './chunks/astro/server_DAp9YVW7.mjs';
+import './chunks/astro-designed-error-pages_gczGvZ6D.mjs';
+import './chunks/astro/server_CgC3iYY4.mjs';
 
 const privateRoutes = ["/loginEstudiante", "/courses", "/recursos"];
 const notAuthenticatedRoutes = ["/inicioSesion", "/registro"];
