@@ -6,7 +6,7 @@ const { type, title, description, url } = Astro.props
 
 <article
   class:list={{
-    'flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4 hover:scale-105 transition duration-300 ': true,
+    'flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4 overflow-hidden hover:scale-105 transition duration-300 ': true,
     'flex flex-col gap-2 bg-red-800/5 text-white rounded-xl px-6 py-4':
       type === 'pdf',
     'flex flex-col gap-2 bg-blue-800/5 text-white rounded-xl px-6 py-4':
