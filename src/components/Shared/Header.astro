@@ -14,10 +14,18 @@ const photoURL2 =
 <div class="border-b border-gray-500/30 animate-fade-in-up">
   <Container>
     <header class="flex justify-between items-center py-4 px-8">
-      <div class="flex justify-between items-center gap-5">
-        <img src="/systems.svg" alt="Logo Principal" class="size-10" />
+      <div
+        class="absolute inset-0 sm:relative sm:flex sm:justify-between sm:items-center sm:gap-5"
+      >
+        <img
+          src="/systems.svg"
+          alt="Logo Principal"
+          class="size-10 hidden sm:block"
+        />
         <nav>
-          <ul class="flex justify-between items-center gap-5">
+          <ul
+            class="hidden sm:flex-row sm:justify-between sm:items-center sm:gap-5"
+          >
             <li>
               <a href="/">Inicio</a>
             </li>
@@ -47,6 +55,67 @@ const photoURL2 =
           <Button href="/inicioSesion"> Ingresar </Button>
         )
       }
+      <div class="flex sm:hidden menu_toggle">
+        <span class="line"> </span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
     </header>
   </Container>
 </div>
+
+<style>
+  .menu_toggle {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .line {
+    position: relative;
+    width: 35px;
+    height: 3px;
+    background-color: #cdd7f7;
+    border-radius: 10px;
+  }
+
+  .line:nth-child(1) {
+    top: 0;
+    transform: rotate(0);
+    transition: all 0.3s ease;
+  }
+  .line:nth-child(1) {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+  }
+  .line:nth-child(3) {
+    top: 0;
+    transform: rotate(0);
+    transition: all 0.3s ease;
+  }
+
+  .menu_toggle.active .line:nth-child(1) {
+    top: 10px;
+    transform: rotate(45deg);
+  }
+  .menu_toggle.active .line:nth-child(2) {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .menu_toggle.active .line:nth-child(3) {
+    top: -10px;
+    transform: rotate(-45deg);
+  }
+</style>
+
+<script>
+  const menu_toggle = document.querySelector('.menu_toggle') as HTMLDivElement
+  const nav = document.querySelector('nav') as HTMLDivElement
+
+  menu_toggle.addEventListener('click', () => {
+    menu_toggle.classList.toggle('active')
+    nav.classList.add('flex')
+  })
+</script>
