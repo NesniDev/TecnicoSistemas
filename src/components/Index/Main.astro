@@ -15,8 +15,22 @@ interface NewsItem {
   snippet: string
 }
 
-const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
-const dataNews: NewsItem[] = await resNews.json()
+let dataNews: NewsItem[] = [];
+
+try {
+  const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
+  if (resNews.ok) {
+    dataNews = await resNews.json()
+  } else {
+    console.error('Failed to fetch news:', resNews.status, resNews.statusText)
+    // Fallback to local news if API fails
+    dataNews = news
+  }
+} catch (error) {
+  console.error('Error fetching news:', error)
+  // Fallback to local news if there's an error
+  dataNews = news
+}
 ---
 
 <main class="flex items-center my-5 mx-5 lg:mx-auto animate-fade-in-up">
