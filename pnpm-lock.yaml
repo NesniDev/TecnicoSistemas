@@ -35,6 +35,9 @@ importers:
       sharp:
         specifier: 0.34.4
         version: 0.34.4
+      sweetalert2:
+        specifier: ^11.26.3
+        version: 11.26.3
       tailwindcss:
         specifier: 4.1.15
         version: 4.1.15
@@ -2096,6 +2099,9 @@ packages:
 
   style-to-object@1.0.11:
     resolution: {integrity: sha512-5A560JmXr7wDyGLK12Nq/EYS38VkGlglVzkis1JEdbGWSnbQIEhZzTJhzURXN5/8WwwFCs/f/VVcmkTppbXLow==}
+
+  sweetalert2@11.26.3:
+    resolution: {integrity: sha512-VU0hGw/WfI9h7Mh+SCsDlWgtxDwWZ6ccqS7QcO8zEeWnwplN1GptcLstq76OluUBSLUza6ldvKd3558OhjpJ9A==}
 
   tailwindcss@4.1.15:
     resolution: {integrity: sha512-k2WLnWkYFkdpRv+Oby3EBXIyQC8/s1HOFMBUViwtAh6Z5uAozeUSMQlIsn/c6Q2iJzqG6aJT3wdPaRNj70iYxQ==}
@@ -5086,6 +5092,8 @@ snapshots:
   style-to-object@1.0.11:
     dependencies:
       inline-style-parser: 0.2.4
+
+  sweetalert2@11.26.3: {}
 
   tailwindcss@4.1.15: {}
 
