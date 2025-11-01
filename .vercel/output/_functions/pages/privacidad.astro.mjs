@@ -1,6 +1,7 @@
-import { c as createComponent, g as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Footer } from '../chunks/Footer_kzEpUzMl.mjs';
-import { $ as $$Layout, a as $$Header } from '../chunks/Header_Dzgc_Jk4.mjs';
+import { c as createComponent, d as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$Footer } from '../chunks/Footer_F5KSz6IS.mjs';
+import { $ as $$Layout, a as $$Header } from '../chunks/Header_C3-unAZZ.mjs';
 /* empty css                                      */
 export { renderers } from '../renderers.mjs';
 
@@ -66,9 +67,9 @@ Nos reservamos el derecho de modificar esta política de privacidad en
 Si tienes alguna pregunta o inquietud sobre esta política de privacidad,
       no dudes en ponerte en contacto con nosotros a través de:
 </p> <ul data-astro-cid-omcsfkg6> <li data-astro-cid-omcsfkg6> <strong data-astro-cid-omcsfkg6>Correo electrónico: </strong><a href="mailto:nestnidev17@gmail.com" data-astro-cid-omcsfkg6>nestnidev17@gmail.com</a> </li> <li data-astro-cid-omcsfkg6><strong data-astro-cid-omcsfkg6>Dirección: </strong>Colombia 🟡🔵🔴</li> </ul> </section> ` })} ${renderComponent($$result, "Footer", $$Footer, { "data-astro-cid-omcsfkg6": true })} `;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/privacidad.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/privacidad.astro", void 0);
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/privacidad.astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/privacidad.astro";
 const $$url = "/privacidad";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

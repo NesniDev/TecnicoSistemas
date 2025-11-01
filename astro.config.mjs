@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel'
 import mdx from '@astrojs/mdx'
 
 import tailwindcss from '@tailwindcss/vite'
@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
-  adapter: vercel({}),
+  adapter: vercel(),
   output: 'server',
   vite: {
     plugins: [tailwindcss()]

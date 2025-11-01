@@ -1,6 +1,7 @@
-import { c as createComponent, e as createAstro, g as renderComponent, r as renderHead, k as renderSlot, d as renderTemplate } from './astro/server_DAp9YVW7.mjs';
+import { c as createComponent, b as createAstro, d as renderComponent, r as renderHead, h as renderSlot, a as renderTemplate } from './astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
 /* empty css                                */
-import { $ as $$ClientRouter } from './ClientRouter_DVOqAX5F.mjs';
+import { $ as $$ClientRouter } from './ClientRouter_B81W6aE6.mjs';
 /* empty css                                */
 
 const $$Astro = createAstro();
@@ -14,6 +15,6 @@ Bienvenido al ${page} de Estudiantes
 Inicia sesión para acceder a tu panel de estudiante personalizado,
         guardar tu progreso y conectarte con la comunidad estudiantil.
 </p> ${renderSlot($$result, $$slots["default"])} <div class="text-center flex flex-col justify-between gap-3 mt-10"> <p>📊 Acceso instantáneo a tu panel de estudiante personalizado.</p> <p>🔐 Protege tus datos y privacidad.</p> <p>💻 Acceso a herramientas y recursos de aprendizaje.</p> </div> </section> </body></html>`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/layouts/AuthLayout.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/layouts/AuthLayout.astro", void 0);
 
 export { $$AuthLayout as $ };

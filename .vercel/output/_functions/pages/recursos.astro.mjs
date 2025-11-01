@@ -1,10 +1,11 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, h as addAttribute, g as renderComponent, d as renderTemplate, F as Fragment } from '../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$SearchInput } from '../chunks/SearchInput_q9PQKy8c.mjs';
-import { $ as $$Footer } from '../chunks/Footer_kzEpUzMl.mjs';
-import { $ as $$Layout, a as $$Header } from '../chunks/Header_Dzgc_Jk4.mjs';
-import { $ as $$ArrowNews } from '../chunks/ArrowNews_SqusTOds.mjs';
+import { c as createComponent, b as createAstro, m as maybeRenderHead, e as addAttribute, d as renderComponent, a as renderTemplate, F as Fragment } from '../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$SearchInput } from '../chunks/SearchInput_cDpkeQfn.mjs';
+import { $ as $$Footer } from '../chunks/Footer_F5KSz6IS.mjs';
+import { $ as $$Layout, a as $$Header } from '../chunks/Header_C3-unAZZ.mjs';
+import { $ as $$ArrowNews } from '../chunks/ArrowNews_CqG3s7iL.mjs';
 /* empty css                                    */
-import { a as actions } from '../chunks/_astro_actions_CZ3DgA25.mjs';
+import { a as actions } from '../chunks/_astro_actions_DT29KHEJ.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro$2 = createAstro();
@@ -36,7 +37,7 @@ const $$ArticleResources = createComponent(($$result, $$props, $$slots) => {
     "text-purple-800": type === "libro",
     "text-pink-800": type === "access"
   }, "class:list")} data-astro-cid-d4djmsly>Descargar <span data-astro-cid-d4djmsly>${renderComponent($$result, "ArrowNews", $$ArrowNews, { "class": "size-5", "data-astro-cid-d4djmsly": true })}</span></a> </article> `;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/resources/ArticleResources.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/resources/ArticleResources.astro", void 0);
 
 const $$Astro$1 = createAstro();
 const $$PaginationResources = createComponent(($$result, $$props, $$slots) => {
@@ -54,7 +55,7 @@ Anterior
 Página ${currentPage} de ${totalPages}${" "} </span> <a${addAttribute(`${url.pathname}?page=${Math.min(currentPage + 1, totalPages)}${searchParam}`, "href")}${addAttribute(`px-4 py-2 rounded-lg ${currentPage === totalPages ? "bg-[#7e7e7e] pointer-events-none" : "bg-[#009dff]"}`, "class")}>
 Siguiente
 </a> ` })}` : renderTemplate`<p> No existen Recursos</p>`} </div>`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/resources/PaginationResources.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/resources/PaginationResources.astro", void 0);
 
 const $$Astro = createAstro();
 const $$Recursos = createComponent(async ($$result, $$props, $$slots) => {
@@ -77,9 +78,9 @@ Recursos Educativos
 En esta sección encontrarás una variedad de recursos educativos para
       ayudarte a aprender y mejorar tus habilidades técnicas.
 </p> <section class="mx-2 md:mx-0" data-astro-cid-gtzka36m> <form method="GET" action="/recursos" role="search" data-astro-cid-gtzka36m> <div class="flex flex-col sm:flex-row" data-astro-cid-gtzka36m> ${renderComponent($$result2, "SearchInput", $$SearchInput, { "class": "hidden md:block ml-1", "data-astro-cid-gtzka36m": true })} <input type="text" id="buscador" name="search"${addAttribute(search, "value")} placeholder="Busca cursos por título..." autocomplete="off" data-astro-cid-gtzka36m> <button type="submit" id="resources" data-astro-cid-gtzka36m>Buscar</button> </div> </form> </section> <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 mx-10 md:mx-0" data-astro-cid-gtzka36m> ${resourcesByPage.map((item) => renderTemplate`${renderComponent($$result2, "ArticleResources", $$ArticleResources, { ...item, "data-astro-cid-gtzka36m": true })}`)} </section> ${renderComponent($$result2, "PaginationResources", $$PaginationResources, { "totalPages": totalPages, "search": search, "data-astro-cid-gtzka36m": true })} </div> ${renderComponent($$result2, "Footer", $$Footer, { "data-astro-cid-gtzka36m": true })} ` })} `;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/recursos.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/recursos.astro", void 0);
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/recursos.astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/recursos.astro";
 const $$url = "/recursos";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

@@ -1,8 +1,9 @@
-import { c as createComponent, m as maybeRenderHead, g as renderComponent, i as renderScript, d as renderTemplate } from '../../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Footer } from '../../chunks/Footer_kzEpUzMl.mjs';
-import { b as $$Container, $ as $$Layout, a as $$Header } from '../../chunks/Header_Dzgc_Jk4.mjs';
+import { c as createComponent, m as maybeRenderHead, d as renderComponent, f as renderScript, a as renderTemplate } from '../../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$Footer } from '../../chunks/Footer_F5KSz6IS.mjs';
+import { b as $$Container, $ as $$Layout, a as $$Header } from '../../chunks/Header_C3-unAZZ.mjs';
 import '../../chunks/index_CYyG6us9.mjs';
-import { $ as $$Picture } from '../../chunks/_astro_assets_DuHHOu88.mjs';
+import { $ as $$Picture } from '../../chunks/_astro_assets_CM88L5NH.mjs';
 /* empty css                                                  */
 export { renderers } from '../../renderers.mjs';
 
@@ -31,7 +32,7 @@ const ImageBlog = new Proxy({"src":"/_astro/blog.C7bCYG78.webp","width":1568,"he
 								return structuredClone(target);
 							}
 							if (name === 'fsPath') {
-								return "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/public/images/blog.webp";
+								return "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/public/images/blog.webp";
 							}
 							
 							return target[name];
@@ -119,14 +120,14 @@ Brinda <strong data-astro-cid-bzvev6pv>soporte y orientación técnica</strong> 
 Los técnicos también pueden impartir <strong data-astro-cid-bzvev6pv>formación</strong> sobre el uso
       correcto de software, equipos y buenas prácticas informáticas. Esto fortalece
       la cultura tecnológica dentro de la empresa y reduce incidentes técnicos.
-</p> <hr class="my-10" data-astro-cid-bzvev6pv> <section class="faq" data-astro-cid-bzvev6pv> <h2 class="text-2xl text-white" data-astro-cid-bzvev6pv>Preguntas Frecuentes (FAQ)</h2> ${faq.map((item) => renderTemplate`<details data-astro-cid-bzvev6pv> <summary data-astro-cid-bzvev6pv>${item.question}</summary> <p data-astro-cid-bzvev6pv>${item.answer}</p> </details>`)} </section> ` })} </main>  ${renderScript($$result, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/InfoTecnicoSistemas.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/InfoTecnicoSistemas.astro", void 0);
+</p> <hr class="my-10" data-astro-cid-bzvev6pv> <section class="faq" data-astro-cid-bzvev6pv> <h2 class="text-2xl text-white" data-astro-cid-bzvev6pv>Preguntas Frecuentes (FAQ)</h2> ${faq.map((item) => renderTemplate`<details data-astro-cid-bzvev6pv> <summary data-astro-cid-bzvev6pv>${item.question}</summary> <p data-astro-cid-bzvev6pv>${item.answer}</p> </details>`)} </section> ` })} </main>  ${renderScript($$result, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/InfoTecnicoSistemas.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/InfoTecnicoSistemas.astro", void 0);
 
 const $$BlogTecnicoSistemas = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Blog | Tecnico en Sistemas IFE" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, {})} ${renderComponent($$result2, "InfoTecnicoSistemas", $$InfoTecnicoSistemas, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/post/blogTecnicoSistemas.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/post/blogTecnicoSistemas.astro", void 0);
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/post/blogTecnicoSistemas.astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/post/blogTecnicoSistemas.astro";
 const $$url = "/post/blogTecnicoSistemas";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

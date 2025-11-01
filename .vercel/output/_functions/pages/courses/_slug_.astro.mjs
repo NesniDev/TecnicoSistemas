@@ -1,7 +1,9 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, f as spreadAttributes, d as renderTemplate, g as renderComponent, i as renderScript, h as addAttribute, j as renderTransition } from '../../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Check } from '../../chunks/Check_CNJjkqVJ.mjs';
-import { $ as $$Layout, b as $$Container, a as $$Header } from '../../chunks/Header_Dzgc_Jk4.mjs';
+import { c as createComponent, b as createAstro, m as maybeRenderHead, s as spreadAttributes, a as renderTemplate, d as renderComponent, f as renderScript, e as addAttribute, g as renderTransition } from '../../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$Check } from '../../chunks/Check_C3UB_BuG.mjs';
+import { $ as $$Layout, b as $$Container, a as $$Header } from '../../chunks/Header_C3-unAZZ.mjs';
 import { c as courses } from '../../chunks/courses_C6Ea-vG9.mjs';
+import 'clsx';
 /* empty css                                     */
 /* empty css                                       */
 export { renderers } from '../../renderers.mjs';
@@ -11,21 +13,21 @@ const $$ChevronDown = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$ChevronDown;
   return renderTemplate`${maybeRenderHead()}<svg${spreadAttributes(Astro2.props)} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 9l6 6l6 -6"></path></svg>`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/assets/icons/ChevronDown.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/assets/icons/ChevronDown.astro", void 0);
 
 const $$Astro$2 = createAstro();
 const $$Badge = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$Badge;
   return renderTemplate`${maybeRenderHead()}<svg${spreadAttributes(Astro2.props)} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-badge"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M17 17v-13l-5 3l-5 -3v13l5 3z"></path></svg>`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/assets/icons/Badge.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/assets/icons/Badge.astro", void 0);
 
 const $$Astro$1 = createAstro();
 const $$ProfessionalImpact = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$ProfessionalImpact;
   return renderTemplate`${maybeRenderHead()}<svg${spreadAttributes(Astro2.props)} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-aperture"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M3.6 15h10.55"></path><path d="M6.551 4.938l3.26 10.034"></path><path d="M17.032 4.636l-8.535 6.201"></path><path d="M20.559 14.51l-8.535 -6.201"></path><path d="M12.257 20.916l3.261 -10.034"></path></svg>`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/assets/icons/ProfessionalImpact.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/assets/icons/ProfessionalImpact.astro", void 0);
 
 const $$Astro = createAstro();
 const $$slug = createComponent(($$result, $$props, $$slots) => {
@@ -115,10 +117,10 @@ Impacto Profesional y Beneficio Clave
             4.8 <span class="text-sm">Basado en 125 opiniones</span>
           </p>
         </div>
-      </section> --> </main> ` })} ` })}  ${renderScript($$result, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/courses/[slug].astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/courses/[slug].astro", "self");
+      </section> --> </main> ` })} ` })}  ${renderScript($$result, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/courses/[slug].astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/courses/[slug].astro", "self");
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/courses/[slug].astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/courses/[slug].astro";
 const $$url = "/courses/[slug]";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

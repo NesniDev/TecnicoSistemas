@@ -1,5 +1,6 @@
-import { c as createComponent, g as renderComponent, i as renderScript, d as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$AuthLayout } from '../chunks/AuthLayout_CVguXvvG.mjs';
+import { c as createComponent, d as renderComponent, f as renderScript, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$AuthLayout } from '../chunks/AuthLayout_DonB90RJ.mjs';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';
 
@@ -8,10 +9,10 @@ const $$Registro = createComponent(async ($$result, $$props, $$slots) => {
       <input type="checkbox" name="remember_me" id="remember_me" />
       <label for="remember_me" class="text-xs">Recordarme</label>
     </div> --> <div class="text-center mb-5" data-astro-cid-ohowjl3i> <small data-astro-cid-ohowjl3i><a href="/inicioSesion" class="underline" data-astro-cid-ohowjl3i>¿Ya tienes cuenta?
-</a></small> </div> </form> ` })}  ${renderScript($$result, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/registro.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/registro.astro", void 0);
+</a></small> </div> </form> ` })}  ${renderScript($$result, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/registro.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/registro.astro", void 0);
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/registro.astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/registro.astro";
 const $$url = "/registro";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

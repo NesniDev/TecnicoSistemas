@@ -1,15 +1,16 @@
-import './chunks/_astro_actions_CZ3DgA25.mjs';
+import './chunks/_astro_actions_DT29KHEJ.mjs';
+import * as z from 'zod';
 import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { f as firebase } from './chunks/config_kox2btI2.mjs';
-import { a as defineAction } from './chunks/index_Pmqz-b-S.mjs';
-import { a as anyType, o as objectType, b as booleanType, s as stringType, A as AstroUserError, n as numberType } from './chunks/astro/server_DAp9YVW7.mjs';
+import { a as defineAction } from './chunks/index_ChodLnCy.mjs';
+import { A as AstroUserError } from './chunks/astro/server_CRG_qOWb.mjs';
 import { c as courses } from './chunks/courses_C6Ea-vG9.mjs';
 import { createClient } from '@supabase/supabase-js';
-import { A as ActionError } from './chunks/astro-designed-error-pages_DYULlum5.mjs';
+import { A as ActionError } from './chunks/astro-designed-error-pages_5196gqqh.mjs';
 
 const loginWithGoogle = defineAction({
   accept: "json",
-  input: anyType(),
+  input: z.any(),
   handler: async (credentials) => {
     const credential = GoogleAuthProvider.credentialFromResult(credentials);
     if (!credential) {
@@ -22,10 +23,10 @@ const loginWithGoogle = defineAction({
 
 const loginUser = defineAction({
   accept: "form",
-  input: objectType({
-    email: stringType().email(),
-    password: stringType().min(6),
-    remember_me: booleanType().optional()
+  input: z.object({
+    email: z.string().email(),
+    password: z.string().min(6),
+    remember_me: z.boolean().optional()
   }),
   handler: async ({ email, password, remember_me }, context) => {
     console.log(remember_me);
@@ -73,10 +74,10 @@ const logout = defineAction({
 
 const registerUser = defineAction({
   accept: "form",
-  input: objectType({
-    name: stringType().min(3),
-    email: stringType().email(),
-    password: stringType().min(6)
+  input: z.object({
+    name: z.string().min(3),
+    email: z.string().email(),
+    password: z.string().min(6)
     // remember_me: z.boolean().optional()
   }),
   handler: async ({ name, email, password }) => {
@@ -112,10 +113,10 @@ const registerUser = defineAction({
 
 const getCourseByPage = defineAction({
   accept: "json",
-  input: objectType({
-    page: numberType().optional().default(1),
-    limit: numberType().optional().default(4),
-    search: stringType().optional()
+  input: z.object({
+    page: z.number().optional().default(1),
+    limit: z.number().optional().default(4),
+    search: z.string().optional()
   }),
   handler: async ({ page, limit, search }) => {
     let filteredCourses = courses;
@@ -364,10 +365,10 @@ const resources = [
 
 const getResourceByPage = defineAction({
   accept: "json",
-  input: objectType({
-    page: numberType().optional().default(1),
-    limitResources: numberType().optional().default(9),
-    search: stringType().optional()
+  input: z.object({
+    page: z.number().optional().default(1),
+    limitResources: z.number().optional().default(9),
+    search: z.string().optional()
   }),
   handler: async ({ page, limitResources, search }) => {
     let resourcesFiltered = resources;
@@ -390,8 +391,8 @@ const getResourceByPage = defineAction({
   }
 });
 
-const supabaseUrl = "https://hyrebezjlqgfxigrqbvn.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5cmViZXpqbHFnZnhpZ3JxYnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4NjU4MTMsImV4cCI6MjA3NzQ0MTgxM30.hct2xGbiOMizwr0v8yjxsqN2AxofdgS507AJE0v0shI";
+const supabaseUrl = undefined                            ;
+const supabaseKey = undefined                            ;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const ERROR_CODE_ALREADY_EXISTS = "23505";
@@ -425,10 +426,10 @@ const saveForm = async (name, email, message) => {
 
 const getForm = defineAction({
   accept: "json",
-  input: objectType({
-    name: stringType(),
-    email: stringType().email(),
-    message: stringType().optional().default("")
+  input: z.object({
+    name: z.string(),
+    email: z.string().email(),
+    message: z.string().optional().default("")
   }),
   handler: async ({ name, email, message }) => {
     const { success, error, duplicate } = await saveForm(name, email, message);

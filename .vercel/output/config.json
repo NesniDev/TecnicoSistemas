@@ -1,0 +1,76 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_actions(?:/(.*?))?/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/404/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/get-news/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/contacto/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/courses/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/inicioSesion/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/loginEstudiante/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/post/blogTecnicoSistemas/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/privacidad/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/recursos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/registro/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/.*$",
+			"dest": "_render",
+			"status": 404
+		}
+	]
+}

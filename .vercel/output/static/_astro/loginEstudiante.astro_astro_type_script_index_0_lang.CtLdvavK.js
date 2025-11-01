@@ -1,0 +1,1 @@
+import{a as o}from"./_astro_actions.DvmhQz71.js";document.addEventListener("astro:page-load",()=>{document.getElementById("logout").addEventListener("click",()=>{o.logout(),window.location.href="/"})});

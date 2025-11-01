@@ -1,11 +1,12 @@
-import { c as createComponent, e as createAstro, m as maybeRenderHead, h as addAttribute, g as renderComponent, d as renderTemplate } from '../chunks/astro/server_DAp9YVW7.mjs';
-import { $ as $$Footer } from '../chunks/Footer_kzEpUzMl.mjs';
-import { c as $$Button, b as $$Container, $ as $$Layout, a as $$Header } from '../chunks/Header_Dzgc_Jk4.mjs';
-import { $ as $$ArrowNews } from '../chunks/ArrowNews_SqusTOds.mjs';
+import { c as createComponent, b as createAstro, m as maybeRenderHead, e as addAttribute, d as renderComponent, a as renderTemplate } from '../chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import { $ as $$Footer } from '../chunks/Footer_F5KSz6IS.mjs';
+import { c as $$Button, b as $$Container, $ as $$Layout, a as $$Header } from '../chunks/Header_C3-unAZZ.mjs';
+import { $ as $$ArrowNews } from '../chunks/ArrowNews_CqG3s7iL.mjs';
 import '../chunks/index_CYyG6us9.mjs';
-import { a as $$Image } from '../chunks/_astro_assets_DuHHOu88.mjs';
+import { a as $$Image } from '../chunks/_astro_assets_CM88L5NH.mjs';
 /* empty css                                 */
-import { $ as $$Check } from '../chunks/Check_CNJjkqVJ.mjs';
+import { $ as $$Check } from '../chunks/Check_C3UB_BuG.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro$1 = createAstro();
@@ -18,7 +19,7 @@ const $$ArticleMain = createComponent(($$result, $$props, $$slots) => {
       alt={\`Imagen sobre: \${title}\`}
       class="rounded-lg object-cover h-full"
     /> --> ${renderComponent($$result, "Image", $$Image, { "src": image_url, "alt": `Imagen sobre: ${title}`, "inferSize": true, "class": "rounded-lg object-cover h-full", "data-astro-cid-s2kwfhxe": true })} </a> <div class="flex flex-col max-h-full" data-astro-cid-s2kwfhxe> <h4 class="text-white text-base font-bold" data-astro-cid-s2kwfhxe>${title}</h4> <div class="flex flex-1" data-astro-cid-s2kwfhxe> <p class="mt-2" data-astro-cid-s2kwfhxe>${description === "" ? snippet : description}</p> </div> <p class="flex justify-between items-center my-2" data-astro-cid-s2kwfhxe> <span class="button text-[8px]" data-astro-cid-s2kwfhxe> ${published_at.slice(0, 10)} </span> ${renderComponent($$result, "Button", $$Button, { "href": url, "openBlank": true, "className": "button px-2 py-1 text-[10px]", "data-astro-cid-s2kwfhxe": true }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ArrowNews", $$ArrowNews, { "data-astro-cid-s2kwfhxe": true })} ` })} </p> </div> </article> `;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/Index/ArticleMain.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/Index/ArticleMain.astro", void 0);
 
 const tips = [
   {
@@ -127,16 +128,16 @@ Ultimas noticias
   ) : news.slice(0, 3).map((item) => {
     return renderTemplate`${renderComponent($$result2, "ArticleMain", $$ArticleMain, { ...item, "data-astro-cid-re3h7ufa": true })}`;
   })} </section> ` })} `;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/components/Index/Main.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/components/Index/Main.astro", void 0);
 
 const $$Astro = createAstro();
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Tecnico en Sistemas IFE" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, {})} ${renderComponent($$result2, "Main", $$Main, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
-}, "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/index.astro", void 0);
+}, "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/index.astro", void 0);
 
-const $$file = "C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/src/pages/index.astro";
+const $$file = "C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/src/pages/index.astro";
 const $$url = "";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

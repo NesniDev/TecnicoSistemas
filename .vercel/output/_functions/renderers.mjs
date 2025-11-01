@@ -1,4 +1,6 @@
-import { D as renderJSX, G as createVNode, H as AstroJSX, A as AstroUserError } from './chunks/astro/server_DAp9YVW7.mjs';
+import { x as renderJSX, y as createVNode, z as AstroJSX, A as AstroUserError } from './chunks/astro/server_CRG_qOWb.mjs';
+import 'kleur/colors';
+import 'clsx';
 
 const slotName = (str) => str.trim().replace(/[-_]([a-z])/g, (_, w) => w.toUpperCase());
 async function check(Component, props, { default: children = null, ...slotted } = {}) {
@@ -46,6 +48,6 @@ const renderer = {
 };
 var server_default = renderer;
 
-const renderers = [Object.assign({"name":"astro:jsx","serverEntrypoint":"file:///C:/Users/Neider/Documents/Github/PaginasWeb/WebSiteSystems/node_modules/.pnpm/@astrojs+mdx@4.3.7_astro@5._63c628d2e55ab9e3bd9967a9771c2459/node_modules/@astrojs/mdx/dist/server.js"}, { ssr: server_default }),];
+const renderers = [Object.assign({"name":"astro:jsx","serverEntrypoint":"file:///C:/Users/neider_nieto/Documents/GitHub/DevWeb/TecnicoSistemas/node_modules/@astrojs/mdx/dist/server.js"}, { ssr: server_default }),];
 
 export { renderers };

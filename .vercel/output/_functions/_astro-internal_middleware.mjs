@@ -1,7 +1,11 @@
-import { d as defineMiddleware, s as sequence } from './chunks/index_Pmqz-b-S.mjs';
+import { d as defineMiddleware, s as sequence } from './chunks/index_ChodLnCy.mjs';
 import { f as firebase } from './chunks/config_kox2btI2.mjs';
-import './chunks/astro-designed-error-pages_DYULlum5.mjs';
-import './chunks/astro/server_DAp9YVW7.mjs';
+import 'es-module-lexer';
+import './chunks/astro-designed-error-pages_5196gqqh.mjs';
+import 'kleur/colors';
+import './chunks/astro/server_CRG_qOWb.mjs';
+import 'clsx';
+import 'cookie';
 
 const privateRoutes = ["/loginEstudiante", "/courses", "/recursos"];
 const notAuthenticatedRoutes = ["/inicioSesion", "/registro"];

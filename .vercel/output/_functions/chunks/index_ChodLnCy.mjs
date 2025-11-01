@@ -1,6 +1,13 @@
-import { a2 as decryptString, a3 as createSlotValueFromString, a4 as isAstroComponentFactory, g as renderComponent, d as renderTemplate, J as REROUTE_DIRECTIVE_HEADER, l as AstroError, a5 as i18nNoLocaleFoundInPath, a6 as ResponseSentError, a7 as originPathnameSymbol, a8 as RewriteWithBodyUsed, a9 as GetStaticPathsRequired, aa as InvalidGetStaticPathsReturn, ab as InvalidGetStaticPathsEntry, ac as GetStaticPathsExpectedParams, ad as GetStaticPathsInvalidRouteParam, ae as PageNumberParamNotFound, K as DEFAULT_404_COMPONENT, af as NoMatchingStaticPathFound, ag as PrerenderDynamicEndpointPathCollide, ah as ReservedSlotName, ai as renderSlotToString, D as renderJSX, aj as chunkToString, ak as isRenderInstruction, al as ActionCalledFromServerError, am as ZodObject, an as ZodEffects, ao as ZodPipeline, ap as ZodDiscriminatedUnion, aq as ZodOptional, ar as ZodNullable, as as ZodDefault, at as ZodBoolean, au as ZodArray, av as ZodNumber, aw as MiddlewareNoDataOrNextCalled, ax as MiddlewareNotAResponse, ay as SessionStorageInitError, az as SessionStorageSaveError, R as ROUTE_TYPE_HEADER, aA as ForbiddenRewrite, aB as ASTRO_VERSION, aC as CspNotEnabled, aD as green, aE as LocalsReassigned, aF as generateCspDigest, aG as PrerenderClientAddressNotAvailable, W as clientAddressSymbol, aH as ClientAddressNotAvailable, aI as StaticClientAddressNotAvailable, aJ as AstroResponseHeadersReassigned, Z as responseSentSymbol$1, aK as renderPage, aL as REWRITE_DIRECTIVE_HEADER_KEY, aM as REWRITE_DIRECTIVE_HEADER_VALUE, aN as renderEndpoint } from './astro/server_DAp9YVW7.mjs';
-import { g as getActionQueryString, d as deserializeActionResult, h as distExports, D as DEFAULT_404_ROUTE, i as callSafely, A as ActionError, j as ActionInputError, s as serializeActionResult, k as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, u as unflatten$1, l as stringify$2 } from './astro-designed-error-pages_DYULlum5.mjs';
+import { Q as decryptString, S as createSlotValueFromString, T as isAstroComponentFactory, d as renderComponent, a as renderTemplate, B as REROUTE_DIRECTIVE_HEADER, i as AstroError, V as i18nNoLocaleFoundInPath, W as ResponseSentError, X as originPathnameSymbol, Y as RewriteWithBodyUsed, Z as GetStaticPathsRequired, _ as InvalidGetStaticPathsReturn, $ as InvalidGetStaticPathsEntry, a0 as GetStaticPathsExpectedParams, a1 as GetStaticPathsInvalidRouteParam, a2 as PageNumberParamNotFound, D as DEFAULT_404_COMPONENT, a3 as NoMatchingStaticPathFound, a4 as PrerenderDynamicEndpointPathCollide, a5 as ReservedSlotName, a6 as renderSlotToString, x as renderJSX, a7 as chunkToString, a8 as isRenderInstruction, a9 as ActionCalledFromServerError, aa as MiddlewareNoDataOrNextCalled, ab as MiddlewareNotAResponse, ac as SessionStorageInitError, ad as SessionStorageSaveError, R as ROUTE_TYPE_HEADER, ae as ForbiddenRewrite, af as ASTRO_VERSION, ag as CspNotEnabled, ah as LocalsReassigned, ai as generateCspDigest, aj as PrerenderClientAddressNotAvailable, G as clientAddressSymbol, ak as ClientAddressNotAvailable, al as StaticClientAddressNotAvailable, am as AstroResponseHeadersReassigned, K as responseSentSymbol$1, an as renderPage, ao as REWRITE_DIRECTIVE_HEADER_KEY, ap as REWRITE_DIRECTIVE_HEADER_VALUE, aq as renderEndpoint } from './astro/server_CRG_qOWb.mjs';
+import { green } from 'kleur/colors';
+import 'clsx';
+import 'es-module-lexer';
+import { g as getActionQueryString, d as deserializeActionResult, D as DEFAULT_404_ROUTE, h as callSafely, A as ActionError, i as ActionInputError, s as serializeActionResult, j as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS } from './astro-designed-error-pages_5196gqqh.mjs';
+import { serialize, parse } from 'cookie';
+import { z } from 'zod';
 import { a as appendForwardSlash, j as joinPaths, r as removeTrailingForwardSlash, p as prependForwardSlash, t as trimSlashes } from './path_De6Se6hL.mjs';
+import { unflatten as unflatten$1, stringify as stringify$1 } from 'devalue';
+import { createStorage, builtinDrivers } from 'unstorage';
 
 const ACTION_API_CONTEXT_SYMBOL = Symbol.for("astro.actionAPIContext");
 const formContentTypes = ["application/x-www-form-urlencoded", "multipart/form-data"];
@@ -557,7 +564,7 @@ class AstroCookies {
     };
     this.#ensureOutgoingMap().set(key, [
       DELETED_VALUE,
-      distExports.serialize(key, DELETED_VALUE, serializeOptions),
+      serialize(key, DELETED_VALUE, serializeOptions),
       false
     ]);
   }
@@ -635,7 +642,7 @@ class AstroCookies {
     }
     this.#ensureOutgoingMap().set(key, [
       serializedValue,
-      distExports.serialize(key, serializedValue, serializeOptions),
+      serialize(key, serializedValue, serializeOptions),
       true
     ]);
     if (this.#request[responseSentSymbol]) {
@@ -696,7 +703,7 @@ class AstroCookies {
     if (!raw) {
       return;
     }
-    this.#requestValues = distExports.parse(raw, { decode: identity });
+    this.#requestValues = parse(raw, { decode: identity });
   }
 }
 
@@ -1289,7 +1296,7 @@ function getFormServerHandler(handler, inputSchema) {
     if (!inputSchema) return await handler(unparsedInput, context);
     const baseSchema = unwrapBaseObjectSchema(inputSchema, unparsedInput);
     const parsed = await inputSchema.safeParseAsync(
-      baseSchema instanceof ZodObject ? formDataToObject(unparsedInput, baseSchema) : unparsedInput
+      baseSchema instanceof z.ZodObject ? formDataToObject(unparsedInput, baseSchema) : unparsedInput
     );
     if (!parsed.success) {
       throw new ActionInputError(parsed.error.issues);
@@ -1317,18 +1324,18 @@ function formDataToObject(formData, schema) {
   const obj = schema._def.unknownKeys === "passthrough" ? Object.fromEntries(formData.entries()) : {};
   for (const [key, baseValidator] of Object.entries(schema.shape)) {
     let validator = baseValidator;
-    while (validator instanceof ZodOptional || validator instanceof ZodNullable || validator instanceof ZodDefault) {
-      if (validator instanceof ZodDefault && !formData.has(key)) {
+    while (validator instanceof z.ZodOptional || validator instanceof z.ZodNullable || validator instanceof z.ZodDefault) {
+      if (validator instanceof z.ZodDefault && !formData.has(key)) {
         obj[key] = validator._def.defaultValue();
       }
       validator = validator._def.innerType;
     }
     if (!formData.has(key) && key in obj) {
       continue;
-    } else if (validator instanceof ZodBoolean) {
+    } else if (validator instanceof z.ZodBoolean) {
       const val = formData.get(key);
       obj[key] = val === "true" ? true : val === "false" ? false : formData.has(key);
-    } else if (validator instanceof ZodArray) {
+    } else if (validator instanceof z.ZodArray) {
       obj[key] = handleFormDataGetAll(key, formData, validator);
     } else {
       obj[key] = handleFormDataGet(key, formData, validator, baseValidator);
@@ -1339,9 +1346,9 @@ function formDataToObject(formData, schema) {
 function handleFormDataGetAll(key, formData, validator) {
   const entries = Array.from(formData.getAll(key));
   const elementValidator = validator._def.type;
-  if (elementValidator instanceof ZodNumber) {
+  if (elementValidator instanceof z.ZodNumber) {
     return entries.map(Number);
-  } else if (elementValidator instanceof ZodBoolean) {
+  } else if (elementValidator instanceof z.ZodBoolean) {
     return entries.map(Boolean);
   }
   return entries;
@@ -1349,20 +1356,20 @@ function handleFormDataGetAll(key, formData, validator) {
 function handleFormDataGet(key, formData, validator, baseValidator) {
   const value = formData.get(key);
   if (!value) {
-    return baseValidator instanceof ZodOptional ? void 0 : null;
+    return baseValidator instanceof z.ZodOptional ? void 0 : null;
   }
-  return validator instanceof ZodNumber ? Number(value) : value;
+  return validator instanceof z.ZodNumber ? Number(value) : value;
 }
 function unwrapBaseObjectSchema(schema, unparsedInput) {
-  while (schema instanceof ZodEffects || schema instanceof ZodPipeline) {
-    if (schema instanceof ZodEffects) {
+  while (schema instanceof z.ZodEffects || schema instanceof z.ZodPipeline) {
+    if (schema instanceof z.ZodEffects) {
       schema = schema._def.schema;
     }
-    if (schema instanceof ZodPipeline) {
+    if (schema instanceof z.ZodPipeline) {
       schema = schema._def.in;
     }
   }
-  if (schema instanceof ZodDiscriminatedUnion) {
+  if (schema instanceof z.ZodDiscriminatedUnion) {
     const typeKey = schema._def.discriminator;
     const typeValue = unparsedInput.get(typeKey);
     if (typeof typeValue !== "string") return schema;
@@ -1480,665 +1487,6 @@ async function callMiddleware(onRequest, apiContext, responseFunction) {
   });
 }
 
-const suspectProtoRx = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
-const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
-const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
-function jsonParseTransform(key, value) {
-  if (key === "__proto__" || key === "constructor" && value && typeof value === "object" && "prototype" in value) {
-    warnKeyDropped(key);
-    return;
-  }
-  return value;
-}
-function warnKeyDropped(key) {
-  console.warn(`[destr] Dropping "${key}" key to prevent prototype pollution.`);
-}
-function destr(value, options = {}) {
-  if (typeof value !== "string") {
-    return value;
-  }
-  if (value[0] === '"' && value[value.length - 1] === '"' && value.indexOf("\\") === -1) {
-    return value.slice(1, -1);
-  }
-  const _value = value.trim();
-  if (_value.length <= 9) {
-    switch (_value.toLowerCase()) {
-      case "true": {
-        return true;
-      }
-      case "false": {
-        return false;
-      }
-      case "undefined": {
-        return void 0;
-      }
-      case "null": {
-        return null;
-      }
-      case "nan": {
-        return Number.NaN;
-      }
-      case "infinity": {
-        return Number.POSITIVE_INFINITY;
-      }
-      case "-infinity": {
-        return Number.NEGATIVE_INFINITY;
-      }
-    }
-  }
-  if (!JsonSigRx.test(value)) {
-    if (options.strict) {
-      throw new SyntaxError("[destr] Invalid JSON");
-    }
-    return value;
-  }
-  try {
-    if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
-      if (options.strict) {
-        throw new Error("[destr] Possible prototype pollution");
-      }
-      return JSON.parse(value, jsonParseTransform);
-    }
-    return JSON.parse(value);
-  } catch (error) {
-    if (options.strict) {
-      throw error;
-    }
-    return value;
-  }
-}
-
-function wrapToPromise(value) {
-  if (!value || typeof value.then !== "function") {
-    return Promise.resolve(value);
-  }
-  return value;
-}
-function asyncCall(function_, ...arguments_) {
-  try {
-    return wrapToPromise(function_(...arguments_));
-  } catch (error) {
-    return Promise.reject(error);
-  }
-}
-function isPrimitive(value) {
-  const type = typeof value;
-  return value === null || type !== "object" && type !== "function";
-}
-function isPureObject(value) {
-  const proto = Object.getPrototypeOf(value);
-  return !proto || proto.isPrototypeOf(Object);
-}
-function stringify$1(value) {
-  if (isPrimitive(value)) {
-    return String(value);
-  }
-  if (isPureObject(value) || Array.isArray(value)) {
-    return JSON.stringify(value);
-  }
-  if (typeof value.toJSON === "function") {
-    return stringify$1(value.toJSON());
-  }
-  throw new Error("[unstorage] Cannot stringify value!");
-}
-const BASE64_PREFIX = "base64:";
-function serializeRaw(value) {
-  if (typeof value === "string") {
-    return value;
-  }
-  return BASE64_PREFIX + base64Encode(value);
-}
-function deserializeRaw(value) {
-  if (typeof value !== "string") {
-    return value;
-  }
-  if (!value.startsWith(BASE64_PREFIX)) {
-    return value;
-  }
-  return base64Decode(value.slice(BASE64_PREFIX.length));
-}
-function base64Decode(input) {
-  if (globalThis.Buffer) {
-    return Buffer.from(input, "base64");
-  }
-  return Uint8Array.from(
-    globalThis.atob(input),
-    (c) => c.codePointAt(0)
-  );
-}
-function base64Encode(input) {
-  if (globalThis.Buffer) {
-    return Buffer.from(input).toString("base64");
-  }
-  return globalThis.btoa(String.fromCodePoint(...input));
-}
-function normalizeKey(key) {
-  if (!key) {
-    return "";
-  }
-  return key.split("?")[0]?.replace(/[/\\]/g, ":").replace(/:+/g, ":").replace(/^:|:$/g, "") || "";
-}
-function joinKeys(...keys) {
-  return normalizeKey(keys.join(":"));
-}
-function normalizeBaseKey(base) {
-  base = normalizeKey(base);
-  return base ? base + ":" : "";
-}
-function filterKeyByDepth(key, depth) {
-  if (depth === void 0) {
-    return true;
-  }
-  let substrCount = 0;
-  let index = key.indexOf(":");
-  while (index > -1) {
-    substrCount++;
-    index = key.indexOf(":", index + 1);
-  }
-  return substrCount <= depth;
-}
-function filterKeyByBase(key, base) {
-  if (base) {
-    return key.startsWith(base) && key[key.length - 1] !== "$";
-  }
-  return key[key.length - 1] !== "$";
-}
-
-function defineDriver(factory) {
-  return factory;
-}
-
-const DRIVER_NAME = "memory";
-const memory = defineDriver(() => {
-  const data = /* @__PURE__ */ new Map();
-  return {
-    name: DRIVER_NAME,
-    getInstance: () => data,
-    hasItem(key) {
-      return data.has(key);
-    },
-    getItem(key) {
-      return data.get(key) ?? null;
-    },
-    getItemRaw(key) {
-      return data.get(key) ?? null;
-    },
-    setItem(key, value) {
-      data.set(key, value);
-    },
-    setItemRaw(key, value) {
-      data.set(key, value);
-    },
-    removeItem(key) {
-      data.delete(key);
-    },
-    getKeys() {
-      return [...data.keys()];
-    },
-    clear() {
-      data.clear();
-    },
-    dispose() {
-      data.clear();
-    }
-  };
-});
-
-function createStorage(options = {}) {
-  const context = {
-    mounts: { "": options.driver || memory() },
-    mountpoints: [""],
-    watching: false,
-    watchListeners: [],
-    unwatch: {}
-  };
-  const getMount = (key) => {
-    for (const base of context.mountpoints) {
-      if (key.startsWith(base)) {
-        return {
-          base,
-          relativeKey: key.slice(base.length),
-          driver: context.mounts[base]
-        };
-      }
-    }
-    return {
-      base: "",
-      relativeKey: key,
-      driver: context.mounts[""]
-    };
-  };
-  const getMounts = (base, includeParent) => {
-    return context.mountpoints.filter(
-      (mountpoint) => mountpoint.startsWith(base) || includeParent && base.startsWith(mountpoint)
-    ).map((mountpoint) => ({
-      relativeBase: base.length > mountpoint.length ? base.slice(mountpoint.length) : void 0,
-      mountpoint,
-      driver: context.mounts[mountpoint]
-    }));
-  };
-  const onChange = (event, key) => {
-    if (!context.watching) {
-      return;
-    }
-    key = normalizeKey(key);
-    for (const listener of context.watchListeners) {
-      listener(event, key);
-    }
-  };
-  const startWatch = async () => {
-    if (context.watching) {
-      return;
-    }
-    context.watching = true;
-    for (const mountpoint in context.mounts) {
-      context.unwatch[mountpoint] = await watch(
-        context.mounts[mountpoint],
-        onChange,
-        mountpoint
-      );
-    }
-  };
-  const stopWatch = async () => {
-    if (!context.watching) {
-      return;
-    }
-    for (const mountpoint in context.unwatch) {
-      await context.unwatch[mountpoint]();
-    }
-    context.unwatch = {};
-    context.watching = false;
-  };
-  const runBatch = (items, commonOptions, cb) => {
-    const batches = /* @__PURE__ */ new Map();
-    const getBatch = (mount) => {
-      let batch = batches.get(mount.base);
-      if (!batch) {
-        batch = {
-          driver: mount.driver,
-          base: mount.base,
-          items: []
-        };
-        batches.set(mount.base, batch);
-      }
-      return batch;
-    };
-    for (const item of items) {
-      const isStringItem = typeof item === "string";
-      const key = normalizeKey(isStringItem ? item : item.key);
-      const value = isStringItem ? void 0 : item.value;
-      const options2 = isStringItem || !item.options ? commonOptions : { ...commonOptions, ...item.options };
-      const mount = getMount(key);
-      getBatch(mount).items.push({
-        key,
-        value,
-        relativeKey: mount.relativeKey,
-        options: options2
-      });
-    }
-    return Promise.all([...batches.values()].map((batch) => cb(batch))).then(
-      (r) => r.flat()
-    );
-  };
-  const storage = {
-    // Item
-    hasItem(key, opts = {}) {
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      return asyncCall(driver.hasItem, relativeKey, opts);
-    },
-    getItem(key, opts = {}) {
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      return asyncCall(driver.getItem, relativeKey, opts).then(
-        (value) => destr(value)
-      );
-    },
-    getItems(items, commonOptions = {}) {
-      return runBatch(items, commonOptions, (batch) => {
-        if (batch.driver.getItems) {
-          return asyncCall(
-            batch.driver.getItems,
-            batch.items.map((item) => ({
-              key: item.relativeKey,
-              options: item.options
-            })),
-            commonOptions
-          ).then(
-            (r) => r.map((item) => ({
-              key: joinKeys(batch.base, item.key),
-              value: destr(item.value)
-            }))
-          );
-        }
-        return Promise.all(
-          batch.items.map((item) => {
-            return asyncCall(
-              batch.driver.getItem,
-              item.relativeKey,
-              item.options
-            ).then((value) => ({
-              key: item.key,
-              value: destr(value)
-            }));
-          })
-        );
-      });
-    },
-    getItemRaw(key, opts = {}) {
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      if (driver.getItemRaw) {
-        return asyncCall(driver.getItemRaw, relativeKey, opts);
-      }
-      return asyncCall(driver.getItem, relativeKey, opts).then(
-        (value) => deserializeRaw(value)
-      );
-    },
-    async setItem(key, value, opts = {}) {
-      if (value === void 0) {
-        return storage.removeItem(key);
-      }
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      if (!driver.setItem) {
-        return;
-      }
-      await asyncCall(driver.setItem, relativeKey, stringify$1(value), opts);
-      if (!driver.watch) {
-        onChange("update", key);
-      }
-    },
-    async setItems(items, commonOptions) {
-      await runBatch(items, commonOptions, async (batch) => {
-        if (batch.driver.setItems) {
-          return asyncCall(
-            batch.driver.setItems,
-            batch.items.map((item) => ({
-              key: item.relativeKey,
-              value: stringify$1(item.value),
-              options: item.options
-            })),
-            commonOptions
-          );
-        }
-        if (!batch.driver.setItem) {
-          return;
-        }
-        await Promise.all(
-          batch.items.map((item) => {
-            return asyncCall(
-              batch.driver.setItem,
-              item.relativeKey,
-              stringify$1(item.value),
-              item.options
-            );
-          })
-        );
-      });
-    },
-    async setItemRaw(key, value, opts = {}) {
-      if (value === void 0) {
-        return storage.removeItem(key, opts);
-      }
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      if (driver.setItemRaw) {
-        await asyncCall(driver.setItemRaw, relativeKey, value, opts);
-      } else if (driver.setItem) {
-        await asyncCall(driver.setItem, relativeKey, serializeRaw(value), opts);
-      } else {
-        return;
-      }
-      if (!driver.watch) {
-        onChange("update", key);
-      }
-    },
-    async removeItem(key, opts = {}) {
-      if (typeof opts === "boolean") {
-        opts = { removeMeta: opts };
-      }
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      if (!driver.removeItem) {
-        return;
-      }
-      await asyncCall(driver.removeItem, relativeKey, opts);
-      if (opts.removeMeta || opts.removeMata) {
-        await asyncCall(driver.removeItem, relativeKey + "$", opts);
-      }
-      if (!driver.watch) {
-        onChange("remove", key);
-      }
-    },
-    // Meta
-    async getMeta(key, opts = {}) {
-      if (typeof opts === "boolean") {
-        opts = { nativeOnly: opts };
-      }
-      key = normalizeKey(key);
-      const { relativeKey, driver } = getMount(key);
-      const meta = /* @__PURE__ */ Object.create(null);
-      if (driver.getMeta) {
-        Object.assign(meta, await asyncCall(driver.getMeta, relativeKey, opts));
-      }
-      if (!opts.nativeOnly) {
-        const value = await asyncCall(
-          driver.getItem,
-          relativeKey + "$",
-          opts
-        ).then((value_) => destr(value_));
-        if (value && typeof value === "object") {
-          if (typeof value.atime === "string") {
-            value.atime = new Date(value.atime);
-          }
-          if (typeof value.mtime === "string") {
-            value.mtime = new Date(value.mtime);
-          }
-          Object.assign(meta, value);
-        }
-      }
-      return meta;
-    },
-    setMeta(key, value, opts = {}) {
-      return this.setItem(key + "$", value, opts);
-    },
-    removeMeta(key, opts = {}) {
-      return this.removeItem(key + "$", opts);
-    },
-    // Keys
-    async getKeys(base, opts = {}) {
-      base = normalizeBaseKey(base);
-      const mounts = getMounts(base, true);
-      let maskedMounts = [];
-      const allKeys = [];
-      let allMountsSupportMaxDepth = true;
-      for (const mount of mounts) {
-        if (!mount.driver.flags?.maxDepth) {
-          allMountsSupportMaxDepth = false;
-        }
-        const rawKeys = await asyncCall(
-          mount.driver.getKeys,
-          mount.relativeBase,
-          opts
-        );
-        for (const key of rawKeys) {
-          const fullKey = mount.mountpoint + normalizeKey(key);
-          if (!maskedMounts.some((p) => fullKey.startsWith(p))) {
-            allKeys.push(fullKey);
-          }
-        }
-        maskedMounts = [
-          mount.mountpoint,
-          ...maskedMounts.filter((p) => !p.startsWith(mount.mountpoint))
-        ];
-      }
-      const shouldFilterByDepth = opts.maxDepth !== void 0 && !allMountsSupportMaxDepth;
-      return allKeys.filter(
-        (key) => (!shouldFilterByDepth || filterKeyByDepth(key, opts.maxDepth)) && filterKeyByBase(key, base)
-      );
-    },
-    // Utils
-    async clear(base, opts = {}) {
-      base = normalizeBaseKey(base);
-      await Promise.all(
-        getMounts(base, false).map(async (m) => {
-          if (m.driver.clear) {
-            return asyncCall(m.driver.clear, m.relativeBase, opts);
-          }
-          if (m.driver.removeItem) {
-            const keys = await m.driver.getKeys(m.relativeBase || "", opts);
-            return Promise.all(
-              keys.map((key) => m.driver.removeItem(key, opts))
-            );
-          }
-        })
-      );
-    },
-    async dispose() {
-      await Promise.all(
-        Object.values(context.mounts).map((driver) => dispose(driver))
-      );
-    },
-    async watch(callback) {
-      await startWatch();
-      context.watchListeners.push(callback);
-      return async () => {
-        context.watchListeners = context.watchListeners.filter(
-          (listener) => listener !== callback
-        );
-        if (context.watchListeners.length === 0) {
-          await stopWatch();
-        }
-      };
-    },
-    async unwatch() {
-      context.watchListeners = [];
-      await stopWatch();
-    },
-    // Mount
-    mount(base, driver) {
-      base = normalizeBaseKey(base);
-      if (base && context.mounts[base]) {
-        throw new Error(`already mounted at ${base}`);
-      }
-      if (base) {
-        context.mountpoints.push(base);
-        context.mountpoints.sort((a, b) => b.length - a.length);
-      }
-      context.mounts[base] = driver;
-      if (context.watching) {
-        Promise.resolve(watch(driver, onChange, base)).then((unwatcher) => {
-          context.unwatch[base] = unwatcher;
-        }).catch(console.error);
-      }
-      return storage;
-    },
-    async unmount(base, _dispose = true) {
-      base = normalizeBaseKey(base);
-      if (!base || !context.mounts[base]) {
-        return;
-      }
-      if (context.watching && base in context.unwatch) {
-        context.unwatch[base]?.();
-        delete context.unwatch[base];
-      }
-      if (_dispose) {
-        await dispose(context.mounts[base]);
-      }
-      context.mountpoints = context.mountpoints.filter((key) => key !== base);
-      delete context.mounts[base];
-    },
-    getMount(key = "") {
-      key = normalizeKey(key) + ":";
-      const m = getMount(key);
-      return {
-        driver: m.driver,
-        base: m.base
-      };
-    },
-    getMounts(base = "", opts = {}) {
-      base = normalizeKey(base);
-      const mounts = getMounts(base, opts.parents);
-      return mounts.map((m) => ({
-        driver: m.driver,
-        base: m.mountpoint
-      }));
-    },
-    // Aliases
-    keys: (base, opts = {}) => storage.getKeys(base, opts),
-    get: (key, opts = {}) => storage.getItem(key, opts),
-    set: (key, value, opts = {}) => storage.setItem(key, value, opts),
-    has: (key, opts = {}) => storage.hasItem(key, opts),
-    del: (key, opts = {}) => storage.removeItem(key, opts),
-    remove: (key, opts = {}) => storage.removeItem(key, opts)
-  };
-  return storage;
-}
-function watch(driver, onChange, base) {
-  return driver.watch ? driver.watch((event, key) => onChange(event, base + key)) : () => {
-  };
-}
-async function dispose(driver) {
-  if (typeof driver.dispose === "function") {
-    await asyncCall(driver.dispose);
-  }
-}
-
-const builtinDrivers = {
-  "azure-app-configuration": "unstorage/drivers/azure-app-configuration",
-  "azureAppConfiguration": "unstorage/drivers/azure-app-configuration",
-  "azure-cosmos": "unstorage/drivers/azure-cosmos",
-  "azureCosmos": "unstorage/drivers/azure-cosmos",
-  "azure-key-vault": "unstorage/drivers/azure-key-vault",
-  "azureKeyVault": "unstorage/drivers/azure-key-vault",
-  "azure-storage-blob": "unstorage/drivers/azure-storage-blob",
-  "azureStorageBlob": "unstorage/drivers/azure-storage-blob",
-  "azure-storage-table": "unstorage/drivers/azure-storage-table",
-  "azureStorageTable": "unstorage/drivers/azure-storage-table",
-  "capacitor-preferences": "unstorage/drivers/capacitor-preferences",
-  "capacitorPreferences": "unstorage/drivers/capacitor-preferences",
-  "cloudflare-kv-binding": "unstorage/drivers/cloudflare-kv-binding",
-  "cloudflareKVBinding": "unstorage/drivers/cloudflare-kv-binding",
-  "cloudflare-kv-http": "unstorage/drivers/cloudflare-kv-http",
-  "cloudflareKVHttp": "unstorage/drivers/cloudflare-kv-http",
-  "cloudflare-r2-binding": "unstorage/drivers/cloudflare-r2-binding",
-  "cloudflareR2Binding": "unstorage/drivers/cloudflare-r2-binding",
-  "db0": "unstorage/drivers/db0",
-  "deno-kv-node": "unstorage/drivers/deno-kv-node",
-  "denoKVNode": "unstorage/drivers/deno-kv-node",
-  "deno-kv": "unstorage/drivers/deno-kv",
-  "denoKV": "unstorage/drivers/deno-kv",
-  "fs-lite": "unstorage/drivers/fs-lite",
-  "fsLite": "unstorage/drivers/fs-lite",
-  "fs": "unstorage/drivers/fs",
-  "github": "unstorage/drivers/github",
-  "http": "unstorage/drivers/http",
-  "indexedb": "unstorage/drivers/indexedb",
-  "localstorage": "unstorage/drivers/localstorage",
-  "lru-cache": "unstorage/drivers/lru-cache",
-  "lruCache": "unstorage/drivers/lru-cache",
-  "memory": "unstorage/drivers/memory",
-  "mongodb": "unstorage/drivers/mongodb",
-  "netlify-blobs": "unstorage/drivers/netlify-blobs",
-  "netlifyBlobs": "unstorage/drivers/netlify-blobs",
-  "null": "unstorage/drivers/null",
-  "overlay": "unstorage/drivers/overlay",
-  "planetscale": "unstorage/drivers/planetscale",
-  "redis": "unstorage/drivers/redis",
-  "s3": "unstorage/drivers/s3",
-  "session-storage": "unstorage/drivers/session-storage",
-  "sessionStorage": "unstorage/drivers/session-storage",
-  "uploadthing": "unstorage/drivers/uploadthing",
-  "upstash": "unstorage/drivers/upstash",
-  "vercel-blob": "unstorage/drivers/vercel-blob",
-  "vercelBlob": "unstorage/drivers/vercel-blob",
-  "vercel-kv": "unstorage/drivers/vercel-kv",
-  "vercelKV": "unstorage/drivers/vercel-kv",
-  "vercel-runtime-cache": "unstorage/drivers/vercel-runtime-cache",
-  "vercelRuntimeCache": "unstorage/drivers/vercel-runtime-cache"
-};
-
 const PERSIST_SYMBOL = Symbol();
 const DEFAULT_COOKIE_NAME = "astro-session";
 const VALID_COOKIE_REGEX = /^[\w-]+$/;
@@ -2148,7 +1496,7 @@ const unflatten = (parsed, _) => {
   });
 };
 const stringify = (data, _) => {
-  return stringify$2(data, {
+  return stringify$1(data, {
     // Support URL objects
     URL: (val) => val instanceof URL && val.href
   });
