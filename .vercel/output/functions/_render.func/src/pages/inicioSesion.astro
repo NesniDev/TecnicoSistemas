@@ -1,0 +1,109 @@
+---
+import Google from '@assets/socials/Google.astro'
+import AuthLayout from '@layouts/AuthLayout.astro'
+const email = Astro.cookies.get('email')?.value ?? ''
+const rememberMe = !!email
+---
+
+<AuthLayout title="Inicio de Sesión" page="Inicio de Sesión">
+  <button
+    id="btn-google"
+    class="active:scale-[0.97] cursor-pointer w-sm py-4 bg-[#1073D4] transition text-white rounded-lg text-center flex justify-center items-center gap-2"
+  >
+    <Google class="size-6" /> Iniciar sesión con Google</button
+  >
+  <!-- <div class="my-5">
+    <span class="text-sm">O</span>
+  </div>
+  <form class="w-sm">
+    <label for="email" class="flex flex-col">
+      <small>Correo electrónico</small>
+
+      <input
+        type="email"
+        name="email"
+        value={email}
+        placeholder="example@gmail.com"
+        autocomplete="off"
+      />
+    </label>
+    <label for="Contraseña" class="flex flex-col">
+      <small>Contraseña</small>
+      <input
+        type="password"
+        checked={rememberMe}
+        name="password"
+        placeholder="***************"
+      />
+    </label>
+    <button
+      type="submit"
+      class="disabled:bg-gray-300 w-full px-4 cursor-pointer py-3 bg-[#1073D4] transition hover:bg-[#1073D4]/90 text-white rounded-lg active:scale-[0.97]"
+      >Iniciar sesión</button
+    >
+    <div class="text-center flex justify-center gap-1 mt-3 text-base">
+      <input type="checkbox" name="remember_me" id="remember_me" />
+      <label for="remember_me" class="text-xs">Recordarme</label>
+    </div>
+    <div class="text-center">
+      <small
+        >¿No tienes cuenta? <a href="/registro" class="underline"
+          >Crea una cuenta</a
+        ></small
+      >
+    </div>
+  </form> -->
+</AuthLayout>
+
+<style>
+  form > label {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  form input {
+    padding: 10px 15px;
+    background-color: #1f293a;
+    border-radius: 8px;
+    &:focus {
+      outline: white 1px solid;
+      outline-offset: 2px;
+    }
+  }
+</style>
+
+<script>
+  import { actions } from 'astro:actions'
+  import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+  import { firebase } from '../firebase/config'
+
+  document.addEventListener('astro:page-load', () => {
+    const btnGoogle = document.querySelector('#btn-google') as HTMLButtonElement
+
+    btnGoogle.addEventListener('click', async () => {
+      btnGoogle.setAttribute('disabled', 'disabled')
+      const provider = new GoogleAuthProvider()
+
+      try {
+        //paso 1 - obtener las Credenciales del lado del cliente
+        const credential = await signInWithPopup(firebase.auth, provider)
+        //verificar las credenciales en el lado del servidor
+        const { data, error } = await actions.loginWithGoogle(credential)
+
+        if (error) {
+          btnGoogle.removeAttribute('disabled')
+          return false
+        }
+
+        window.location.replace('/loginEstudiante')
+        console.log(credential)
+      } catch (error) {
+        console.log(error)
+      }
+
+      btnGoogle.removeAttribute('disabled')
+    })
+  })
+</script>
