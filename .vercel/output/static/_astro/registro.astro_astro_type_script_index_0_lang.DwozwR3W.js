@@ -1,0 +1,1 @@
+import{a as r}from"./_astro_actions.DvmhQz71.js";document.addEventListener("astro:page-load",()=>{const t=document.querySelector("form"),e=document.querySelector("button");t?.addEventListener("submit",async o=>{o.preventDefault(),e.setAttribute("disabled","disabled");const a=new FormData(t),{data:n,error:s}=await r.registerUser(a);window.location.replace("/loginEstudiante")})});
