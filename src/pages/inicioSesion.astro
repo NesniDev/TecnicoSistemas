@@ -5,7 +5,10 @@ const email = Astro.cookies.get('email')?.value ?? ''
 const rememberMe = !!email
 ---
 
-<AuthLayout title="Inicio de Sesión" page="Inicio de Sesión">
+<AuthLayout
+  title="Iniciar Sesión en InfoByte | Accede a Tu Cuenta"
+  page="Inicio de Sesión"
+>
   <button
     id="btn-google"
     class="active:scale-[0.97] cursor-pointer w-sm py-4 bg-[#1073D4] transition text-white rounded-lg text-center flex justify-center items-center gap-2"
