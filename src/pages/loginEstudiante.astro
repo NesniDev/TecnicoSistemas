@@ -116,6 +116,10 @@ const { courses: coursesData, totalPage } = data
                 return (
                   <div class="flex justify-between items-center gap-5 bg-[#040d1c] text-white rounded-xl px-6 py-4 w-full">
                     <div class="flex flex-col justify-center items-center">
+                      <span
+                        data-date={item.date_end}
+                        class="size-2 rounded-full"
+                      />
                       <span class="text-cyan-500 font-bold text-3xl">
                         {item.date.split(' ')[0]}
                       </span>
@@ -247,6 +251,26 @@ const { courses: coursesData, totalPage } = data
     logout.addEventListener('click', () => {
       actions.logout()
       window.location.href = '/'
+    })
+    const date = document.querySelectorAll(
+      '[data-date]'
+    ) as NodeListOf<HTMLSpanElement>
+
+    const dateNoW = new Date()
+
+    date.forEach((item) => {
+      const dateAttr = item.dataset.date
+      if (!dateAttr) return
+
+      const [day, month, year] = dateAttr.split('/').map(Number)
+
+      if (!day || !month || !year) return
+      const dateEvent = new Date(year, month - 1, day)
+      if (dateEvent > dateNoW) {
+        item.classList.add('bg-green-500')
+      } else {
+        item.classList.add('bg-red-500')
+      }
     })
   })
 </script>
