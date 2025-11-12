@@ -21,7 +21,6 @@ if (firebaseUser === null) {
 await firebaseUser.reload()
 
 const { displayName } = firebaseUser
-console.log(firebaseUser)
 const name = displayName ?? 'Anonimo'
 
 const searchParams = Astro.url.searchParams
