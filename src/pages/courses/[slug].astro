@@ -15,7 +15,6 @@ const { slug } = Astro.params
 
 const page = courses.find((item) => item.slug === slug)
 
-console.log(page)
 if (!page) {
   return Astro.redirect('/404')
 }
