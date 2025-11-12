@@ -1,17 +1,20 @@
 export const events = [
     {
-        title: 'Próximos webinars',
-        description: 'Webinars de tecnico en sistemas IFE sobre la IA',
-        date: '20 de Oct de 2025'
+        title: 'Grados de fin de año',
+        description: 'Graduación de fin de año de los estudiantes de IFE COLOMBIA',
+        date: '22 de Nov de 2025',
+        time: '10:00 AM - 04:00 PM | Aula Julio Florez'
     },
     {
-        title: 'Fecha limites de tareas',
-        description: 'Fecha limites de tareas para la asignatura de Sistemas de Información',
-        date: '30 de Nov de 2025'
+        title: 'Fecha limites de Matriculas',
+        description: 'Fecha limites de matriculas para los estudiantes de IFE COLOMBIA',
+        date: '22 de Ene de 2026',
+        time: '8:00 AM - 04:00 PM | Instituto IFE Colombia'
     },
     {
-        title: 'Anuncios de cursos',
-        description: 'Anuncios de cursos para la asignatura de Sistemas de Información',
-        date: '15 de Agos de 2025'
+        title: 'Anuncios de cursos disponibles',
+        description: 'Anuncios de cursos nuevos que estarán disponibles en IFE Colombia para 2026',
+        date: '10 de Ene de 2026',
+        time: '8:30 AM - 04:00 PM | Instituto IFE Colombia'
     }
 ]
