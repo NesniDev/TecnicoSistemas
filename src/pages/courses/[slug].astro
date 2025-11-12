@@ -25,7 +25,6 @@ const {
   description,
   img,
   name,
-  modules,
   learn,
   courseSyllabus,
   targetAudience,
@@ -34,7 +33,7 @@ const {
 } = page
 ---
 
-<Layout title="Courses">
+<Layout title={`Curso de ${title} | InfoByte`}>
   <Container>
     <Header />
     <main class="mx-10 md:mx-auto">
@@ -118,21 +117,14 @@ const {
               <div
                 class="flex flex-col items-center justify-between gap-10 pb-5 md:flex-row"
               >
-                <div>
-                  <img
-                    src={img}
-                    alt={title}
-                    class="h-44 w-96 shadow-lg shadow-cyan-50 rounded-xl object-cover"
-                  />
-                </div>
-                <div class="flex flex-col justify-evenly items-center gap-2">
+                <div class="flex flex-col justify-evenly items-start gap-2">
                   {
                     targetAudience.map((item) => {
                       return (
-                        <p class="flex gap-2">
+                        <div class="flex justify-start items-start gap-2">
                           <Badge class="text-[#009dff] size-10" />
-                          {item}
-                        </p>
+                          <p>{item}</p>
+                        </div>
                       )
                     })
                   }
@@ -284,15 +276,17 @@ const {
 </style>
 
 <script>
-  const details = document.querySelectorAll('details')
+  document.addEventListener('astro:page-load', () => {
+    const details = document.querySelectorAll('details')
 
-  details.forEach((detail) => {
-    detail.addEventListener('click', () => {
-      console.log('detail')
-      details.forEach((item) => {
-        if (item !== detail) {
-          item.removeAttribute('open')
-        }
+    details.forEach((detail) => {
+      detail.addEventListener('click', () => {
+        console.log('detail')
+        details.forEach((item) => {
+          if (item !== detail) {
+            item.removeAttribute('open')
+          }
+        })
       })
     })
   })

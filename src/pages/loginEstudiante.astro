@@ -21,6 +21,7 @@ if (firebaseUser === null) {
 await firebaseUser.reload()
 
 const { displayName } = firebaseUser
+console.log(firebaseUser)
 const name = displayName ?? 'Anonimo'
 
 const searchParams = Astro.url.searchParams
@@ -50,7 +51,7 @@ const { courses: coursesData, totalPage } = data
       <h1
         class="text-4xl text-center sm:text-left w-full text-white mt-5 mb-2 mx-10 md:mx-0 animate-fade-in-up"
       >
-        ¡Bienvenido, {name.split(' ')[0]}!
+        ¡Bienvenid@, {name.split(' ')[0]}!
       </h1>
       <div class="flex justify-center items-center animate-fade-in-up">
         <form method="GET" action="/loginEstudiante" role="search">
@@ -91,7 +92,7 @@ const { courses: coursesData, totalPage } = data
         </section>
         <Pagination totalPages={totalPage} search={search} />
       </div>
-      <aside class="mx-auto sm:w-[900px] w-full">
+      <aside class="mx-10 md:mx-0">
         <div class="flex flex-col">
           <h2 class="text-2xl text-center sm:text-left text-white my-5">
             Recursos Educativos
@@ -101,7 +102,7 @@ const { courses: coursesData, totalPage } = data
           >
             <ArchiveExplorer class="size-10" />
             <a href="/recursos" class="text-white">
-              <span>Explorar todos los recursos</span>
+              <span>Explorar&nbsp;todos&nbsp;los&nbsp;recursos</span>
             </a>
           </div>
         </div>
@@ -109,15 +110,26 @@ const { courses: coursesData, totalPage } = data
           <h2 class="text-2xl text-center sm:text-left text-white my-5">
             Información Importante
           </h2>
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col justify-center items-center gap-2">
             {
               events.map((item) => {
                 return (
-                  <div class="flex justify-between items-center gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4">
-                    <div>
+                  <div class="flex justify-between items-center gap-5 bg-[#040d1c] text-white rounded-xl px-6 py-4 w-full">
+                    <div class="flex flex-col justify-center items-center">
+                      <span class="text-cyan-500 font-bold text-3xl">
+                        {item.date.split(' ')[0]}
+                      </span>
+                      <span class="text-normal text-gray-400">
+                        {item.date.split(' ')[2]}
+                      </span>
+                    </div>
+                    <div class="flex flex-col justify-start items-start flex-1">
                       <h2 class="mb-2 font-bold">{item.title}</h2>
-                      <p class="text-xs text-[#cdd7f7]">
-                        {item.description} - <span>{item.date}</span>
+                      <p class=" text-[#cdd7f7] flex flex-col gap-2 ">
+                        <span class="text-xs">{item.description}</span>
+                        <span class="text-[9px] text-gray-400">
+                          {item.time}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -145,6 +157,9 @@ const { courses: coursesData, totalPage } = data
 </Layout>
 
 <style>
+  #logout {
+    background-color: #ff0000;
+  }
   button {
     padding: 5px 12px;
     border-radius: 0.5rem;
