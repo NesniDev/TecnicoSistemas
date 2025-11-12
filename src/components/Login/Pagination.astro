@@ -15,7 +15,7 @@ const searchParam = search ? `&search=${search}` : ''
     totalPages !== 0 ? (
       <>
         <a
-          class={`px-4 py-2  text-white rounded-lg ${currentPage === 1 || currentPage === totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          class={`px-4 py-2  text-white rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
           href={`${path}?page=${Math.max(currentPage - 1, 1)}${searchParam}`}
         >
           Anterior
