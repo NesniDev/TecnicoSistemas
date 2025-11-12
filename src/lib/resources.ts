@@ -1,219 +1,109 @@
 export const resources = [
+    //Arquitectura de Computadoras
     {
         type: 'pdf',
-        title: 'Guía Completa de Redes',
+        title: 'Introducción a las Computadoras',
         description: 'Documento detallado sobre conceptos básicos y avanzados de redes de computadoras.',
-        image: '/images/redes.jpg',
-        url: '/recursos/guia-redes.pdf'
+        view: true,
+        mode: 'guía',
+        url: 'https://drive.google.com/uc?export=download&id=1bZtuuAKNpUkp_ATLB-fYvhd5Tyh12L6x'
     },
     {
         type: 'pdf',
-        title: 'Manual de Seguridad Informática',
-        description: 'Guía completa sobre seguridad informática para principiantes y expertos.',
-        image: '/images/seguridad-info.jpg',
-        url: '/recursos/manual-seguridad.pdf'
+        title: 'Introducción a los computadores y programas',
+        description: 'Guía completa sobre computadores y programas para principiantes.',
+        view: true,
+        mode: 'guía',
+        url: 'https://drive.google.com/uc?export=download&id=1HgNh-e6l045nMQzLWwNeHaGXTjo2VscU'
     },
     {
         type: 'pdf',
-        title: 'Introducción a la Programación',
-        description: 'Documento introductorio para aprender los fundamentos de la programación.',
-        image: '/images/programacion.jpg',
-        url: '/recursos/intro-programacion.pdf'
-    },
-    {
-        type: 'excel',
-        title: 'Control de Asistencia',
-        description: 'Plantilla para registrar y controlar la asistencia de empleados o estudiantes.',
-        image: '/images/asistencia.jpg',
-        url: '/recursos/control-asistencia.xlsx'
-    },
-    {
-        type: 'excel',
-        title: 'Presupuesto Familiar',
-        description: 'Plantilla para gestionar y controlar el presupuesto familiar mensual.',
-        image: '/images/presupuesto.jpg',
-        url: '/recursos/presupuesto-familiar.xlsx'
-    },
-    {
-        type: 'word',
-        title: 'Plantilla de Carta Formal',
-        description: 'Formato profesional para cartas formales en Word.',
-        image: '/images/carta-formal.jpg',
-        url: '/recursos/plantilla-carta-formal.docx'
-    },
-    {
-        type: 'word',
-        title: 'Modelo de Contrato',
-        description: 'Plantilla de contrato de servicios profesionales en formato Word.',
-        image: '/images/contrato.jpg',
-        url: '/recursos/modelo-contrato.docx'
-    },
-    {
-        type: 'web',
-        title: 'Cursos Online Gratuitos',
-        description: 'Lista de plataformas con cursos en línea gratuitos de programación.',
-        image: '/images/cursos-online.jpg',
-        url: 'https://ejemplo.com/cursos-gratis'
-    },
-    {
-        type: 'web',
-        title: 'Herramientas para Desarrolladores',
-        description: 'Colección de herramientas útiles para desarrolladores web y móviles.',
-        image: '/images/herramientas-dev.jpg',
-        url: 'https://ejemplo.com/herramientas-dev'
-    },
-    {
-        type: 'libro',
-        title: 'Patrones de Diseño',
-        description: 'Libro digital sobre patrones de diseño de software.',
-        image: '/images/patrones-diseno.jpg',
-        url: '/recursos/patrones-diseno.pdf'
-    },
-    {
-        type: 'libro',
-        title: 'Aprende JavaScript',
-        description: 'Guía completa para aprender JavaScript desde cero.',
-        image: '/images/javascript.jpg',
-        url: '/recursos/aprende-javascript.pdf'
-    },
-    {
-        type: 'access',
-        title: 'Sistema de Biblioteca',
-        description: 'Base de datos para gestión de préstamos de biblioteca en Access.',
-        image: '/images/biblioteca.jpg',
-        url: '/recursos/sistema-biblioteca.accdb'
-    },
-    {
-        type: 'access',
-        title: 'Control de Ventas',
-        description: 'Sistema de gestión de ventas en Access para pequeñas empresas.',
-        image: '/images/ventas.jpg',
-        url: '/recursos/control-ventas.accdb'
+        title: 'Manual de informática',
+        description: 'Documento introductorio para aprender los fundamentos de la informática.',
+        view: true,
+        mode: 'guía',
+        url: 'https://drive.google.com/uc?export=download&id=1mX3eO1magrXEna0PRfHU5A8LewU50vnD'
     },
     {
         type: 'pdf',
-        title: 'Guía de HTML5 y CSS3',
-        description: 'Manual completo sobre desarrollo web con HTML5 y CSS3.',
-        image: '/images/html-css.jpg',
-        url: '/recursos/guia-html5-css3.pdf'
-    },
-    {
-        type: 'excel',
-        title: 'Calendario Académico',
-        description: 'Plantilla de calendario académico para instituciones educativas.',
-        image: '/images/calendario.jpg',
-        url: '/recursos/calendario-academico.xlsx'
-    },
-    {
-        type: 'word',
-        title: 'Plantilla de Tesis',
-        description: 'Formato profesional para trabajos de grado y tesis en Word.',
-        image: '/images/tesis.jpg',
-        url: '/recursos/plantilla-tesis.docx'
-    },
-    {
-        type: 'web',
-        title: 'Recursos para Diseñadores',
-        description: 'Colección de recursos gratuitos para diseñadores gráficos.',
-        image: '/images/diseno-grafico.jpg',
-        url: 'https://ejemplo.com/recursos-diseno'
-    },
-    {
-        type: 'excel',
-        title: 'Plantilla de Inventario',
-        description: 'Plantilla de Excel para llevar el control de inventario de equipos tecnológicos.',
-        image: '/images/excel.jpg',
-        url: '/recursos/plantilla-inventario.xlsx'
-    },
-    {
-        type: 'word',
-        title: 'Manual de Usuario',
-        description: 'Plantilla profesional para crear manuales de usuario de software.',
-        image: '/images/word.jpg',
-        url: '/recursos/plantilla-manual.docx'
-    },
-    {
-        type: 'web',
-        title: 'Curso de Programación Web',
-        description: 'Recopilación de recursos en línea para aprender desarrollo web desde cero.',
-        image: '/images/web.jpg',
-        url: 'https://ejemplo.com/curso-web'
-    },
-    {
-        type: 'libro',
-        title: 'Código Limpio',
-        description: 'Versión digital del libro "Código Limpio" de Robert C. Martin.',
-        image: '/images/codigo-limpio.jpg',
-        url: '/recursos/codigo-limpio.pdf'
-    },
-    {
-        type: 'access',
-        title: 'Base de Datos Clientes',
-        description: 'Plantilla de base de datos en Access para gestión de clientes.',
-        image: '/images/access.jpg',
-        url: '/recursos/plantilla-clientes.accdb'
+        title: 'Mantenimiento y Gestión de un Equipo con CMD',
+        description: 'Ejercicio de mantenimiento y gestión de un equipo con CMD. Para manipular de manera correcta los comandos de CMD.',
+        view: false,
+        mode: 'trabajo',
+        url: 'https://drive.google.com/uc?export=download&id=1rj7BWzUHcxHZd7o9TOR8CxCf-QwH4J_p'
     },
     {
         type: 'pdf',
-        title: 'Guía de Seguridad Informática',
-        description: 'Manual completo sobre buenas prácticas de seguridad en sistemas.',
-        image: '/images/seguridad.jpg',
-        url: '/recursos/guia-seguridad.pdf'
+        title: 'Evaluación final de arquitectura de computadores',
+        description: 'Evaluación final de arquitectura de computadores. Para evaluar el conocimiento adquirido en el curso.',
+        view: false,
+        mode: 'evaluación',
+        url: 'https://drive.google.com/uc?export=download&id=1M4FHb4i9utSs-h2FCAkwa8mp39cLnSD5'
     },
-    {
-        type: 'excel',
-        title: 'Control de Gastos',
-        description: 'Plantilla para llevar el control de gastos personales o de proyectos.',
-        image: '/images/gastos.jpg',
-        url: '/recursos/control-gastos.xlsx'
-    },
-    {
-        type: 'web',
-        title: 'Tutoriales de Programación',
-        description: 'Lista de los mejores sitios web con tutoriales gratuitos de programación.',
-        image: '/images/tutoriales.jpg',
-        url: 'https://ejemplo.com/tutoriales'
-    },
+    //Mantenimiento de Computadoras
     {
         type: 'pdf',
-        title: 'Manual de Redes Avanzadas',
-        description: 'Guía avanzada sobre configuración de redes empresariales.',
-        image: '/images/redes-avanzadas.jpg',
-        url: '/recursos/redes-avanzadas.pdf'
-    },
-    {
-        type: 'libro',
-        title: 'El Programador Pragmático',
-        description: 'Versión digital del clásico libro de desarrollo de software.',
-        image: '/images/programador-pragmatico.jpg',
-        url: '/recursos/programador-pragmatico.pdf'
+        title: 'Trabajo de Especificaciones técnicas',
+        description: 'Trabajo ded investigacion sobre las especificaciones técnicas de dos computadoras.',
+        view: false,
+        mode: 'trabajo',
+        url: 'https://drive.google.com/uc?export=download&id=1SyPo6tZK-nao7SmIWiZxX3tNVG1aF845'
     },
     {
         type: 'word',
-        title: 'Plantilla de Informe Técnico',
-        description: 'Formato profesional para informes técnicos en Word.',
-        image: '/images/informe.jpg',
-        url: '/recursos/plantilla-informe.docx'
-    },
-    {
-        type: 'access',
-        title: 'Sistema de Inventario',
-        description: 'Base de datos completa para gestión de inventario en Access.',
-        image: '/images/inventario.jpg',
-        url: '/recursos/sistema-inventario.accdb'
-    },
-    {
-        type: 'web',
-        title: 'Recursos para Desarrolladores',
-        description: 'Colección de herramientas y recursos en línea para desarrolladores.',
-        image: '/images/recursos-dev.jpg',
-        url: 'https://ejemplo.com/recursos-dev'
+        title: 'Trabajo de Ficha técnica para mantenimiento en word',
+        description: 'Trabajo sobre el inventario de un equipo de computo con ficha técnica, despues de realizar el mantenimiento.',
+        view: true,
+        mode: 'trabajo',
+        url: 'https://docs.google.com/uc?export=download&id=14CT-M3YwFWLSJZo8-XLt0Ercv34WpsaM'
     },
     {
         type: 'excel',
-        title: 'Planificador de Proyectos',
-        description: 'Plantilla para la gestión y seguimiento de proyectos en Excel.',
-        image: '/images/proyectos.jpg',
-        url: '/recursos/planificador-proyectos.xlsx'
+        title: 'Trabajo de Ficha técnica para mantenimiento en excel',
+        description: 'Trabajo sobre el inventario de un equipo de computo con ficha técnica, despues de realizar el mantenimiento.',
+        view: true,
+        mode: 'trabajo',
+        url: 'https://docs.google.com/uc?export=download&id=18296ACoqcFIsstIUR7qQdpPxScaZJwid'
+    },
+    {
+        type: 'pdf',
+        title: 'Taller Caso Práctico de Mantenimiento',
+        description: 'Taller Caso Práctico de Mantenimiento. Para evaluar el conocimiento adquirido en el curso.',
+        view: false,
+        mode: 'trabajo',
+        url: 'https://drive.google.com/uc?export=download&id=1cc5NwSgzKz-W-nxZ_-IlUiu8d32BQzwA'
+    },
+    {
+        type: 'pdf',
+        title: 'Taller de Identificación de secciones en Windows',
+        description: 'Taller de Identificación de secciones en Windows, 20 puntos calificables.',
+        view: false,
+        mode: 'trabajo',
+        url: 'https://drive.google.com/uc?export=download&id=13lCLjOqzY0h-AFUs80yol6Ob2M1m5V0n'
+    },
+    {
+        type: 'pdf',
+        title: 'Taller sin Mouse',
+        description: 'Taller para aprender a manejar el computador con solo el teclado sin utilizacion del mouse.',
+        view: false,
+        mode: 'trabajo',
+        url: 'https://drive.google.com/uc?export=download&id=1OMj4cyWdS9ZWqoPzX-c_F0yW6PNwFy3l'
+    },
+    //Sistemas Operativos
+    {
+        type: 'excel',
+        title: 'Exposición de sistemas operativos',
+        description: 'Temas de exposición de los diferentes sistemas operativos más comunes que existen en el mercado.',
+        view: true,
+        mode: 'trabajo',
+        url: 'https://docs.google.com/uc?export=download&id=1VUEpQ-D4t2uVqbFHsDT_z8E-LB28Yh1G'
+    },
+    {
+        type: 'word',
+        title: 'Evaluación Final Primer Semestre',
+        description: 'Evaluación Final Primer Semestre. Para evaluar el conocimiento adquirido en los diferentes cursos.',
+        view: false,
+        mode: 'evaluación',
+        url: 'https://docs.google.com/uc?export=download&id=1j9NmKMH2vvEHnAbGbtmlMjuxvP2_BD7K'
     }
 ]

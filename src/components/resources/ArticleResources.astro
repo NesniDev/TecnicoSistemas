@@ -1,27 +1,32 @@
 ---
 import ArrowNews from '@assets/icons/ArrowNews.astro'
+import { block } from 'sharp'
 
-const { type, title, description, url } = Astro.props
+const { type, title, description, url, view } = Astro.props
 ---
 
 <article
   class:list={{
-    'flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4 overflow-hidden hover:scale-105 transition duration-300 ': true,
-    'flex flex-col gap-2 bg-red-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4 overflow-hidden hover:scale-105 transition duration-300 select-none': true,
+    'pointer-events-none opacity-60': !view,
+    'flex flex-col gap-2 bg-red-800/10 text-white rounded-xl px-6 py-4':
       type === 'pdf',
-    'flex flex-col gap-2 bg-blue-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-blue-800/10 text-white rounded-xl px-6 py-4':
       type === 'word',
-    'flex flex-col gap-2 bg-green-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-green-800/10 text-white rounded-xl px-6 py-4':
       type === 'excel',
-    'flex flex-col gap-2 bg-yellow-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-yellow-800/10 text-white rounded-xl px-6 py-4':
       type === 'web',
-    'flex flex-col gap-2 bg-purple-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-purple-800/10 text-white rounded-xl px-6 py-4':
       type === 'libro',
-    'flex flex-col gap-2 bg-pink-800/5 text-white rounded-xl px-6 py-4':
+    'flex flex-col gap-2 bg-pink-800/10 text-white rounded-xl px-6 py-4':
       type === 'access'
   }}
 >
-  <div class="flex justify-start items-start">
+  <div class="flex justify-start items-center gap-2">
+    <span
+      class={`text-xs ${view ? 'size-2 rounded-full bg-green-700' : 'size-2 rounded-full bg-red-700'}`}
+    ></span>
     <span
       class:list={{
         'bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300':
@@ -39,19 +44,20 @@ const { type, title, description, url } = Astro.props
       }}>{type}</span
     >
   </div>
-  <h2 class="text-xl font-bold">{title}</h2>
+  <h2 class="text-xl font-bold capitalize">{title}</h2>
   <p class="text-sm flex-1 text-gray-400">{description}</p>
   <a
     href={url}
     class:list={{
-      'flex items-center gap-2 text-xs ': true,
+      'flex items-center gap-2 text-xs': true,
       'text-red-800': type === 'pdf',
       'text-blue-800': type === 'word',
       'text-green-800': type === 'excel',
       'text-yellow-800': type === 'web',
       'text-purple-800': type === 'libro',
       'text-pink-800': type === 'access'
-    }}>Descargar <span><ArrowNews class="size-5" /></span></a
+    }}
+    download>Descargar <span><ArrowNews class="size-5" /></span></a
   >
 </article>
 
