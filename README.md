@@ -1,46 +1,57 @@
-# Astro Starter Kit: Basics
+# **TECNOLOGÍA EN EVOLUCIÓN**
+### _Innovación y Futuro en el Mundo de los Sistemas_
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+> Un entorno creado para **estudiantes y expertos del área técnica en sistemas**, donde podrán acceder a contenido actualizado sobre **innovación tecnológica, soporte informático, hardware y programación**.  
+> Aquí encontrarás artículos, noticias y recursos que impulsarán tu crecimiento profesional.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Imagen de la página web infobyte](/public/images/readme.webp)
 
-## 🚀 Project Structure
+### **Consejos Prácticos para el Éxito en Sistemas e Informática**
+> Pequeñas dosis de conocimiento para fortalecer tus habilidades técnicas y avanzar en tu desarrollo profesional dentro del mundo de la tecnología.
 
-Inside of your Astro project, you'll see the following folders and files:
+### Perfecciona tus Fundamentos Técnicos
+>Domina las bases del **hardware**, los **sistemas operativos** y la **programación**.  
+Comprender el funcionamiento físico y lógico de los equipos es clave para ofrecer soluciones confiables.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+### Fortalece tu Red Profesional
+>Participa en comunidades, foros y proyectos colaborativos.  
+Conectar con otros técnicos amplía tus **oportunidades** y **conocimientos**.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Piensa como un Técnico en Soluciones
+>Más allá de reparar, aprende a **analizar**, **optimizar** y **resolver** con pensamiento lógico y metodológico.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## **Perfil del Técnico en Sistemas e Informática**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+El **Técnico en Sistemas e Informática** se encarga de la **instalación, configuración y mantenimiento** de equipos, redes y sistemas informáticos.  
+Su función principal es asegurar la **integración tecnológica** y el **buen rendimiento** de los sistemas en las organizaciones.
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## **Cursos y Recursos de Formación**
+
+| Curso | Descripción | Acceso |
+|:------|:-------------|:-------|
+| **Arquitectura de Computadores** | Estudio de los componentes internos del computador, su funcionamiento y la interacción entre hardware y software. | [Ver curso](#) |
+| **Mantenimiento de Computadores** | Diagnóstico, reparación y mantenimiento preventivo y correctivo de equipos de cómputo. | [Ver curso](#) |
+| **Sistemas Operativos** | Instalación, configuración y administración de sistemas operativos Windows y Linux. | [Ver curso](#) |
+| **Programación Básica** | Introducción a la lógica de programación y desarrollo de algoritmos con Python y PSeInt. | [Ver curso](#) |
+| **Diseño Web** | Creación de sitios web utilizando HTML, CSS y fundamentos de diseño responsivo. | [Ver curso](#) |
+| **App Inventor** | Desarrollo de aplicaciones móviles mediante programación por bloques con App Inventor. | [Ver curso](#) |
+| **Tecnologías de la Información y las Comunicaciones (TIC)** | Comprensión del papel de las TIC en los entornos laborales y educativos modernos. | [Ver curso](#) |
+| **Bases de Datos** | Diseño, modelado y gestión de bases de datos relacionales con herramientas como Access y PostgreSQL. | [Ver curso](#) |
+| **Seguridad Informática** | Fundamentos de protección de datos, ciberseguridad y buenas prácticas en redes y sistemas. | [Ver curso](#) |
+---
+
+## 📞 Contacto  
+📧 Correo: contacto@tecnologiaenevolucion.com  
+🌐 [Web Oficial](#)  
+📘 [Facebook](#)  
+
+---
+
+© 2025 | **Técnico en Sistemas IFE**  
+[Política de Privacidad](#)
+
+---
