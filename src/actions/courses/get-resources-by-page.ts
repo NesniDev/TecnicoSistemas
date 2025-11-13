@@ -8,23 +8,33 @@ export const getResourceByPage = defineAction({
         page: z.number().optional().default(1),
         limitResources: z.number().optional().default(9),
         search: z.string().optional(),
+        type: z.string().optional(),
+        mode: z.string().optional(),
+        category: z.string().optional(),
     }),
-    handler: async ({ page, limitResources, search}) => {
+    handler: async ({ page, limitResources, search, category }) => {
+        let resourcesFiltered = [...resources];
 
-        let resourcesFiltered = resources
+        const normalizeText = (text: string) =>
+            text
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
 
+        // Apply search filter
         if (search) {
-              const normalizeText = (text: string) =>
-                text
-                  .normalize('NFD')
-                  .replace(/[\u0300-\u036f]/g, '')
-                  .toLowerCase();
-        
-              const searchTerm = normalizeText(search);
-              resourcesFiltered = resources.filter((resource) =>
+            const searchTerm = normalizeText(search);
+            resourcesFiltered = resourcesFiltered.filter((resource) =>
                 normalizeText(resource.title).includes(searchTerm)
-              );
-            }
+            );
+        }
+
+        // Apply category filter
+        if (category) {
+            resourcesFiltered = resourcesFiltered.filter(
+                (resource) => resource.category?.toLowerCase() === category.toLowerCase()
+            );
+        }
 
         page <= 0 ? 1 : page
         const totalPages = Math.ceil(resourcesFiltered.length / limitResources)

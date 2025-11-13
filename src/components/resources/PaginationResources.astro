@@ -4,7 +4,9 @@ const url = Astro.url
 const page = Number(url.searchParams.get('page') ?? 1)
 const currentPage = Math.max(page > totalPages ? totalPages : page, 1)
 const searchParam = searchResource ? `&search=${searchResource}` : ''
-console.log(searchParam)
+const categoryParam = url.searchParams.get('category')
+  ? `&category=${url.searchParams.get('category')}`
+  : ''
 ---
 
 <div class="flex flex-col md:flex-row items-center justify-center my-10 gap-3">
@@ -12,7 +14,7 @@ console.log(searchParam)
     totalPages !== 0 ? (
       <>
         <a
-          href={`${url.pathname}?page=${Math.max(currentPage - 1, 1)}${searchParam}`}
+          href={`${url.pathname}?page=${Math.max(currentPage - 1, 1)}${searchParam}${categoryParam}`}
           class={`px-4 py-2 rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
         >
           Anterior
@@ -22,7 +24,7 @@ console.log(searchParam)
           Página {currentPage} de {totalPages}{' '}
         </span>
         <a
-          href={`${url.pathname}?page=${Math.min(currentPage + 1, totalPages)}${searchParam}`}
+          href={`${url.pathname}?page=${Math.min(currentPage + 1, totalPages)}${searchParam}${categoryParam}`}
           class={`px-4 py-2 rounded-lg ${currentPage === totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
         >
           Siguiente
