@@ -1,5 +1,6 @@
 ---
 // @ts-ignore
+import Top from '@assets/icons/Top.astro'
 import '@fontsource-variable/outfit'
 import { ClientRouter } from 'astro:transitions'
 
@@ -21,6 +22,13 @@ const { title } = Astro.props
   </head>
   <body>
     <slot />
+    <a
+      id="top"
+      href="#top"
+      class="fixed bottom-4 right-4 z-50 p-1 rounded-full bg-gray-300 transition-all -rotate-45 hover:rotate-0"
+    >
+      <Top class="size-8" />
+    </a>
   </body>
 </html>
 
@@ -55,6 +63,21 @@ const { title } = Astro.props
     &:hover {
       text-shadow: 0 0 10px var(--letter);
       transform: translateY(-2px);
+    }
+  }
+
+  #top {
+    transition: all 0.2s ease-in-out;
+    animation: scroll linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 10px;
+  }
+  @keyframes scroll {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 </style>
