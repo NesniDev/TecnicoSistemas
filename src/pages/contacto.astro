@@ -153,56 +153,57 @@ import Github from '@assets/socials/GitHub.astro'
     import Toastify from 'toastify-js'
     import 'toastify-js/src/toastify.css'
 
-    const form = document.querySelector('form') as HTMLFormElement
+    document.addEventListener('astro:page-load', () => {
+      const form = document.querySelector('form') as HTMLFormElement
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const formData = new FormData(form)
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const message = formData.get('message') as string
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      const formData = new FormData(form)
-      const name = formData.get('name') as string
-      const email = formData.get('email') as string
-      const message = formData.get('message') as string
-
-      const { data, error } = await actions.getForm({ name, email, message })
-      if (error) {
-        console.log(error)
-        Toastify({
-          text: 'Hubo un error al enviar el formulario',
-          className: 'error',
-          duration: 3000,
-          close: true,
-          gravity: 'bottom', // `top` or `bottom`
-          position: 'center', // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            background: 'linear-gradient(to right, #FF4B26)',
-            borderRadius: '5px',
-            boxShadow: '0 0 100px rgba(255, 0, 0, 1)',
-            padding: '10px',
-            width: '400px'
-          },
-          onClick: function () {} // Callback after click
-        }).showToast()
-      }
-      if (data) {
-        console.log(data)
-        Toastify({
-          text: 'Formulario enviado correctamente',
-          duration: 3000,
-          close: true,
-          gravity: 'bottom', // `top` or `bottom`
-          position: 'center', // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            background: 'linear-gradient(to right, #00b09b, #96c93d)',
-            borderRadius: '5px',
-            boxShadow: '0 0 100px rgba(0, 255, 0, 1)',
-            padding: '10px',
-            width: '400px'
-          },
-          onClick: function () {} // Callback after click
-        }).showToast()
-        form.reset()
-      }
+        const { data, error } = await actions.getForm({ name, email, message })
+        if (error) {
+          console.log(error)
+          Toastify({
+            text: 'Hubo un error al enviar el formulario',
+            className: 'error',
+            duration: 3000,
+            close: true,
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: 'linear-gradient(to right, #FF4B26)',
+              borderRadius: '5px',
+              boxShadow: '0 0 100px rgba(255, 0, 0, 1)',
+              padding: '10px',
+              width: '400px'
+            },
+            onClick: function () {} // Callback after click
+          }).showToast()
+        }
+        if (data) {
+          console.log(data)
+          Toastify({
+            text: 'Formulario enviado correctamente',
+            duration: 3000,
+            close: true,
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: 'linear-gradient(to right, #00b09b, #96c93d)',
+              borderRadius: '5px',
+              boxShadow: '0 0 100px rgba(0, 255, 0, 1)',
+              padding: '10px',
+              width: '400px'
+            },
+            onClick: function () {} // Callback after click
+          }).showToast()
+          form.reset()
+        }
+      })
     })
   </script>
 </Layout>
