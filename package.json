@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",
+    "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^9.0.0",
     "@fontsource-variable/outfit": "5.2.8",
     "@midudev/tailwind-animations": "0.2.0",
