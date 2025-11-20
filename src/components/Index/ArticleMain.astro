@@ -15,6 +15,7 @@ const { url, image_url, title, description, published_at, snippet } =
       class="rounded-lg object-cover h-full"
     /> -->
     <Image
+      loading="lazy"
       src={image_url}
       alt={`Imagen sobre: ${title}`}
       inferSize
