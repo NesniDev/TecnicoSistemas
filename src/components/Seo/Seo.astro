@@ -1,0 +1,56 @@
+---
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+
+const pathname = Astro.url.pathname || '/'
+const site = Astro.site || 'https://tecnico-sistemas.vercel.app/' // Replace with actual base URL
+const canonicalURL = new URL(pathname, site).toString()
+
+console.log(canonicalURL)
+---
+
+<meta charset="utf-8" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#012029" />
+<meta
+  name="keywords"
+  content="tecnico, sistemas, neider, informática, desarrollador, front-end"
+/>
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+
+<!-- <link rel="canonical" href={canonicalURL} /> -->
+
+<!-- Global Metadata -->
+<link rel="icon" type="image/svg+xml" href="systems.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--ver la aplicación de diferentes resoluciones mobile, desktop, tablet -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google" content="notranslate" />
+<link rel="apple-touch-icon" href="systems.svg" />
+<meta name="msapplication-TileColor" content="#012029" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:locale" content="es_ES" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content="systems.svg" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="systems.svg" />
+<meta name="twitter:image:alt" content={title} />
+<meta name="twitter:site" content="@InfoByte" />
+<meta name="twitter:creator" content="@InfoByte" />
