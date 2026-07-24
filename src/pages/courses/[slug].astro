@@ -39,6 +39,23 @@ const {
   <Container>
     <Header />
     <main class="mx-10 md:mx-auto">
+      <a
+        href="javascript:history.back()"
+        class="inline-flex my-5 items-center gap-2 text-sm text-gray-400 hover:text-white transition mb-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg
+        >
+        Volver
+      </a>
       <section>
         <section class="my-2">
           <div
@@ -50,6 +67,7 @@ const {
                 alt={title}
                 class="md:size-72 size-56 object-cover"
                 transition:name=`image-${slug}`
+                loading="lazy"
               />
             </div>
             <div class="md:w-[50%]">
@@ -143,14 +161,15 @@ const {
                 src="/images/instructor.webp"
                 alt="Instructor de sistemas"
                 class="size-48 rounded-full object-cover border-4 border-[#009dff]"
+                loading="lazy"
               />
               <h3 class="text-white text-2xl mt-3">Ing. {name}</h3>
               <h4 class="text-[#009dff] text-lg">Ingeniero de sistemas</h4>
               <p class="text-center text-base mt-3">
-                El Ing. {name} es un ingeniero de sistemas con experiencia en la
-                instalación y configuración de sistemas informáticos, equipos y redes
-                de telecomunicación. Además, ha trabajado en varias empresas de tecnología
-                y ha sido elegido como el técnico de sistemas de la empresa.
+                El Ing. {name} es un ingeniero de sistemas con experiencia en la instalación
+                y configuración de sistemas informáticos, equipos y redes de telecomunicación.
+                Además, ha trabajado en varias empresas de tecnología y ha sido elegido
+                como el técnico de sistemas de la empresa.
               </p>
             </div>
           </div>
@@ -188,57 +207,6 @@ const {
           </ul>
         </div>
       </section>
-      <!-- <div>
-          <div class="flex items-center mb-2">
-            <span class="text-xl mr-4 text-amber-300">★★★★★</span>
-            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-              <div class="h-full bg-yellow-500 rounded-full" style="width: 85%">
-              </div>
-            </div>
-            <span class="text-sm">65%</span>
-          </div>
-
-          <div class="flex items-center mb-2">
-            <span class="text-xl mr-4">★★★★</span>
-            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-              <div class="h-full bg-yellow-500 rounded-full" style="width: 10%">
-              </div>
-            </div>
-            <span class="text-sm">10%</span>
-          </div>
-
-          <div class="flex items-center mb-2">
-            <span class="text-xl mr-4">★★★</span>
-            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-              <div class="h-full bg-yellow-500 rounded-full" style="width: 3%">
-              </div>
-            </div>
-            <span class="text-sm">3%</span>
-          </div>
-
-          <div class="flex items-center mb-2">
-            <span class="text-xl mr-4">★★</span>
-            <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-              <div class="h-full bg-yellow-500 rounded-full" style="width: 2%">
-              </div>
-            </div>
-            <span class="text-sm">2%</span>
-          </div>
-
-        <div class="flex items-center mb-2">
-          <span class="text-xl mr-4">★</span>
-          <div class="w-full h-2 bg-gray-300 rounded-full mr-4">
-            <div class="h-full bg-yellow-500 rounded-full" style="width: 0%">
-            </div>
-          </div>
-          <span class="text-sm">0%</span>
-        </div>
-        <div class="text-center mt-6">
-          <p class="text-2xl font-bold">
-            4.8 <span class="text-sm">Basado en 125 opiniones</span>
-          </p>
-        </div>
-      </section> -->
     </main>
   </Container>
 </Layout>
@@ -283,7 +251,6 @@ const {
 
     details.forEach((detail) => {
       detail.addEventListener('click', () => {
-        console.log('detail')
         details.forEach((item) => {
           if (item !== detail) {
             item.removeAttribute('open')
