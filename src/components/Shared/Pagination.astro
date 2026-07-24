@@ -1,0 +1,47 @@
+---
+interface Props {
+  totalPages: number
+  search?: string
+  category?: string
+  emptyMessage?: string
+}
+
+const { totalPages, search, category, emptyMessage = '' } = Astro.props
+
+const url = Astro.url
+const page = Number(url.searchParams.get('page') ?? 1)
+const currentPage = Math.max(page > totalPages ? totalPages : page, 1)
+const path = url.pathname
+
+const searchParam = search ? `&search=${search}` : ''
+const categoryParam = category ? `&category=${category}` : ''
+const extraParams = `${searchParam}${categoryParam}`
+---
+
+<div
+  class="flex flex-col sm:flex-row items-center justify-center my-10 gap-3 mx-auto w-full"
+>
+  {
+    totalPages !== 0 ? (
+      <>
+        <a
+          class={`px-4 py-2 text-white rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          href={`${path}?page=${Math.max(currentPage - 1, 1)}${extraParams}`}
+        >
+          Anterior
+        </a>
+        <span>
+          Página {currentPage} de {totalPages}
+        </span>
+        <a
+          class={`px-4 py-2 text-white rounded-lg ${currentPage >= totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          href={`${path}?page=${Math.min(currentPage + 1, totalPages)}${extraParams}`}
+        >
+          Siguiente
+        </a>
+      </>
+    ) : (
+      <p>{emptyMessage}</p>
+    )
+  }
+</div>
