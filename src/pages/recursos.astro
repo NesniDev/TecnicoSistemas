@@ -5,7 +5,7 @@ import { names } from '@lib/name.courses'
 import Footer from '@components/Shared/Footer.astro'
 import Header from '@components/Shared/Header.astro'
 import ArticleResources from '@components/resources/ArticleResources.astro'
-import PaginationResources from '@components/resources/PaginationResources.astro'
+import Pagination from '@components/Shared/Pagination.astro'
 import Layout from '@layouts/Layout.astro'
 import { actions } from 'astro:actions'
 
@@ -95,10 +95,11 @@ const { resourcesByPage, totalPages } = data
       >
         {resourcesByPage.map((item) => <ArticleResources {...item} />)}
       </section>
-      <PaginationResources
+      <Pagination
         totalPages={totalPages}
         search={search}
         category={category}
+        emptyMessage="No existen Recursos"
       />
       <Footer />
     </section>
