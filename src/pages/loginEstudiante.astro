@@ -65,7 +65,7 @@ const { courses: coursesData, totalPage } = data
               value={search}
               autocomplete="off"
             />
-            <button type="submit">Buscar</button>
+            <button type="submit" id="btn-search">Buscar</button>
           </div>
         </form>
       </div>
@@ -247,6 +247,14 @@ const { courses: coursesData, totalPage } = data
   import { actions } from 'astro:actions'
 
   document.addEventListener('astro:page-load', () => {
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement
+    const btnSearch = document.getElementById('btn-search') as HTMLButtonElement
+
+    form?.addEventListener('submit', () => {
+      btnSearch.textContent = 'Buscando...'
+      btnSearch.setAttribute('disabled', 'disabled')
+    })
+
     const logout = document.getElementById('logout') as HTMLButtonElement
     logout.addEventListener('click', () => {
       actions.logout()
