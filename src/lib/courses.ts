@@ -3,6 +3,7 @@ export const courses = [
     img: '/images/arquitectura.webp',
     title: 'Arquitectura de Computadores',
     slug: 'arquitectura-de-computadores',
+    category: 'Hardware',
     description:
       'Explora la arquitectura interna de los computadores, desde la Unidad Central de Procesamiento (CPU) y la memoria hasta los buses de datos y periféricos, con un enfoque profundo en los componentes hardware y sus interacciones.',
     name: 'Neider Nieto',
@@ -133,6 +134,7 @@ export const courses = [
     img: '/images/mantenimiento.webp',
     title: 'Mantenimiento y Reparación de Computadores',
     slug: 'mantenimiento-de-computadores',
+    category: 'Mantenimiento',
     description:
       'Domina el ensamblaje, diagnóstico, reparación y mantenimiento de sistemas de cómputo a nivel de hardware y software. Aprende metodologías de troubleshooting, optimización de recursos y gestión técnica de equipos para entornos personales y empresariales.',
     name: 'Neider Nieto',
@@ -230,6 +232,7 @@ export const courses = [
     img: '/images/so.webp',
     title: 'Fundamentos de Sistemas Operativos',
     slug: 'sistemas-operativos',
+    category: 'Sistemas Operativos',
     description:
       'Aprende cómo funcionan los sistemas operativos, el software esencial que permite que el hardware y las aplicaciones trabajen juntos. Conoce cómo gestiona los procesos, la memoria, los archivos y los dispositivos del computador.',
     name: 'Neider Nieto',
@@ -310,6 +313,7 @@ export const courses = [
     img: '/images/app.webp',
     title: 'Creación de Apps Móviles con App Inventor',
     slug: 'aplicaciones-con-app-inventor',
+    category: 'Programación',
     description:
       'Aprende a crear aplicaciones para Android de forma visual y sin necesidad de escribir código, utilizando App Inventor. Este curso está diseñado para principiantes que desean entender cómo funcionan las aplicaciones, desde su diseño hasta su programación básica mediante bloques.',
     name: 'Neider Nieto',
@@ -385,6 +389,7 @@ export const courses = [
     img: '/images/f-programacion.webp',
     title: 'Fundamentos de Programación',
     slug: 'fundamentos-de-programacion',
+    category: 'Programación',
     description:
       'Aprende desde cero los conceptos esenciales de la programación. Comprende la lógica, los algoritmos, el uso de pseudocódigo con PSeInt, diagramas de flujo y los fundamentos del lenguaje Python. Ideal para quienes nunca han programado antes.',
     name: 'Neider Nieto',
@@ -487,6 +492,7 @@ export const courses = [
     img: '/images/bd.webp',
     title: 'Bases de Datos Relacionales en Access',
     slug: 'bases-de-datos-en-access',
+    category: 'Bases de Datos',
     description:
       'Aprende a crear, gestionar y consultar bases de datos relacionales con Microsoft Access. Diseña tablas, formularios, consultas e informes paso a paso, sin necesidad de experiencia previa.',
     name: 'Neider Nieto',
@@ -589,6 +595,7 @@ export const courses = [
     img: '/images/web.webp',
     title: 'Diseño Web para Principiantes',
     slug: 'diseño-web',
+    category: 'Desarrollo Web',
     description:
       'Aprende desde cero a construir páginas web con HTML, CSS y una introducción práctica a JavaScript. Domina las bases del diseño web moderno y crea tus primeros sitios responsivos y funcionales.',
     name: 'Neider Nieto',
@@ -682,6 +689,7 @@ export const courses = [
     img: '/images/seguridad.webp',
     title: 'Fundamentos de Seguridad Informática',
     slug: 'seguridad-informatica',
+    category: 'Seguridad',
     description:
       'Descubre los principios esenciales de la seguridad informática y aprende cómo proteger tu información, tus dispositivos y tus redes frente a amenazas digitales.',
     name: 'Neider Nieto',
@@ -767,6 +775,7 @@ export const courses = [
     img: '/images/office.webp',
     title: 'Herramientas Ofimáticas Esenciales',
     slug: 'herramientas-ofimaticas',
+    category: 'Ofimática',
     description:
       'Domina el conjunto de herramientas ofimáticas más utilizadas (Word, Excel, PowerPoint, Outlook y OneDrive) y adquiere habilidades técnicas para crear, analizar, presentar y gestionar información en entornos profesionales.',
     name: 'Neider Nieto',
