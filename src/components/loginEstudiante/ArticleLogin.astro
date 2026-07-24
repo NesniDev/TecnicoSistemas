@@ -1,43 +1,218 @@
 ---
-import User from '@assets/icons/User.astro'
 import Modules from '@assets/icons/Modules.astro'
-const { img, title, description, name, courseSyllabus, slug, learn } =
-  Astro.props
+const {
+  img,
+  title,
+  description,
+  courseSyllabus,
+  slug,
+  category,
+  progress = 0
+} = Astro.props
+
+const totalModules = courseSyllabus.length
+const percentage =
+  totalModules > 0 ? Math.round((progress / totalModules) * 100) : 0
+
+const categoryColors: Record<string, string> = {
+  Hardware: 'bg-emerald-500/80',
+  Mantenimiento: 'bg-teal-500/80',
+  'Sistemas Operativos': 'bg-blue-500/80',
+  Programación: 'bg-purple-500/80',
+  'Bases de Datos': 'bg-yellow-500/80',
+  'Desarrollo Web': 'bg-pink-500/80',
+  Seguridad: 'bg-red-500/80',
+  Ofimática: 'bg-cyan-500/80',
+  Redes: 'bg-orange-500/80'
+}
+
+const categoryColor = categoryColors[category] ?? 'bg-gray-500/80'
 ---
 
 <article
-  class="flex flex-col justify-start items-center rounded-lg bg-[#040d1c63] h-[380px] course-item mt-6 hover:-translate-y-2 hover:shadow-lg hover:shadow-gray-100/20 transition-all delay-100"
+  class="card-glow group flex flex-col justify-start items-center rounded-xl bg-[#040d1c63] h-[340px] course-item mt-6 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#64ffda]/15 border border-gray-700/30 transition-all duration-500 ease-out"
 >
   <div
-    class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-gray-100/10"
+    class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white skeleton-shimmer"
   >
     <img
       src={img}
       alt="Blog"
-      class="object-cover h-[180px] w-80"
+      class="object-cover h-[180px] w-80 transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110 relative z-10"
       transition:name={`image-${slug}`}
       loading="lazy"
+      onload="this.classList.add('loaded')"
     />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#040d1c] via-[#040d1c]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+    <span
+      class="absolute top-3 right-3 bg-[#00a2ff]/90 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 z-20 shadow-lg shadow-[#00a2ff]/20 group-hover:scale-110 transition-transform duration-300"
+    >
+      <Modules class="size-3" />
+      {totalModules} Módulos
+    </span>
+    <span
+      class={`absolute top-3 left-3 ${categoryColor} backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full z-20 shadow-lg group-hover:scale-110 transition-transform duration-300 delay-75`}
+    >
+      {category}
+    </span>
   </div>
-  <div class="flex flex-col justify-evenly items-start px-5 py-2 gap-2 flex-1">
-    <h4 class="text-white text-xl course-title">{title}</h4>
-    <p class="text-xs">
+  <div
+    class="flex flex-col justify-evenly items-start px-5 py-2 gap-2 flex-1 w-full"
+  >
+    <h4
+      class="text-white text-xl course-title group-hover:text-[#64ffda] transition-colors duration-300"
+    >
+      {title}
+    </h4>
+    <p
+      class="text-xs text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-300"
+    >
       {description}
     </p>
-    <div class="flex justify-between items-center gap-10 mx-auto text-gray-400">
-      <div class="text-xs flex justify-between items-center gap-1">
-        <span><User class="size-4" /></span>
-        <span>{name}</span>
-      </div>
-      <div class="text-xs flex justify-between items-center gap-1">
-        <span><Modules class="size-4" /></span>
-        <span>{courseSyllabus.length} Módulos</span>
-      </div>
-    </div>
+    {
+      progress > 0 && (
+        <div class="w-full mt-auto">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-[10px] text-gray-400">
+              {progress}/{totalModules} módulos
+            </span>
+            <span class="text-[10px] text-[#64ffda] font-medium">
+              {percentage}%
+            </span>
+          </div>
+          <div class="w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
+            <div
+              class="h-full bg-gradient-to-r from-[#64ffda] to-[#00a2ff] rounded-full transition-all duration-700 ease-out shadow-[0_0_8px_rgba(100,255,218,0.3)]"
+              style={`width: ${percentage}%`}
+            />
+          </div>
+        </div>
+      )
+    }
   </div>
   <a
     href={`/courses/${slug}`}
-    class="bg-[#00a2ff] text-center block transition hover:bg-[#00a2ff]/90 text-white rounded-lg active:scale-[0.97] px-4 py-1 mb-3"
-    >Ir al Curso</a
+    class="course-btn-gradient group/btn inline-flex items-center gap-1.5 mb-3 ml-5 font-medium text-xs rounded-full px-3.5 py-1.5 border border-[#64ffda]/40 hover:border-transparent hover:text-[#040d1c] active:scale-95 transition-all duration-300 relative overflow-hidden"
   >
+    <span
+      class="relative z-10 group-hover/btn:text-[#040d1c] text-[#64ffda] transition-colors duration-300"
+      >{progress > 0 ? 'Continuar' : 'Empezar'}</span
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="relative z-10 text-[#64ffda] group-hover/btn:text-[#040d1c] transition-all duration-300 group-hover/btn:translate-x-0.5"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M5 12l14 0"></path><path d="M12 5l7 7l-7 7"></path></svg
+    >
+  </a>
 </article>
+
+<style>
+  .card-glow {
+    position: relative;
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      transparent 40%,
+      rgba(100, 255, 218, 0.15) 50%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .card-glow:hover::before {
+    opacity: 1;
+    animation: borderGlow 2s ease infinite;
+  }
+
+  @keyframes borderGlow {
+    0%,
+    100% {
+      background: linear-gradient(
+        135deg,
+        transparent 40%,
+        rgba(100, 255, 218, 0.2) 50%,
+        transparent 60%
+      );
+    }
+    50% {
+      background: linear-gradient(
+        135deg,
+        transparent 20%,
+        rgba(0, 162, 255, 0.25) 50%,
+        transparent 80%
+      );
+    }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, #0a1628 25%, #1a2a4a 50%, #0a1628 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .skeleton-shimmer img.loaded {
+    animation: none;
+  }
+
+  .course-btn-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #16f974, #44efb6, #48ecde, #16f97c);
+    background-size: 300% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .course-btn-gradient:hover::before {
+    opacity: 1;
+    animation: gradientSlide 1.5s ease infinite;
+  }
+
+  @keyframes gradientSlide {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+</style>
