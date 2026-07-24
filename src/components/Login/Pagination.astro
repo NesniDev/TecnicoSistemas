@@ -24,7 +24,7 @@ const searchParam = search ? `&search=${search}` : ''
           Página {currentPage} de {totalPages}
         </span>
         <a
-          class={`px-4 py-2  text-white rounded-lg ${currentPage === 3 || currentPage === totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          class={`px-4 py-2  text-white rounded-lg ${currentPage >= totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
           href={`${path}?page=${Math.min(currentPage + 1, totalPages)}${searchParam}`}
         >
           Siguiente

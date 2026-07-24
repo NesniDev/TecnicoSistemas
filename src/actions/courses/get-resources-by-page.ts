@@ -36,7 +36,7 @@ export const getResourceByPage = defineAction({
             );
         }
 
-        page <= 0 ? 1 : page
+        page = page <= 0 ? 1 : page
         const totalPages = Math.ceil(resourcesFiltered.length / limitResources)
         
         
