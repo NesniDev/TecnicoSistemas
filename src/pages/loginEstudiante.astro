@@ -7,6 +7,7 @@ import Header from '@components/Shared/Header.astro'
 import ArticleLogin from '@components/loginEstudiante/ArticleLogin.astro'
 import Footer from '@components/Shared/Footer.astro'
 import ArchiveExplorer from '@assets/icons/RecursesExplorer.astro'
+import LogoutIcon from '@assets/icons/Logout.astro'
 import { events } from '../lib/events'
 import SearchInput from '@assets/icons/SearchInput.astro'
 import Pagination from '@components/Shared/Pagination.astro'
@@ -20,8 +21,38 @@ if (firebaseUser === null) {
 
 await firebaseUser.reload()
 
-const { displayName } = firebaseUser
+const { displayName, photoURL, email, metadata } = firebaseUser
 const name = displayName ?? 'Anonimo'
+const avatar =
+  photoURL && photoURL.trim() !== ''
+    ? photoURL
+    : 'https://api.dicebear.com/7.x/adventurer/svg?seed=Neider'
+
+const getGreeting = () => {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Buenos días'
+  if (hour < 18) return 'Buenas tardes'
+  return 'Buenas noches'
+}
+const greeting = getGreeting()
+
+const joinDate = metadata?.creationTime
+  ? new Date(metadata.creationTime).toLocaleDateString('es-CO', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null
+
+const lastSignIn = metadata?.lastSignInTime
+  ? new Date(metadata.lastSignInTime).toLocaleDateString('es-CO', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  : null
 
 const searchParams = Astro.url.searchParams
 const page = Number(searchParams.get('page') ?? 1)
@@ -39,6 +70,12 @@ if (error) {
 }
 
 const { courses: coursesData, totalPage } = data
+
+const { data: progressData } = await Astro.callAction(actions.getUserProgress, {
+  uid: firebaseUser.uid
+})
+
+const userProgress = progressData?.progress ?? {}
 ---
 
 <Layout
@@ -47,16 +84,36 @@ const { courses: coursesData, totalPage } = data
 >
   <Header />
   <Container>
-    <div class="flex flex-col gap-5 mx-auto justify-center items-center">
-      <h1
-        class="text-4xl text-center sm:text-left w-full text-white mt-5 mb-2 mx-10 md:mx-0 animate-fade-in-up"
+    <div class="flex flex-col gap-2 mx-auto justify-center items-center">
+      <div
+        class="flex items-center gap-2 animate-fade-in-up w-full mx-10 md:mx-0"
       >
-        ¡Bienvenid@, {name.split(' ')[0]}!
-      </h1>
-      <div class="flex justify-center items-center animate-fade-in-up">
-        <form method="GET" action="/loginEstudiante" role="search">
-          <div class="flex flex-col md:flex-row">
-            <SearchInput class="hidden md:block ml-1" />
+        <div class="flex flex-col my-5">
+          <h1 class="text-4xl text-center sm:text-left text-white">
+            {greeting}, {name.split(' ')[0]}!
+          </h1>
+          <div
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-400 mt-1 select-none"
+          >
+            {email && <span>{email}</span>}
+            {joinDate && <span class="text-gray-500">|</span>}
+            {joinDate && <span>Miembro desde {joinDate}</span>}
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex justify-center items-center animate-fade-in-up w-full max-w-xl mx-auto px-4 md:px-0"
+      >
+        <form
+          method="GET"
+          action="/loginEstudiante"
+          role="search"
+          class="w-full"
+        >
+          <div
+            class="flex items-center gap-2 rounded-xl bg-[#040d1c] border border-gray-600/50 px-4 py-2 transition-all duration-300 focus-within:border-cyan-500/50 focus-within:ring-2 focus-within:ring-cyan-500/20 focus-within:shadow-[0_0_15px_rgba(100,255,218,0.1)]"
+          >
+            <SearchInput class="size-5 text-gray-400 shrink-0" />
             <input
               type="text"
               id="buscador"
@@ -64,8 +121,15 @@ const { courses: coursesData, totalPage } = data
               placeholder="Busca cursos por título..."
               value={search}
               autocomplete="off"
+              class="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-500 text-base font-[inherit]"
             />
-            <button type="submit" id="btn-search">Buscar</button>
+            <button
+              type="submit"
+              id="btn-search"
+              class="bg-[#dfdfdf] hover:bg-[#dfdfdf]/80 text-black/70 rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 cursor-pointer whitespace-nowrap"
+            >
+              Buscar
+            </button>
           </div>
         </form>
       </div>
@@ -82,11 +146,50 @@ const { courses: coursesData, totalPage } = data
         >
           {
             coursesData.length > 0 ? (
-              coursesData.map((item) => <ArticleLogin {...item} />)
+              coursesData.map((item, index) => (
+                <div
+                  class="stagger-item"
+                  style={`animation-delay: ${index * 120}ms`}
+                >
+                  <ArticleLogin
+                    {...item}
+                    progress={userProgress[item.slug] ?? 0}
+                  />
+                </div>
+              ))
             ) : (
-              <p class="text-white text-center my-5 mx-10 md:mx-0 text-xl">
-                No se encontraron cursos.
-              </p>
+              <div class="col-span-full flex flex-col items-center justify-center py-12 gap-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-gray-500"
+                >
+                  <>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M15 21h-9a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v5" />
+                    <path d="M10 17l4 -5" />
+                    <path d="M15 17l-4 -5" />
+                    <path d="M6 12h.01" />
+                    <path d="M18 12h.01" />
+                  </>
+                </svg>
+                <p class="text-gray-400 text-lg text-center">
+                  No se encontraron cursos
+                </p>
+                <a
+                  href="/loginEstudiante"
+                  class="bg-[#00a2ff] hover:bg-[#00a2ff]/80 text-white rounded-lg px-5 py-2 text-sm font-medium transition-all duration-200 active:scale-95"
+                >
+                  Ver todos los cursos
+                </a>
+              </div>
             )
           }
         </section>
@@ -97,29 +200,64 @@ const { courses: coursesData, totalPage } = data
           <h2 class="text-2xl text-center sm:text-left text-white my-5">
             Recursos Educativos
           </h2>
-          <div
-            class="flex justify-center items-center gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4"
+          <a
+            href="/recursos"
+            class="group relative flex items-center gap-4 bg-gradient-to-br from-[#040d1c] via-[#0a1f3a] to-[#040d1c] text-white rounded-xl px-3 py-2 border border-gray-700/30 transition-all duration-500 overflow-hidden hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#64ffda]/10"
           >
-            <ArchiveExplorer class="size-10" />
-            <a href="/recursos" class="text-white">
-              <span>Explorar&nbsp;todos&nbsp;los&nbsp;recursos</span>
-            </a>
-          </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[#64ffda]/5 via-transparent to-[#00a2ff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
+            <div
+              class="relative flex items-center justify-center size-6 shrink-0 rounded-lg bg-gradient-to-br from-[#64ffda]/20 to-[#00a2ff]/20 group-hover:from-[#64ffda]/30 group-hover:to-[#00a2ff]/30 transition-all duration-500 group-hover:scale-110"
+            >
+              <ArchiveExplorer
+                class="size-4 text-[#64ffda] group-hover:text-white transition-colors duration-300"
+              />
+            </div>
+            <div class="relative flex flex-col gap-0.5">
+              <span
+                class="text-sm mt-1 font-semibold group-hover:text-[#64ffda] transition-colors duration-300"
+                >Explorar todos los recursos</span
+              >
+              <span
+                class="text-[10px] text-gray-500 group-hover:text-gray-400 transition-colors duration-300"
+                >Documentos y más</span
+              >
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="relative shrink-0 text-gray-500 group-hover:text-[#64ffda] group-hover:translate-x-1 transition-all duration-300 ml-auto"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M9 6l6 6l-6 6"></path></svg
+            >
+          </a>
         </div>
         <div class="flex flex-col">
-          <h2 class="text-2xl text-center sm:text-left text-white my-5">
+          <h2
+            class="text-2xl text-center sm:text-left text-white my-5 whitespace-nowrap"
+          >
             Información Importante
           </h2>
-          <div class="flex flex-col justify-center items-center gap-2">
+          <div class="flex flex-col justify-center items-center gap-1">
             {
               events.map((item) => {
                 return (
-                  <div class="flex justify-between items-center gap-5 bg-[#040d1c] text-white rounded-xl px-6 py-4 w-full">
-                    <div class="flex flex-col justify-center items-center">
+                  <div class="flex justify-between items-center gap-5 bg-[#040d1c] text-white rounded-xl px-4 py-4 w-full border border-transparent transition-all duration-300 ">
+                    <div class="flex flex-col justify-center items-center ">
                       <span
                         data-date={item.date_end}
-                        class="size-2 rounded-full"
+                        class="event-status size-2 rounded-full mb-1"
                       />
+                      <span class="event-label text-[10px] font-medium mb-1" />
                       <span class="text-cyan-500 font-bold text-3xl">
                         {item.date.split(' ')[0]}
                       </span>
@@ -128,7 +266,9 @@ const { courses: coursesData, totalPage } = data
                       </span>
                     </div>
                     <div class="flex flex-col justify-start items-start flex-1">
-                      <h2 class="mb-2 font-bold">{item.title}</h2>
+                      <h2 class="mb-2 font-bold whitespace-nowrap">
+                        {item.title}
+                      </h2>
                       <p class=" text-[#cdd7f7] flex flex-col gap-2 ">
                         <span class="text-xs">{item.description}</span>
                         <span class="text-[9px] text-gray-400">
@@ -147,11 +287,61 @@ const { courses: coursesData, totalPage } = data
             Configuraciones
           </h2>
           <div
-            class="text-[15px] flex flex-col gap-5 justify-between bg-[#040d1c] text-white rounded-xl px-6 py-4"
+            class="text-[15px] flex flex-col justify-between bg-[#040d1c] text-white rounded-xl border border-transparent transition-all duration-300 hover:border-[#64ffda]/30 overflow-hidden"
           >
-            <a href="/">Preferencias de Notificaciones</a>
-            <a href="/"> Configuraciones </a>
-            <button type="button" id="logout"> Cerrar sesión </button>
+            <a
+              href="/"
+              class="flex items-center gap-3 px-6 py-3.5 hover:bg-gray-700/30 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-gray-400 shrink-0"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M10 5h4m-2 0v6m5.5 -2.5l-3.5 -3.5m0 0l-3.5 3.5m3.5 -3.5v7a4 4 0 0 1 -4 4h-1a4 4 0 0 1 -4 -4v-3.5"
+                ></path></svg
+              >
+              <span>Preferencias de Notificaciones</span>
+            </a>
+            <hr class="border-gray-700/50 mx-4" />
+            <a
+              href="/"
+              class="flex items-center gap-3 px-6 py-3.5 hover:bg-gray-700/30 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-gray-400 shrink-0"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
+                ></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
+                ></path></svg
+              >
+              <span>Configuraciones</span>
+            </a>
+            <hr class="border-gray-700/50 mx-4" />
+            <button
+              type="button"
+              id="logout"
+              class="flex items-center gap-3 px-6 py-3.5 text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer w-full text-left"
+            >
+              <LogoutIcon class="size-[18px] shrink-0" />
+              <span>Cerrar sesión</span>
+            </button>
           </div>
         </div>
       </aside>
@@ -161,85 +351,20 @@ const { courses: coursesData, totalPage } = data
 </Layout>
 
 <style>
-  #logout {
-    background-color: #ff0000;
-  }
-  button {
-    padding: 5px 12px;
-    border-radius: 0.5rem;
-    background-color: #64748b;
-    color: white;
-    font-weight: 400;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 1rem;
-
-    &:hover, /* pseudo-clase que significa que el ratón está encima */
-    &:focus {
-      /* pseudo-clase que significa que el elemento tiene el foco */
-      background-color: var(--primary-hover);
-      outline: 2px solid white;
-    }
-
-    &:active {
-      transform: scale(0.9);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-
-  a:empty {
+  .stagger-item {
     opacity: 0;
+    animation: staggerFadeIn 0.5s ease forwards;
   }
 
-  div > a:not(p ~ :last-child),
-  ul li a {
-    display: block;
-    /* color: white; */
-    transform: translateY(0);
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      text-shadow: 0 0 0 white;
-      transform: 0;
+  @keyframes staggerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-  }
-
-  /* Formulario de Búsqueda */
-  form {
-    max-width: 550px;
-    width: 100%;
-    margin: 0 auto;
-    padding-inline: 16px;
-  }
-
-  form > div {
-    display: flex;
-    align-items: center;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px 1px #64748b;
-    padding: 2px 10px;
-    gap: 0.5rem;
-    margin: 0 auto;
-  }
-
-  form input[type='text'] {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text-primary);
-    padding: 0.75rem 0.5rem;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-
-  form input[type='text']::placeholder {
-    color: #64748b;
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 
@@ -247,7 +372,9 @@ const { courses: coursesData, totalPage } = data
   import { actions } from 'astro:actions'
 
   document.addEventListener('astro:page-load', () => {
-    const form = document.querySelector('form[role="search"]') as HTMLFormElement
+    const form = document.querySelector(
+      'form[role="search"]'
+    ) as HTMLFormElement
     const btnSearch = document.getElementById('btn-search') as HTMLButtonElement
 
     form?.addEventListener('submit', () => {
@@ -274,10 +401,17 @@ const { courses: coursesData, totalPage } = data
 
       if (!day || !month || !year) return
       const dateEvent = new Date(year, month - 1, day)
+      const label = item
+        .closest('.flex')
+        ?.querySelector('.event-label') as HTMLSpanElement
       if (dateEvent > dateNoW) {
-        item.classList.add('bg-green-500')
+        item.classList.add('bg-green-500', 'animate-pulse')
+        if (label) label.textContent = 'Próximo'
+        label?.classList.add('text-green-400')
       } else {
         item.classList.add('bg-red-500')
+        if (label) label.textContent = 'Finalizado'
+        label?.classList.add('text-red-400')
       }
     })
   })
