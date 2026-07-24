@@ -1,19 +1,16 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"; 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCH6Q1V4pMzCcx-MIbIhDj6iIA3UFbxio4",
-  authDomain: "autenticacion-sistemas.firebaseapp.com",
-  projectId: "autenticacion-sistemas",
-  storageBucket: "autenticacion-sistemas.firebasestorage.app",
-  messagingSenderId: "19986902983",
-  appId: "1:19986902983:web:2520e17d537c85160073e2",
-  measurementId: "G-PG6CEWL4KV"
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+  measurementId: import.meta.env.PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

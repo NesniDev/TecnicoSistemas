@@ -7,7 +7,7 @@ export const prerender = false
 
 export const GET: APIRoute = async () => {
     
-    const API_KEY = 'i2Vrvbmpz55P6g0HEyJ0b7n0BW8mEEJ0VmQeCUgK'
+    const API_KEY = import.meta.env.THE_NEWS_API_KEY
     const fechaActual = new Date()
     const copiaFechaActual = new Date(fechaActual)
     copiaFechaActual.setDate(fechaActual.getDate() - 3)
