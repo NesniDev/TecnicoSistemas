@@ -3,6 +3,7 @@
 import Top from '@assets/icons/Top.astro'
 import Seo from '@components/Seo/Seo.astro'
 import '@fontsource-variable/outfit'
+import '@styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -33,55 +34,3 @@ const { title, description } = Astro.props
     </a>
   </body>
 </html>
-
-<style is:global>
-  @import 'tailwindcss';
-  @plugin '@midudev/tailwind-animations';
-
-  :root {
-    --fondo: #0b192f;
-    --letter: #cdd7f7;
-    --colorAquamarine: #64ffda;
-    --font: 'Outfit Variable', sans-serif;
-  }
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font);
-    color: var(--letter);
-    scroll-behavior: smooth;
-  }
-  body {
-    background-color: var(--fondo);
-  }
-  a:empty {
-    opacity: 0.8;
-  }
-
-  div > a:not(p ~ :last-child),
-  ul li a {
-    display: inline-block;
-    /* color: var(--letter); */
-    transform: translateY(0);
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      text-shadow: 0 0 10px var(--letter);
-      transform: translateY(-2px);
-    }
-  }
-
-  #top {
-    transition: all ease-in-out 0.2s;
-    animation: scroll linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 10px;
-  }
-  @keyframes scroll {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>

@@ -26,3 +26,8 @@ declare namespace App {
         emailVerified: boolean,
     }
 }
+
+declare module '@styles/global.css' {
+  const content: string
+  export default content
+}
