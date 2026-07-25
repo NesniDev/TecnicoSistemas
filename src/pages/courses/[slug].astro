@@ -1,15 +1,10 @@
 ---
-import Check from '@assets/icons/Check.astro'
 import Container from '@components/Shared/Container.astro'
+import Footer from '@components/Shared/Footer.astro'
 import Header from '@components/Shared/Header.astro'
 import Layout from '@layouts/Layout.astro'
 import { courses } from '@lib/courses'
-import ChevronDown from '@assets/icons/ChevronDown.astro'
-import Badge from '@assets/icons/Badge.astro'
 import { Picture } from 'astro:assets'
-import ProfessionalImpact from '@assets/icons/ProfessionalImpact.astro'
-
-// export const prerender = false
 
 const { slug } = Astro.params
 
@@ -30,233 +25,412 @@ const {
   prerequisites,
   professional
 } = page
+
+const moduleCount = courseSyllabus.length
 ---
 
 <Layout
   title={`Curso de ${title} | InfoByte`}
   description={`Curso de ${title} | ${description}`}
 >
+  <Header />
   <Container>
-    <Header />
-    <main class="mx-10 md:mx-auto">
-      <a
-        href="javascript:history.back()"
-        class="inline-flex my-5 items-center gap-2 text-sm text-gray-400 hover:text-white transition mb-4"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      <nav class="mb-8 sm:mb-12">
+        <a
+          href="/loginEstudiante"
+          class="inline-flex items-center gap-2 text-sm text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300 group"
         >
-        Volver
-      </a>
-      <section>
-        <section class="my-2">
-          <div
-            class="flex flex-col md:flex-row h-auto md:h-96 justify-center items-center gap-10"
+          <svg
+            class="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <div id="clippy" class="overflow-hidden">
-              <img
-                src={img}
-                alt={title}
-                class="md:size-72 size-56 object-cover"
-                transition:name=`image-${slug}`
-                loading="lazy"
-              />
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+          Volver a cursos
+        </a>
+      </nav>
+
+      <div class="relative">
+        <div
+          class="absolute left-4 sm:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#64ffda]/40 via-[#64ffda]/20 to-transparent hidden sm:block"
+        >
+        </div>
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Curso</span
+            >
+          </div>
+          <div class="hidden sm:block mb-3">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Curso</span
+            >
+          </div>
+
+          <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+            <div class="shrink-0 mx-auto lg:mx-0">
+              <div class="relative">
+                <div
+                  class="absolute -inset-1 bg-[#64ffda]/10 rounded-2xl blur-sm"
+                >
+                </div>
+                <Picture
+                  src={img}
+                  alt={`Curso de ${title}`}
+                  class="relative size-44 sm:size-52 lg:size-60 object-cover rounded-2xl"
+                  transition:name={`image-${slug}`}
+                  formats={['webp', 'avif']}
+                  width={240}
+                  height={240}
+                />
+              </div>
             </div>
-            <div class="md:w-[50%]">
-              <h2
-                class="text-center md:text-left text-4xl md:text-5xl text-white my-3"
+
+            <div class="flex-1 text-center lg:text-left">
+              <h1
+                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#ccd6f6] mb-4 leading-tight tracking-tight"
               >
                 {title}
-              </h2>
-              <p class="text-center md:text-left">{description}</p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div>
-            <h2 class="text-white text-3xl">Lo que aprenderás</h2>
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 gap-10 place-content-center mt-7"
-            >
-              {
-                learn.map((item) => {
-                  return (
-                    <p class="flex gap-2 ">
-                      <small>
-                        <Check class="text-[#009dff]" />
-                      </small>
-                      <span class="text-[16px]">{item}</span>
-                    </p>
-                  )
-                })
-              }
-            </div>
-          </div>
-        </section>
-      </section>
-      <section class="flex-col flex md:flex-row justify-between gap-7">
-        <section class="my-2">
-          <div>
-            <h2 class="text-white text-3xl">Temario del curso</h2>
-            <div class="space-y-4 mt-6">
-              {
-                courseSyllabus.map((item, index) => {
-                  return (
-                    <details class="group rounded-lg bg-slate-900/80 p-4">
-                      <summary class="cursor-pointer list-none font-bold text-white">
-                        <div class="flex items-center justify-between">
-                          <span>
-                            Módulo {index + 1}:{' '}
-                            <span class="font-light">{item.title}</span>
-                          </span>
-                          <small>
-                            <ChevronDown />
-                          </small>
-                        </div>
-                      </summary>
-                      <p class="mt-2">{item.description}</p>
-                    </details>
-                  )
-                })
-              }
-            </div>
-          </div>
-
-          <section>
-            <div class="flex flex-col gap-10 mt-5">
-              <h2 class="text-white text-3xl">¿A quién está dirigido</h2>
-              <div
-                class="flex flex-col items-center justify-between gap-10 pb-5 md:flex-row"
+              </h1>
+              <p
+                class="text-[#8892b0] text-base sm:text-lg leading-relaxed max-w-2xl mb-6"
               >
-                <div class="flex flex-col justify-evenly items-start gap-2">
-                  {
-                    targetAudience.map((item) => {
-                      return (
-                        <div class="flex justify-start items-start gap-2">
-                          <Badge class="text-[#009dff] size-10" />
-                          <p>{item}</p>
-                        </div>
-                      )
-                    })
-                  }
+                {description}
+              </p>
+              <div
+                class="flex flex-wrap justify-center lg:justify-start gap-4 text-sm"
+              >
+                <div class="flex items-center gap-2 text-[#8892b0]">
+                  <svg
+                    class="w-4 h-4 text-[#64ffda]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 6v6l4 2"></path>
+                    <circle cx="12" cy="12" r="10"></circle>
+                  </svg>
+                  <span>{moduleCount} módulos</span>
+                </div>
+                <div class="flex items-center gap-2 text-[#8892b0]">
+                  <svg
+                    class="w-4 h-4 text-[#64ffda]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span>Ing. {name}</span>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </section>
-        <section class="my-2 flex flex-col gap-7 flex-1">
-          <div class="flex flex-col gap-4 justify-center items-center">
-            <h2 class="text-white text-3xl">Docente&nbsp;Sistemas</h2>
-            <div class="flex flex-col justify-center items-center">
-              <img
-                src="/images/instructor.webp"
-                alt="Instructor de sistemas"
-                class="size-48 rounded-full object-cover border-4 border-[#009dff]"
-                loading="lazy"
-              />
-              <h3 class="text-white text-2xl mt-3">Ing. {name}</h3>
-              <h4 class="text-[#009dff] text-lg">Ingeniero de sistemas</h4>
-              <p class="text-center text-base mt-3">
-                El Ing. {name} es un ingeniero de sistemas con experiencia en la instalación
-                y configuración de sistemas informáticos, equipos y redes de telecomunicación.
-                Además, ha trabajado en varias empresas de tecnología y ha sido elegido
-                como el técnico de sistemas de la empresa.
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Aprendizaje</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Aprendizaje</span
+            >
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#ccd6f6] mb-5">
+            Lo que aprenderás
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {
+              learn.map((item) => (
+                <div class="flex items-start gap-3 p-3 rounded-lg bg-[#112240]/60 border border-[#1a3350] hover:border-[#64ffda]/30 transition-colors duration-300">
+                  <svg
+                    class="w-4 h-4 text-[#64ffda] shrink-0 mt-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span class="text-[#ccd6f6] text-sm leading-relaxed">
+                    {item}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Temario</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Temario</span
+            >
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#ccd6f6] mb-5">
+            Contenido del curso
+          </h2>
+          <div class="space-y-2" id="syllabus-container">
+            {
+              courseSyllabus.map((item, index) => (
+                <details class="group rounded-lg bg-[#112240]/60 border border-[#1a3350] overflow-hidden">
+                  <summary class="cursor-pointer list-none px-4 py-3 hover:bg-[#1a3350]/50 transition-colors duration-200">
+                    <div class="flex items-center justify-between gap-4">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <span class="shrink-0 font-mono text-xs text-[#64ffda] bg-[#64ffda]/10 px-2 py-0.5 rounded">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span class="font-medium text-[#ccd6f6] text-sm truncate">
+                          {item.title}
+                        </span>
+                      </div>
+                      <svg
+                        class="w-4 h-4 text-[#8892b0] shrink-0 group-open:rotate-180 transition-transform duration-200"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="px-4 pb-4 pt-0">
+                    <div class="pl-10 text-[#8892b0] text-sm leading-relaxed border-t border-[#1a3350] pt-3">
+                      {item.description}
+                    </div>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Instructor</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Instructor</span
+            >
+          </div>
+          <div
+            class="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-5 rounded-lg bg-[#112240]/60 border border-[#1a3350]"
+          >
+            <img
+              src="/images/instructor.webp"
+              alt={`Instructor ${name}`}
+              class="w-24 h-24 rounded-full object-cover border-2 border-[#64ffda]/30 shrink-0"
+              loading="lazy"
+            />
+            <div class="text-center sm:text-left">
+              <h3 class="text-lg font-bold text-[#ccd6f6] mb-1">Ing. {name}</h3>
+              <p class="text-[#64ffda] text-sm font-mono mb-3">
+                Ingeniero de Sistemas
+              </p>
+              <p class="text-[#8892b0] text-sm leading-relaxed">
+                Ingeniero de sistemas con experiencia en la instalación y
+                configuración de sistemas informáticos, equipos y redes de
+                telecomunicación.
               </p>
             </div>
           </div>
-          <section>
-            <div>
-              <h3 class="text-white text-3xl mb-4">Prerequisitos</h3>
-              <p>{prerequisites}</p>
-            </div>
-          </section>
         </section>
-      </section>
-      <section class="my-3">
-        <div>
-          <h2 class="text-white text-3xl mb-6 text-center">
-            Impacto Profesional y Beneficio Clave
-          </h2>
-          <ul
-            class="flex flex-col justify-between gap-3 max-w-2xl mx-auto w-full"
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
           >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Requisitos</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Requisitos</span
+            >
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#ccd6f6] mb-4">
+            Prerequisitos
+          </h2>
+          <p
+            class="text-[#8892b0] text-sm sm:text-base leading-relaxed p-4 rounded-lg bg-[#112240]/40 border-l-2 border-[#64ffda]/50"
+          >
+            {prerequisites}
+          </p>
+        </section>
+
+        <section class="relative sm:pl-16 mb-12 sm:mb-16">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Público</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Público</span
+            >
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#ccd6f6] mb-5">
+            ¿A quién está dirigido?
+          </h2>
+          <div class="space-y-2">
             {
-              professional.map((item) => {
-                return (
-                  <li class="flex  items-start gap-4 ">
-                    <div>
-                      <ProfessionalImpact class="text-[#009dff] size-5 mt-1" />
-                    </div>
-                    <div class="flex flex-col gap-2">
-                      <h2 class=" text-white text-lg">{item.title}</h2>
-                      <p>{item.description}</p>
-                    </div>
-                  </li>
-                )
-              })
+              targetAudience.map((item) => (
+                <div class="flex items-start gap-3 p-3 rounded-lg bg-[#112240]/60 border border-[#1a3350]">
+                  <svg
+                    class="w-4 h-4 text-[#64ffda] shrink-0 mt-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 11h-6" />
+                  </svg>
+                  <span class="text-[#ccd6f6] text-sm leading-relaxed">
+                    {item}
+                  </span>
+                </div>
+              ))
             }
-          </ul>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        <section class="relative sm:pl-16 mb-8">
+          <div
+            class="absolute left-2 sm:left-4 top-1 w-4 h-4 rounded-full bg-[#0b192f] border-2 border-[#64ffda] z-10 hidden sm:block"
+          >
+          </div>
+          <div class="sm:hidden flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-[#64ffda]"></div>
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Impacto</span
+            >
+          </div>
+          <div class="hidden sm:block mb-4">
+            <span
+              class="text-xs font-mono text-[#64ffda] uppercase tracking-widest"
+              >Impacto</span
+            >
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#ccd6f6] mb-5">
+            Impacto profesional
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {
+              professional.map((item) => (
+                <div class="p-4 rounded-lg bg-[#112240]/60 border border-[#1a3350] hover:border-[#64ffda]/30 transition-colors duration-300">
+                  <h3 class="text-[#ccd6f6] font-semibold text-sm mb-2">
+                    {item.title}
+                  </h3>
+                  <p class="text-[#8892b0] text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      </div>
     </main>
   </Container>
+  <Footer />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      name: title,
+      description: description,
+      provider: {
+        '@type': 'Organization',
+        name: 'InfoByte'
+      }
+    })}
+  />
 </Layout>
-
-<style>
-  section > div:first-child {
-    background: linear-gradient(to bottom, #040d1c);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px 32px;
-    border-radius: 10px;
-    /* overflow: hidden; */
-  }
-
-  #clippy {
-    clip-path: polygon(
-      50% 0%,
-      83% 12%,
-      100% 43%,
-      94% 78%,
-      68% 100%,
-      32% 100%,
-      6% 78%,
-      0% 43%,
-      17% 12%
-    );
-  }
-
-  details[open] small {
-    transition: all 0.3s ease;
-    transform: rotate(180deg);
-  }
-  details small {
-    transition: all 0.3s ease;
-  }
-</style>
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const details = document.querySelectorAll('details')
-
-    details.forEach((detail) => {
-      detail.addEventListener('click', () => {
-        details.forEach((item) => {
-          if (item !== detail) {
-            item.removeAttribute('open')
-          }
+    const container = document.getElementById('syllabus-container')
+    container?.addEventListener('click', (e) => {
+      const details = e.target.closest('details')
+      if (details) {
+        container.querySelectorAll('details').forEach((d) => {
+          if (d !== details) d.removeAttribute('open')
         })
-      })
+      }
     })
   })
 </script>
