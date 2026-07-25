@@ -3,14 +3,21 @@ interface Props {
   href: string
   className?: string
   openBlank?: boolean
+  ariaLabel?: string
 }
 
-const { href, className, openBlank } = Astro.props
+const { href, className, openBlank, ariaLabel } = Astro.props
 ---
 
 <a
   href={href}
   target={openBlank ? '_blank' : '_self'}
-  class={`bg-[#64FFDA] active:scale-[0.95] rounded-lg hover:opacity-70 text-sm text-black font-semibold animate-bounce-fade-in transition ${className ? className : 'px-3 py-2'}`}
-  ><slot />
+  rel={openBlank ? 'noopener noreferrer' : undefined}
+  aria-label={ariaLabel}
+  class:list={[
+    'bg-[var(--colorAquamarine)] active:scale-[0.95] rounded-lg hover:opacity-80 text-sm text-[var(--fondo)] font-semibold transition-all duration-200 inline-flex items-center justify-center',
+    className || 'px-3 py-2',
+  ]}
+>
+  <slot />
 </a>
