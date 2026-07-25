@@ -9,7 +9,6 @@ import Footer from '@components/Shared/Footer.astro'
 import ArchiveExplorer from '@assets/icons/RecursesExplorer.astro'
 import LogoutIcon from '@assets/icons/Logout.astro'
 import { events } from '../lib/events'
-import SearchInput from '@assets/icons/SearchInput.astro'
 import Pagination from '@components/Shared/Pagination.astro'
 import { actions } from 'astro:actions'
 
@@ -110,23 +109,24 @@ const userProgress = progressData?.progress ?? {}
           role="search"
           class="w-full"
         >
-          <div
-            class="flex items-center gap-2 rounded-xl bg-[#040d1c] border border-gray-600/50 px-4 py-2 transition-all duration-300 focus-within:border-cyan-500/50 focus-within:ring-2 focus-within:ring-cyan-500/20 focus-within:shadow-[0_0_15px_rgba(100,255,218,0.1)]"
-          >
-            <SearchInput class="size-5 text-gray-400 shrink-0" />
-            <input
-              type="text"
-              id="buscador"
-              name="search"
-              placeholder="Busca cursos por título..."
-              value={search}
-              autocomplete="off"
-              class="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-500 text-base font-[inherit]"
-            />
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8892b0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+              <input
+                type="text"
+                name="search"
+                placeholder="Buscar cursos por título..."
+                value={search}
+                autocomplete="off"
+                class="w-full pl-10 pr-4 py-2.5 text-sm text-[#ccd6f6] bg-[#112240]/60 border border-[#1a3350] rounded-lg outline-none focus:border-[#64ffda]/50 transition-colors placeholder:text-[#8892b0]/60"
+              />
+            </div>
             <button
               type="submit"
-              id="btn-search"
-              class="bg-[#dfdfdf] hover:bg-[#dfdfdf]/80 text-black/70 rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 cursor-pointer whitespace-nowrap"
+              class="px-5 py-2.5 text-sm font-medium text-[#0b192f] bg-[#64ffda] rounded-lg hover:bg-[#64ffda]/90 transition-colors duration-200"
             >
               Buscar
             </button>
@@ -375,11 +375,13 @@ const userProgress = progressData?.progress ?? {}
     const form = document.querySelector(
       'form[role="search"]'
     ) as HTMLFormElement
-    const btnSearch = document.getElementById('btn-search') as HTMLButtonElement
+    const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement
 
     form?.addEventListener('submit', () => {
-      btnSearch.textContent = 'Buscando...'
-      btnSearch.setAttribute('disabled', 'disabled')
+      if (btn) {
+        btn.textContent = 'Buscando...'
+        btn.disabled = true
+      }
     })
 
     const logout = document.getElementById('logout') as HTMLButtonElement

@@ -11,22 +11,22 @@ const rememberMe = !!email
   title="Iniciar Sesión en InfoByte | Accede a Tu Cuenta"
   page="Inicio de Sesión"
 >
-  <div id="error-message" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
+  <div id="error-message" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center">
   </div>
 
   <button
     id="btn-google"
     type="button"
-    class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-3 active:scale-[0.98]"
+    class="w-full py-3 bg-[#112240]/60 hover:bg-[#112240] border border-[#1a3350] hover:border-[#64ffda]/30 text-[#ccd6f6] rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-3 active:scale-[0.98]"
   >
     <Google class="size-5" />
     Continuar con Google
   </button>
 
   <div class="flex items-center gap-3 my-5">
-    <div class="flex-1 h-px bg-white/10"></div>
-    <span class="text-xs text-[var(--letter)]/40 uppercase tracking-wider">o</span>
-    <div class="flex-1 h-px bg-white/10"></div>
+    <div class="flex-1 h-px bg-[#1a3350]"></div>
+    <span class="text-xs text-[#8892b0] uppercase tracking-wider">o</span>
+    <div class="flex-1 h-px bg-[#1a3350]"></div>
   </div>
 
   <form id="login-form" class="flex flex-col gap-4">
@@ -53,13 +53,13 @@ const rememberMe = !!email
           type="checkbox"
           name="remember_me"
           checked={rememberMe}
-          class="w-4 h-4 rounded border-white/20 bg-[#1f293a] text-[var(--colorAquamarine)] focus:ring-[var(--colorAquamarine)]/30 accent-[var(--colorAquamarine)] cursor-pointer"
+          class="w-4 h-4 rounded border-[#1a3350] bg-[#112240] text-[#64ffda] focus:ring-[#64ffda]/30 accent-[#64ffda] cursor-pointer"
         />
-        <span class="text-xs text-[var(--letter)]/60 group-hover:text-[var(--letter)]/80 transition-colors">
+        <span class="text-xs text-[#8892b0] group-hover:text-[#ccd6f6] transition-colors">
           Recordarme
         </span>
       </label>
-      <a href="#" class="text-xs text-[var(--colorAquamarine)]/70 hover:text-[var(--colorAquamarine)] transition-colors">
+      <a href="#" class="text-xs text-[#64ffda]/70 hover:text-[#64ffda] transition-colors">
         ¿Olvidaste tu contraseña?
       </a>
     </div>
@@ -67,15 +67,15 @@ const rememberMe = !!email
     <button
       type="submit"
       id="btn-submit"
-      class="w-full py-3 mt-1 bg-[var(--colorAquamarine)] hover:brightness-110 text-[var(--fondo)] font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
+      class="w-full py-3 mt-1 bg-[#64ffda] hover:bg-[#64ffda]/90 text-[#0b192f] font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
     >
       Iniciar sesión
     </button>
   </form>
 
-  <p class="text-center text-sm text-[var(--letter)]/50 mt-6">
+  <p class="text-center text-sm text-[#8892b0] mt-6">
     ¿No tienes cuenta?
-    <a href="/registro" class="text-[var(--colorAquamarine)] hover:underline font-medium">
+    <a href="/registro" class="text-[#64ffda] hover:underline font-medium">
       Regístrate
     </a>
   </p>
