@@ -6,6 +6,7 @@ import ArticleMain from '@components/Index/ArticleMain.astro'
 import { tips } from '@lib/tips'
 import Check from '@assets/icons/Check.astro'
 import { news } from '@lib/news-backup'
+
 interface NewsItem {
   title: string
   description: string
@@ -15,79 +16,158 @@ interface NewsItem {
   snippet: string
 }
 
-let dataNews: NewsItem[] = [];
+let dataNews: NewsItem[] = []
 
 try {
-  const resNews = await fetch('https://tecnico-sistemas.vercel.app/api/get-news')
+  const resNews = await fetch(
+    'https://tecnico-sistemas.vercel.app/api/get-news'
+  )
   if (resNews.ok) {
     dataNews = await resNews.json()
   } else {
-    console.error('Failed to fetch news:', resNews.status, resNews.statusText)
-    // Fallback to local news if API fails
     dataNews = news
   }
-} catch (error) {
-  console.error('Error fetching news:', error)
-  // Fallback to local news if there's an error
+} catch {
   dataNews = news
+}
+
+function formatDate(dateStr: string): string {
+  try {
+    return new Intl.DateTimeFormat('es-ES', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(new Date(dateStr))
+  } catch {
+    return dateStr.slice(0, 10)
+  }
 }
 ---
 
-<main class="flex items-center my-5 mx-5 lg:mx-auto animate-fade-in-up">
+<main id="contenido" class="flex items-center my-5 mx-5 lg:mx-auto">
   <Container>
     <div class="flex flex-col gap-5">
-      <section
-        class="flex flex-col justify-between items-center gap-3 max-w-xl mx-auto my-16"
-      >
-        <h3 class="text-xs text-[#64FFDB] font-bold">
-          TECNOLOGÍA EN EVOLUCIÓN
-        </h3>
-        <h1
-          class="flex flex-col text-center justify-center items-center text-5xl font-extrabold"
-        >
-          <span>Innovación y Futuro en el </span>
-          <span class="text-[#64FFDB]">Mundo de los Sistemas</span>
-        </h1>
-        <p class="text-center">
-          Un entorno creado para aprendices y expertos del área técnica en
-          sistemas, donde podrás acceder a contenido actualizado sobre
-          innovación tecnológica, soporte informático, hardware y programación.
-          Encuentra artículos, noticias y recursos que impulsarán tu crecimiento
-          profesional.
-        </p>
-        <footer class="flex justify-center items-center gap-2">
-          <Button href="/recursos">Explorar Recursos</Button>
-          <a
-            href="#news-latest"
-            class="outline-1 rounded-lg outline-[#02348556] bg-transparent hover:bg-gray-800/30 text-[#64FFDA] px-4 py-1.5 flex items-center gap-2"
-            >Ver Noticias <span> <ArrowNews class="size-5" /></span></a
-          >
-        </footer>
+      <!-- Hero Section -->
+      <section class="hero-section relative my-4 sm:my-10">
+        <div class="hero-content">
+          <!-- Top: Badge + Title -->
+          <div class="hero-top">
+            <div class="hero-badge">
+              <span class="hero-badge-pulse"></span>
+              <span>Tecnología en evolución</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="hero-title-white">Innovación y Futuro en el</span>
+              <span class="hero-title-gradient">Mundo de los Sistemas</span>
+            </h1>
+
+            <p class="hero-desc">
+              Un entorno creado para aprendices y expertos del área técnica en
+              sistemas, donde podrás acceder a contenido actualizado sobre
+              innovación tecnológica, soporte informático, hardware y programación.
+            </p>
+          </div>
+
+          <!-- Glowing Divider Line -->
+          <div class="hero-divider">
+            <div class="hero-divider-line"></div>
+            <div class="hero-divider-dot"></div>
+            <div class="hero-divider-line"></div>
+          </div>
+
+          <!-- Computer Center Stage -->
+          <div class="hero-visual">
+            <div class="computer">
+              <div class="monitor">
+                <div class="monitor-screen">
+                  <div class="screen-code">
+                    <div class="code-line code-line-1"></div>
+                    <div class="code-line code-line-2"></div>
+                    <div class="code-line code-line-3"></div>
+                    <div class="code-line code-line-4"></div>
+                    <div class="code-line code-line-5"></div>
+                    <div class="code-line code-line-6"></div>
+                    <div class="code-cursor"></div>
+                  </div>
+                  <div class="screen-glow"></div>
+                </div>
+                <div class="monitor-dot"></div>
+              </div>
+              <div class="monitor-stand"></div>
+              <div class="monitor-base"></div>
+              <div class="keyboard">
+                <div class="key-row">
+                  <span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                </div>
+                <div class="key-row">
+                  <span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                </div>
+                <div class="key-row">
+                  <span class="key"></span><span class="key"></span><span class="key"></span><span class="key key-space"></span><span class="key"></span><span class="key"></span><span class="key"></span>
+                </div>
+              </div>
+              <div class="float-element float-1">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="float-element float-2">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              </div>
+              <div class="float-element float-3">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="computer-glow"></div>
+            </div>
+          </div>
+
+          <!-- Bottom: Actions + Tags -->
+          <div class="hero-bottom">
+            <div class="hero-actions">
+              <Button href="/recursos" className="px-6 py-2.5 text-sm">
+                Explorar Recursos
+              </Button>
+              <a href="#news-latest" class="hero-btn-ghost">
+                Ver Noticias
+                <ArrowNews class="size-4" />
+              </a>
+            </div>
+
+            <div class="hero-tags">
+              <span class="hero-tag">Hardware</span>
+              <span class="hero-tag">Redes</span>
+              <span class="hero-tag">Programación</span>
+              <span class="hero-tag">Soporte TI</span>
+              <span class="hero-tag">Innovación</span>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <!-- Tips Section -->
       <section class="mb-6">
-        <h2 class="mt-7 text-center text-2xl text-white font-extrabold">
+        <h2
+          class="mt-7 text-center text-2xl text-white font-extrabold"
+        >
           Consejos Prácticos para el Éxito en Sistemas e Informática
         </h2>
-        <p class="text-center my-5">
+        <p class="text-center my-5 text-[var(--letter)]/60">
           Pequeñas dosis de conocimiento para fortalecer tus habilidades
           técnicas y avanzar en tu formación profesional dentro del mundo de la
           tecnología.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {
-            tips.map((item) => {
-              return (
-                <div class="flex flex-col gap-2 bg-[#040d1c] text-white rounded-xl px-6 py-4">
-                  <div class="flex justify-between items-center gap-2">
-                    <Check class="size-8 text-[#00a2ff]" />
-                    <h4 class="text-xl font-bold text-center flex-1">
-                      {item.title}
-                    </h4>
-                  </div>
-                  <p class="text-center">{item.description}</p>
+            tips.map((item) => (
+              <div class="flex flex-col gap-3 bg-[#040d1c]/80 hover:bg-[#040d1c] border border-white/5 hover:border-white/10 text-white rounded-xl px-6 py-5 transition-all duration-200 hover:scale-[1.01]">
+                <div class="flex items-center gap-3">
+                  <Check class="size-7 text-[var(--colorAquamarine)] shrink-0" />
+                  <h4 class="text-lg font-bold">{item.title}</h4>
                 </div>
-              )
-            })
+                <p class="text-sm text-[var(--letter)]/70 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))
           }
         </div>
       </section>
@@ -95,94 +175,466 @@ try {
   </Container>
 </main>
 
-<section class="imagen-info mb-10">
-  <div class="max-w-2xl text-center">
-    <h2>Técnico en Sistemas e informática</h2>
-    <p class="mb-7">
+<!-- Parallax Info Section -->
+<section class="parallax-section mb-10 mx-5 md:mx-0">
+  <div class="parallax-content text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+      Técnico en Sistemas e Informática
+    </h2>
+    <p class="mb-7 text-[var(--letter)]/80 max-w-2xl mx-auto">
       Es aquella persona encargada de la instalación, configuración y
-      mantenimiento de los sistemas informático, equipo y redes de
+      mantenimiento de los sistemas informáticos, equipo y redes de
       telecomunicación. Su función principal es asegurar la integración y el
       correcto funcionamiento de todos los sistemas tecnológicos en la empresa.
     </p>
     <Button href="/post/blogTecnicoSistemas">Leer más...</Button>
   </div>
 </section>
+
+<!-- Latest News -->
 <Container>
   <h3
     class="text-2xl my-7 text-center md:text-left text-white font-extrabold"
     id="news-latest"
   >
-    Ultimas noticias
+    Últimas noticias
   </h3>
-  <section class="news mb-5">
+  <section class="news-grid mb-8">
     {
       //@ts-ignore
       dataNews.data
         ? //@ts-ignore
-          dataNews.data.map((item: NewsItem) => {
-            return <ArticleMain {...item} />
-          })
-        : news.slice(0, 3).map((item: NewsItem) => {
-            return <ArticleMain {...item} />
-          })
+          dataNews.data.map((item: NewsItem) => (
+            <ArticleMain {...item} />
+          ))
+        : news.slice(0, 3).map((item: NewsItem) => (
+            <ArticleMain {...item} />
+          ))
     }
   </section>
 </Container>
 
 <style>
-  .imagen-info {
+  /* ===== HERO ===== */
+  .hero-section {
+    position: relative;
+    padding: 2rem 1rem 1rem;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Top: Badge + Title */
+  .hero-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    background: rgba(100, 255, 218, 0.04);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--colorAquamarine);
+    animation: fadeInDown 0.5s ease both;
+  }
+
+  .hero-badge-pulse {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--colorAquamarine);
+    animation: badgePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(100, 255, 218, 0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-title-white {
+    color: white;
+    animation: heroUp 0.6s ease 0.1s both;
+  }
+
+  .hero-title-gradient {
+    background: linear-gradient(135deg, var(--colorAquamarine) 0%, #3b82f6 40%, var(--colorAquamarine) 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: heroUp 0.6s ease 0.2s both, shimmer 3s linear infinite;
+  }
+
+  @keyframes heroUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .hero-desc {
+    max-width: 500px;
+    color: rgba(205, 215, 247, 0.5);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    animation: heroUp 0.6s ease 0.3s both;
+  }
+
+  /* Glowing Divider */
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem 0;
+    animation: heroUp 0.6s ease 0.35s both;
+  }
+
+  .hero-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.25), transparent);
+  }
+
+  .hero-divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--colorAquamarine);
+    box-shadow: 0 0 12px rgba(100, 255, 218, 0.4);
+    animation: dividerPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes dividerPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(100, 255, 218, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); }
+  }
+
+  /* Computer */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: heroUp 0.7s ease 0.4s both;
+  }
+
+  .computer {
+    position: relative;
+    width: 240px;
+  }
+
+  .monitor {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .monitor-screen {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    background: #0a0f1a;
+    border-radius: 8px 8px 3px 3px;
+    border: 2px solid rgba(100, 255, 218, 0.12);
+    overflow: hidden;
+    box-shadow:
+      0 0 25px rgba(100, 255, 218, 0.06),
+      inset 0 0 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .screen-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .screen-code {
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .code-line {
+    height: 5px;
+    border-radius: 3px;
+    animation: codeAppear 0.5s ease both;
+  }
+
+  .code-line-1 { width: 55%; background: rgba(100, 255, 218, 0.5); animation-delay: 0.8s; }
+  .code-line-2 { width: 75%; background: rgba(59, 130, 246, 0.4); animation-delay: 1s; }
+  .code-line-3 { width: 40%; background: rgba(100, 255, 218, 0.35); animation-delay: 1.2s; }
+  .code-line-4 { width: 65%; background: rgba(168, 85, 247, 0.4); animation-delay: 1.4s; }
+  .code-line-5 { width: 50%; background: rgba(100, 255, 218, 0.3); animation-delay: 1.6s; }
+  .code-line-6 { width: 30%; background: rgba(59, 130, 246, 0.35); animation-delay: 1.8s; }
+
+  @keyframes codeAppear {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .code-cursor {
+    width: 7px;
+    height: 12px;
+    background: var(--colorAquamarine);
+    border-radius: 1px;
+    margin-top: 3px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .monitor-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(100, 255, 218, 0.35);
+    margin: 5px auto 0;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { background: rgba(100, 255, 218, 0.35); }
+    50% { background: rgba(100, 255, 218, 0.7); }
+  }
+
+  .monitor-stand {
+    width: 3px;
+    height: 14px;
+    background: linear-gradient(to bottom, rgba(100, 255, 218, 0.18), rgba(100, 255, 218, 0.04));
+    margin: 0 auto;
+  }
+
+  .monitor-base {
+    width: 50px;
+    height: 3px;
+    background: rgba(100, 255, 218, 0.12);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .keyboard {
+    width: 160px;
+    margin: 6px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .key-row {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+  }
+
+  .key {
+    width: 10px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1.5px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    animation: keyGlow 3s ease-in-out infinite;
+  }
+
+  .key:nth-child(odd) { animation-delay: 0.5s; }
+  .key:nth-child(3n) { animation-delay: 1s; }
+  .key-space { width: 42px; }
+
+  @keyframes keyGlow {
+    0%, 100% { background: rgba(255, 255, 255, 0.05); }
+    50% { background: rgba(100, 255, 218, 0.1); }
+  }
+
+  .float-element {
+    position: absolute;
+    padding: 7px;
+    border-radius: 7px;
+    background: rgba(100, 255, 218, 0.06);
+    border: 1px solid rgba(100, 255, 218, 0.12);
+    color: var(--colorAquamarine);
+    animation: floatEl 4s ease-in-out infinite;
+  }
+
+  .float-1 { top: 5px; right: -8px; animation-delay: 0s; }
+  .float-2 { top: 50%; left: -18px; animation-delay: 1.3s; }
+  .float-3 { bottom: 25px; right: -12px; animation-delay: 2.6s; }
+
+  @keyframes floatEl {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-8px); opacity: 1; }
+  }
+
+  .computer-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: compGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes compGlow {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  /* Bottom: Actions + Tags */
+  .hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    animation: heroUp 0.6s ease 0.5s both;
+  }
+
+  .hero-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--colorAquamarine);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+
+  .hero-btn-ghost:hover {
+    background: rgba(100, 255, 218, 0.06);
+    border-color: rgba(100, 255, 218, 0.25);
+    box-shadow: 0 0 16px rgba(100, 255, 218, 0.08);
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    animation: heroUp 0.6s ease 0.6s both;
+  }
+
+  .hero-tag {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(205, 215, 247, 0.4);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .hero-tag:hover {
+    color: var(--colorAquamarine);
+    border-color: rgba(100, 255, 218, 0.15);
+    background: rgba(100, 255, 218, 0.04);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero-title { font-size: 2.15rem; }
+    .hero-section { padding: 1.5rem 0.5rem 0.5rem; }
+  }
+</style>
+
+<style>
+  .parallax-section {
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.5) 80%,
+        rgba(0, 0, 0, 0.6) 80%,
         rgba(226, 223, 223, 0) 100%
       ),
-      url('/images/tecnico sistemas.webp');
-
+      url('/images/tecnico%20sistemas.webp');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding: 40px;
-    /* overflow: hidden; */
+    padding: 60px 40px;
+    border-radius: 12px;
   }
 
-  section > div h2 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 40px;
+  .parallax-content {
+    max-width: 640px;
   }
 
-  section > div p {
-    color: var(--letter);
-    font-weight: 400;
-    font-size: 16px;
-  }
-
-  .news {
+  .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
   }
 
   @media (max-width: 768px) {
-    .imagen-info {
-      margin-inline: 20px;
-    }
-    section > div h2 {
-      color: #fff;
-      font-weight: 700;
-      font-size: 24px;
-    }
-    section > div p {
-      font-size: 16px;
+    .parallax-section {
+      padding: 40px 20px;
+      margin-inline: 0;
     }
 
-    .news {
-      margin-inline: 20px;
+    .news-grid {
+      margin-inline: 0;
     }
   }
 </style>
