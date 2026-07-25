@@ -1,6 +1,7 @@
 ---
 // @ts-ignore
 import '@fontsource-variable/outfit'
+import '@styles/global.css'
 
 import { ClientRouter } from 'astro:transitions'
 
@@ -21,47 +22,56 @@ const { title, page } = Astro.props
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="mx-5 md:mx-0 animate-blurred-fade-in">
-    <section
-      class="max-w-sm mx-auto flex flex-col justify-center items-center h-screen"
-    >
-      <h1 class="text-3xl text-white text-center">
-        Bienvenido al {page} de Estudiantes
-      </h1>
-      <p class="text-center mt-5 mb-10">
-        Inicia sesión para acceder a tu panel de estudiante personalizado,
-        guardar tu progreso y conectarte con la comunidad estudiantil.
-      </p>
-
-      <slot />
-
-      <div class="text-center flex flex-col justify-between gap-3 mt-10">
-        <p>📊 Acceso instantáneo a tu panel de estudiante personalizado.</p>
-        <p>🔐 Protege tus datos y privacidad.</p>
-        <p>💻 Acceso a herramientas y recursos de aprendizaje.</p>
+  <body class="min-h-screen flex items-center justify-center p-4 sm:p-6">
+    <!-- Animated Background -->
+    <div class="page-bg">
+      <div class="page-bg-grid"></div>
+      <div class="page-particles">
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
       </div>
-    </section>
+      <div class="page-glow page-glow-1"></div>
+      <div class="page-glow page-glow-2"></div>
+    </div>
+
+    <main class="relative z-10 w-full max-w-md animate-blurred-fade-in">
+      <div
+        class="bg-[#0d1f35]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-black/20"
+      >
+        <div class="text-center mb-8">
+          <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Bienvenido al {page}
+          </h1>
+          <p class="text-sm text-[var(--letter)]/60 mt-2">
+            Accede a tu panel de estudiante personalizado
+          </p>
+        </div>
+
+        <slot />
+
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <div class="flex flex-col gap-2.5 text-xs text-[var(--letter)]/50">
+            <div class="flex items-center gap-2">
+              <span class="text-[var(--colorAquamarine)]">▸</span>
+              <span>Acceso instantáneo a tu panel personalizado</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[var(--colorAquamarine)]">▸</span>
+              <span>Protege tus datos y privacidad</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[var(--colorAquamarine)]">▸</span>
+              <span>Herramientas y recursos de aprendizaje</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
-
-<style is:global>
-  @import 'tailwindcss';
-  @plugin '@midudev/tailwind-animations';
-
-  :root {
-    --fondo: #0b192f;
-    --letter: #cdd7f7;
-    --colorAquamarine: #64ffda;
-    --font: 'Outfit Variable', sans-serif;
-  }
-  html,
-  body {
-    margin: 0;
-    background-color: var(--fondo);
-    font-family: var(--font);
-    color: var(--letter);
-  }
-  p {
-    font-size: 15px;
-  }
-</style>

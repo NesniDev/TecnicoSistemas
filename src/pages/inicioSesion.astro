@@ -1,6 +1,8 @@
 ---
 import Google from '@assets/socials/Google.astro'
 import AuthLayout from '@layouts/AuthLayout.astro'
+import Input from '@components/Shared/Input.astro'
+
 const email = Astro.cookies.get('email')?.value ?? ''
 const rememberMe = !!email
 ---
@@ -9,104 +11,172 @@ const rememberMe = !!email
   title="Iniciar Sesión en InfoByte | Accede a Tu Cuenta"
   page="Inicio de Sesión"
 >
+  <div id="error-message" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
+  </div>
+
   <button
     id="btn-google"
-    class="active:scale-[0.97] cursor-pointer w-sm py-4 bg-[#1073D4] transition text-white rounded-lg text-center flex justify-center items-center gap-2"
+    type="button"
+    class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-3 active:scale-[0.98]"
   >
-    <Google class="size-6" /> Iniciar sesión con Google</button
-  >
-  <!-- <div class="my-5">
-    <span class="text-sm">O</span>
-  </div>
-  <form class="w-sm">
-    <label for="email" class="flex flex-col">
-      <small>Correo electrónico</small>
+    <Google class="size-5" />
+    Continuar con Google
+  </button>
 
-      <input
-        type="email"
-        name="email"
-        value={email}
-        placeholder="example@gmail.com"
-        autocomplete="off"
-      />
-    </label>
-    <label for="Contraseña" class="flex flex-col">
-      <small>Contraseña</small>
-      <input
-        type="password"
-        checked={rememberMe}
-        name="password"
-        placeholder="***************"
-      />
-    </label>
+  <div class="flex items-center gap-3 my-5">
+    <div class="flex-1 h-px bg-white/10"></div>
+    <span class="text-xs text-[var(--letter)]/40 uppercase tracking-wider">o</span>
+    <div class="flex-1 h-px bg-white/10"></div>
+  </div>
+
+  <form id="login-form" class="flex flex-col gap-4">
+    <Input
+      name="email"
+      type="email"
+      label="Correo electrónico"
+      placeholder="tucorreo@ejemplo.com"
+      value={email}
+      required={true}
+    />
+
+    <Input
+      name="password"
+      type="password"
+      label="Contraseña"
+      placeholder="••••••••"
+      required={true}
+    />
+
+    <div class="flex items-center justify-between mt-1">
+      <label class="flex items-center gap-2 cursor-pointer group">
+        <input
+          type="checkbox"
+          name="remember_me"
+          checked={rememberMe}
+          class="w-4 h-4 rounded border-white/20 bg-[#1f293a] text-[var(--colorAquamarine)] focus:ring-[var(--colorAquamarine)]/30 accent-[var(--colorAquamarine)] cursor-pointer"
+        />
+        <span class="text-xs text-[var(--letter)]/60 group-hover:text-[var(--letter)]/80 transition-colors">
+          Recordarme
+        </span>
+      </label>
+      <a href="#" class="text-xs text-[var(--colorAquamarine)]/70 hover:text-[var(--colorAquamarine)] transition-colors">
+        ¿Olvidaste tu contraseña?
+      </a>
+    </div>
+
     <button
       type="submit"
-      class="disabled:bg-gray-300 w-full px-4 cursor-pointer py-3 bg-[#1073D4] transition hover:bg-[#1073D4]/90 text-white rounded-lg active:scale-[0.97]"
-      >Iniciar sesión</button
+      id="btn-submit"
+      class="w-full py-3 mt-1 bg-[var(--colorAquamarine)] hover:brightness-110 text-[var(--fondo)] font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
     >
-    <div class="text-center flex justify-center gap-1 mt-3 text-base">
-      <input type="checkbox" name="remember_me" id="remember_me" />
-      <label for="remember_me" class="text-xs">Recordarme</label>
-    </div>
-    <div class="text-center">
-      <small
-        >¿No tienes cuenta? <a href="/registro" class="underline"
-          >Crea una cuenta</a
-        ></small
-      >
-    </div>
-  </form> -->
+      Iniciar sesión
+    </button>
+  </form>
+
+  <p class="text-center text-sm text-[var(--letter)]/50 mt-6">
+    ¿No tienes cuenta?
+    <a href="/registro" class="text-[var(--colorAquamarine)] hover:underline font-medium">
+      Regístrate
+    </a>
+  </p>
 </AuthLayout>
-
-<style>
-  form > label {
-    margin-bottom: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  form input {
-    padding: 10px 15px;
-    background-color: #1f293a;
-    border-radius: 8px;
-    &:focus {
-      outline: white 1px solid;
-      outline-offset: 2px;
-    }
-  }
-</style>
 
 <script>
   import { actions } from 'astro:actions'
-  import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+  import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
   import { firebase } from '../firebase/config'
 
   document.addEventListener('astro:page-load', () => {
     const btnGoogle = document.querySelector('#btn-google') as HTMLButtonElement
+    const form = document.querySelector('#login-form') as HTMLFormElement
+    const btnSubmit = document.querySelector('#btn-submit') as HTMLButtonElement
+    const errorDiv = document.querySelector('#error-message') as HTMLDivElement
+
+    function showError(msg: string) {
+      errorDiv.textContent = msg
+      errorDiv.classList.remove('hidden')
+    }
+
+    function hideError() {
+      errorDiv.classList.add('hidden')
+    }
+
+    function setLoading(loading: boolean) {
+      if (loading) {
+        btnSubmit.setAttribute('disabled', 'disabled')
+        btnSubmit.textContent = 'Iniciando sesión...'
+        btnGoogle.setAttribute('disabled', 'disabled')
+      } else {
+        btnSubmit.removeAttribute('disabled')
+        btnSubmit.textContent = 'Iniciar sesión'
+        btnGoogle.removeAttribute('disabled')
+      }
+    }
 
     btnGoogle.addEventListener('click', async () => {
-      btnGoogle.setAttribute('disabled', 'disabled')
+      hideError()
+      setLoading(true)
       const provider = new GoogleAuthProvider()
 
       try {
-        //paso 1 - obtener las Credenciales del lado del cliente
         const credential = await signInWithPopup(firebase.auth, provider)
-        //verificar las credenciales en el lado del servidor
-        const { data, error } = await actions.loginWithGoogle(credential)
+        const { error } = await actions.loginWithGoogle(credential)
 
         if (error) {
-          btnGoogle.removeAttribute('disabled')
-          return false
+          showError('Error al iniciar sesión con Google. Intenta de nuevo.')
+          setLoading(false)
+          return
         }
 
         window.location.replace('/loginEstudiante')
-        console.log(credential)
-      } catch (error) {
-        console.log(error)
+      } catch (err: any) {
+        if (err.code !== 'auth/popup-closed-by-user') {
+          showError('No se pudo completar el inicio de sesión con Google.')
+        }
+        setLoading(false)
       }
+    })
 
-      btnGoogle.removeAttribute('disabled')
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      hideError()
+      setLoading(true)
+
+      const formData = new FormData(form)
+      const emailVal = formData.get('email') as string
+      const passwordVal = formData.get('password') as string
+      const rememberMe = formData.get('remember_me') === 'on'
+
+      try {
+        const credential = await signInWithEmailAndPassword(
+          firebase.auth,
+          emailVal,
+          passwordVal
+        )
+
+        const { error } = await actions.loginUser({
+          email: emailVal,
+          password: passwordVal,
+          remember_me: rememberMe,
+        })
+
+        if (error) {
+          showError('Credenciales incorrectas. Verifica tu correo y contraseña.')
+          setLoading(false)
+          return
+        }
+
+        window.location.replace('/loginEstudiante')
+      } catch (err: any) {
+        if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+          showError('Correo electrónico o contraseña incorrectos.')
+        } else if (err.code === 'auth/too-many-requests') {
+          showError('Demasiados intentos. Intenta de nuevo más tarde.')
+        } else {
+          showError('Ocurrió un error al iniciar sesión.')
+        }
+        setLoading(false)
+      }
     })
   })
 </script>
