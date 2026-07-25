@@ -12,7 +12,7 @@ export const registerUser = defineAction({
         password: z.string().min(6),
         // remember_me: z.boolean().optional()
     }),
-    handler: async ({name, email, password}) => {
+    handler: async ({name, email, password}, context) => {
         //creacion de usuarios
         try {
 
@@ -39,6 +39,19 @@ export const registerUser = defineAction({
             //retornar
             
             const user = userCredential.user;
+
+            context.cookies.set('session', JSON.stringify({
+                uid: user.uid,
+                email: user.email,
+                displayName: name,
+                photoURL: user.photoURL,
+            }), {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'lax',
+                maxAge: 60 * 60 * 24 * 7,
+                path: '/',
+            })
 
             return {
               success: true,

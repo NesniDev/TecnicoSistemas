@@ -1,30 +1,26 @@
-import { loginUser, registerUser, logout, loginWithGoogle } from "./auth";
+import { loginUser, registerUser, logout } from "./auth";
 import { getCourseByPage } from "./courses/get-courses-by-page";
 import { getResourceByPage } from "./courses/get-resources-by-page";
+import { getCourseSuggestions } from "./courses/get-course-suggestions";
+import { getResourceSuggestions } from "./courses/get-resource-suggestions";
 import { getForm } from "./form/form.action";
 import { getUserProgress } from "./progress/get-user-progress";
 import { updateUserProgress } from "./progress/update-user-progress";
 
 export const server = {
-    //action
-
-
-    //login
-    loginUser,
-    //logout
-    logout,
     //auth
+    loginUser,
+    logout,
     registerUser,
-    //google
-    loginWithGoogle,
     //courses
     getCourseByPage,
-    //recurses
+    getCourseSuggestions,
+    //resources
     getResourceByPage,
+    getResourceSuggestions,
     //form
     getForm,
     //progress
     getUserProgress,
     updateUserProgress,
-    
 }

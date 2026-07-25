@@ -42,9 +42,9 @@ const { resourcesByPage, totalPages } = data
         </p>
       </div>
 
-      <form method="GET" action="/recursos" role="search" class="mb-8">
+      <form method="GET" action="/recursos" role="search" class="mb-8 relative z-[300]">
         <div class="flex flex-col sm:flex-row gap-3">
-          <div class="relative flex-1">
+          <div class="relative flex-1 z-[300]">
             <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8892b0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
@@ -55,8 +55,11 @@ const { resourcesByPage, totalPages } = data
               value={search}
               placeholder="Buscar recursos por título..."
               autocomplete="off"
+              id="search-input"
               class="w-full pl-10 pr-4 py-2.5 text-sm text-[#ccd6f6] bg-[#112240]/60 border border-[#1a3350] rounded-lg outline-none focus:border-[#64ffda]/50 transition-colors placeholder:text-[#8892b0]/60"
             />
+            <div id="suggestions" style="display:none;position:absolute;z-index:100;top:100%;left:0;right:0;margin-top:4px;background:#112240;border:1px solid #1a3350;border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.4);flex-direction:column;">
+            </div>
           </div>
           <button
             type="submit"
@@ -115,15 +118,54 @@ const { resourcesByPage, totalPages } = data
 </Layout>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const form = document.querySelector('form[role="search"]') as HTMLFormElement
-    const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement
+  function initSearch() {
+    const input = document.getElementById('search-input') as HTMLInputElement
+    const box = document.getElementById('suggestions') as HTMLDivElement
+    if (!input || !box) return
 
-    form?.addEventListener('submit', () => {
-      if (btn) {
-        btn.textContent = 'Buscando...'
-        btn.disabled = true
+    let timer: ReturnType<typeof setTimeout>
+
+    input.addEventListener('input', () => {
+      clearTimeout(timer)
+      const q = input.value.trim()
+      if (q.length < 2) { box.style.display = 'none'; return }
+
+      timer = setTimeout(async () => {
+        const res = await fetch('/api/search-suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: q, type: 'resource' })
+        })
+        const { suggestions } = await res.json()
+        if (!suggestions?.length) { box.style.display = 'none'; return }
+
+        box.innerHTML = suggestions.map((s: {title: string}) =>
+          `<a href="/recursos?search=${encodeURIComponent(s.title)}" style="display:block;padding:10px 16px;color:#ccd6f6;font-size:14px;text-decoration:none;border-bottom:1px solid #1a3350;" onmouseover="this.style.background='#1a3350'" onmouseout="this.style.background='transparent'">${s.title}</a>`
+        ).join('')
+        box.style.display = 'block'
+      }, 300)
+    })
+
+    box.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest('a')
+      if (a) window.location.href = a.href
+    })
+
+    input.addEventListener('focus', () => {
+      if (box.innerHTML) box.style.display = 'block'
+    })
+
+    document.addEventListener('click', (e) => {
+      if (!input.contains(e.target as Node) && !box.contains(e.target as Node)) {
+        box.style.display = 'none'
       }
     })
-  })
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') box.style.display = 'none'
+    })
+  }
+
+  document.addEventListener('astro:page-load', initSearch)
+  document.addEventListener('DOMContentLoaded', initSearch)
 </script>

@@ -119,14 +119,19 @@ const rememberMe = !!email
       const provider = new GoogleAuthProvider()
 
       try {
-        const credential = await signInWithPopup(firebase.auth, provider)
-        const { error } = await actions.loginWithGoogle(credential)
+        const result = await signInWithPopup(firebase.auth, provider)
+        const user = result.user
 
-        if (error) {
-          showError('Error al iniciar sesión con Google. Intenta de nuevo.')
-          setLoading(false)
-          return
-        }
+        await fetch('/api/auth/google-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          }),
+        })
 
         window.location.replace('/loginEstudiante')
       } catch (err: any) {

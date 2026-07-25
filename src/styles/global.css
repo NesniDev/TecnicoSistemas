@@ -119,7 +119,7 @@ a:empty {
   opacity: 0.8;
 }
 
-div > a:not(p ~ :last-child),
+div > a:not(p ~ :last-child):not(.suggestion-item),
 ul li a {
   display: inline-block;
   transform: translateY(0);

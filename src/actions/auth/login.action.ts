@@ -31,6 +31,19 @@ export const loginUser = defineAction({
             
            const user = userCredential.user;
 
+            context.cookies.set('session', JSON.stringify({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+            }), {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'lax',
+                maxAge: 60 * 60 * 24 * 7,
+                path: '/',
+            })
+
             return {
               success: true,
               uid: user.uid,

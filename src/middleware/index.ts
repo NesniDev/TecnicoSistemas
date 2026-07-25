@@ -8,9 +8,23 @@ const notAuthenticatedRoutes = ['/inicioSesion', '/registro']
 export const onRequest = defineMiddleware((context, next) => {
 
     const user = firebase.auth.currentUser
-    const isLoggedIn = !!user
-    const name = user?.displayName ?? ''
-    const photoURL = user?.photoURL ?? ''
+    let isLoggedIn = !!user
+    let name = user?.displayName ?? ''
+    let photoURL = user?.photoURL ?? ''
+
+    if (!isLoggedIn) {
+        const sessionCookie = context.cookies.get('session')?.value
+        if (sessionCookie) {
+            try {
+                const session = JSON.parse(sessionCookie)
+                if (session.uid) {
+                    isLoggedIn = true
+                    name = session.displayName ?? ''
+                    photoURL = session.photoURL ?? ''
+                }
+            } catch {}
+        }
+    }
 
     context.locals.isLoggedIn = isLoggedIn
     context.locals.displayName = name
