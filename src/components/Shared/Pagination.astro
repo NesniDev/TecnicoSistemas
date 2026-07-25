@@ -25,23 +25,33 @@ const extraParams = `${searchParam}${categoryParam}`
     totalPages !== 0 ? (
       <>
         <a
-          class={`px-4 py-2 text-white rounded-lg ${currentPage === 1 ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          class:list={[
+            "px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200",
+            currentPage === 1
+              ? "bg-[#112240]/60 text-[#8892b0]/50 border border-[#1a3350] pointer-events-none cursor-not-allowed"
+              : "bg-[#112240]/60 text-[#ccd6f6] border border-[#1a3350] hover:border-[#64ffda]/50 hover:text-[#64ffda]"
+          ]}
           href={`${path}?page=${Math.max(currentPage - 1, 1)}${extraParams}`}
         >
-          Anterior
+          ← Anterior
         </a>
-        <span>
-          Página {currentPage} de {totalPages}
+        <span class="text-sm text-[#8892b0] font-mono">
+          {currentPage} / {totalPages}
         </span>
         <a
-          class={`px-4 py-2 text-white rounded-lg ${currentPage >= totalPages ? 'bg-[#7e7e7e] pointer-events-none' : 'bg-[#009dff]'}`}
+          class:list={[
+            "px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200",
+            currentPage >= totalPages
+              ? "bg-[#112240]/60 text-[#8892b0]/50 border border-[#1a3350] pointer-events-none cursor-not-allowed"
+              : "bg-[#112240]/60 text-[#ccd6f6] border border-[#1a3350] hover:border-[#64ffda]/50 hover:text-[#64ffda]"
+          ]}
           href={`${path}?page=${Math.min(currentPage + 1, totalPages)}${extraParams}`}
         >
-          Siguiente
+          Siguiente →
         </a>
       </>
     ) : (
-      <p>{emptyMessage}</p>
+      <p class="text-[#8892b0] text-sm">{emptyMessage}</p>
     )
   }
 </div>
