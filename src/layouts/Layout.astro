@@ -24,7 +24,30 @@ const { title, description } = Astro.props
     <ClientRouter />
   </head>
   <body id="inicio">
-    <slot />
+    <!-- Animated Background -->
+    <div class="page-bg">
+      <div class="page-bg-grid"></div>
+      <div class="page-particles">
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+        <span class="page-particle"></span>
+      </div>
+      <div class="page-glow page-glow-1"></div>
+      <div class="page-glow page-glow-2"></div>
+    </div>
+
+    <div class="relative z-10">
+      <slot />
+    </div>
     <a
       id="top"
       href="#inicio"
