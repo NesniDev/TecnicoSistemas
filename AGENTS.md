@@ -37,4 +37,4 @@ Astro SSR project (Vercel adapter) for a technical education website about syste
 The `package.json` does not define `test`, `lint`, or `typecheck` scripts. If you add them, document the commands here.
 
 ## Deploy
-Deploys to Vercel via `@astrojs/vercel/serverless` adapter. The site URL is `https://tecnico-sistemas.vercel.app`.
+Deploys to Vercel via `@astrojs/vercel/serverless` adapter. The site URL is `https://infobyte.neider.dev`.

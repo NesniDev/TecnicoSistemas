@@ -7,10 +7,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tecnico-sistemas.vercel.app',
+  site: 'https://infobyte.neider.dev',
   integrations: [
     sitemap({
-      filter: (page) => page !== 'https://tecnico-sistemas.vercel.app/'
+      filter: (page) => page !== 'https://infobyte.neider.dev'
     })
   ],
   adapter: vercel(),
