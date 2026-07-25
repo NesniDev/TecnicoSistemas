@@ -1,250 +1,278 @@
 ---
 import Button from '@components/Shared/Button.astro'
-import Container from '@components/Shared/Container.astro'
 import { Picture } from 'astro:assets'
 
 const { isLoggedIn, displayName, photoURL } = Astro.locals
+const pathname = Astro.url.pathname
 
-const photoURL2 =
+const avatarUrl =
   photoURL && photoURL.trim() !== ''
     ? photoURL
     : 'https://api.dicebear.com/7.x/adventurer/svg?seed=Neider'
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/post/blogTecnicoSistemas', label: 'Blog' },
+  ...(isLoggedIn
+    ? [
+        { href: '/loginEstudiante', label: 'Perfil' },
+        { href: '/recursos', label: 'Recursos' },
+      ]
+    : []),
+]
 ---
 
-<div class="border-b border-gray-500/30 animate-fade-in-up">
-  <header class="relative z-50 py-4 px-8 w-full sm:max-w-5xl mx-auto">
+<div class="header-wrapper" id="header-wrapper">
+  <header class="relative z-50 py-3 px-4 sm:px-6 w-full max-w-6xl mx-auto">
     <div class="flex justify-between items-center">
       <!-- Logo -->
-      <img
-        src="/systems.svg"
-        alt="Logo Principal"
-        class="size-10 hidden sm:block"
-      />
+      <a href="/" aria-label="InfoByte - Inicio" class="shrink-0 group">
+        <img
+          src="/systems.svg"
+          alt="Logo InfoByte"
+          class="size-8 sm:size-9 transition-transform duration-200 group-hover:scale-110"
+        />
+      </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden sm:block">
-        <ul class="flex flex-row justify-between items-center gap-5">
-          <li>
-            <a
-              href="/"
-              class="py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-              >Inicio</a
-            >
-          </li>
-          <li>
-            <a
-              href="/post/blogTecnicoSistemas"
-              class="py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-              >Blog</a
-            >
-          </li>
-          <li>
-            {
-              isLoggedIn && (
+      <nav class="hidden sm:block" aria-label="Navegación principal">
+        <ul class="flex items-center gap-0.5">
+          {
+            navLinks.map((link) => (
+              <li>
                 <a
-                  href="/loginEstudiante"
-                  class="py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
+                  href={link.href}
+                  class:list={[
+                    'relative py-2 px-3.5 rounded-lg text-sm font-medium transition-all duration-200',
+                    pathname === link.href
+                      ? 'text-[var(--colorAquamarine)] bg-[var(--colorAquamarine)]/10'
+                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5',
+                  ]}
                 >
-                  Perfil
+                  {link.label}
+                  {pathname === link.href && (
+                    <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[var(--colorAquamarine)] rounded-full" />
+                  )}
                 </a>
-              )
-            }
-          </li>
-          <li>
-            {
-              isLoggedIn && (
-                <a
-                  href="/recursos"
-                  class="py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-                >
-                  Recursos
-                </a>
-              )
-            }
-          </li>
+              </li>
+            ))
+          }
         </ul>
       </nav>
 
-      <!-- User Profile / Login Button -->
-      <div class="sm:block">
+      <!-- Right Section -->
+      <div class="flex items-center gap-2">
         {
           isLoggedIn ? (
-            <Picture
-              transition:name={`image-${displayName}`}
-              src={photoURL2}
-              alt={'Logo Principal'}
-              class={'size-12 rounded-full'}
-              inferSize
-            />
+            <a href="/loginEstudiante" aria-label="Mi perfil" class="relative group">
+              <div class="absolute -inset-0.5 bg-[var(--colorAquamarine)]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 blur-sm" />
+              <Picture
+                transition:name={`image-${displayName}`}
+                src={avatarUrl}
+                alt={`Avatar de ${displayName || 'usuario'}`}
+                class="relative size-9 rounded-full border-2 border-white/15 group-hover:border-[var(--colorAquamarine)]/50 transition-all duration-200"
+                inferSize
+              />
+            </a>
           ) : (
-            <Button href="/inicioSesion"> Ingresar </Button>
+            <Button href="/inicioSesion" className="px-4 py-2 text-xs sm:text-sm">
+              Iniciar Sesión
+            </Button>
           )
         }
-      </div>
 
-      <!-- Mobile Menu Toggle -->
-      <div class="flex sm:hidden menu_toggle">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
+        <!-- Mobile Menu Toggle -->
+        <button
+          class="flex sm:hidden menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Abrir menú de navegación"
+          type="button"
+        >
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
       </div>
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <nav class="mobile_menu">
-      <ul class="flex flex-col justify-evenly items-center gap-1 pt-6">
-        <li>
-          <a
-            href="/"
-            class="block py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-            >Inicio</a
-          >
-        </li>
-        <li>
-          <a
-            href="/post/blogTecnicoSistemas"
-            class="block py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-            >Blog</a
-          >
-        </li>
-        {
-          isLoggedIn && (
-            <>
-              <li>
+    <nav
+      id="mobile-nav"
+      class="mobile-menu"
+      aria-label="Navegación móvil"
+      aria-hidden="true"
+    >
+      <div class="mobile-menu-inner">
+        <ul class="flex flex-col gap-1 py-4">
+          {
+            navLinks.map((link, i) => (
+              <li style={`animation-delay: ${i * 50}ms`}>
                 <a
-                  href="/loginEstudiante"
-                  class="block py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
+                  href={link.href}
+                  class:list={[
+                    'block py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200',
+                    pathname === link.href
+                      ? 'text-[var(--colorAquamarine)] bg-[var(--colorAquamarine)]/10'
+                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5',
+                  ]}
                 >
-                  Perfil
+                  {link.label}
                 </a>
               </li>
-              <li>
-                <a
-                  href="/recursos"
-                  class="block py-2 px-4 hover:bg-gray-700/30 rounded-lg transition-colors"
-                >
-                  Recursos
-                </a>
-              </li>
-            </>
-          )
-        }
-      </ul>
+            ))
+          }
+        </ul>
+      </div>
     </nav>
   </header>
 </div>
 
 <style>
-  .menu_toggle {
+  .header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .header-wrapper.scrolled {
+    background: rgba(11, 25, 47, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Hamburger */
+  .menu-toggle {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     cursor: pointer;
     padding: 8px;
+    background: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .line {
     position: relative;
-    width: 35px;
-    height: 3px;
-    background-color: #cdd7f7;
+    width: 22px;
+    height: 2px;
+    background-color: var(--letter);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
   }
 
   .line:nth-child(1) {
     top: 0;
-    transform: rotate(0);
-    opacity: 1;
-    visibility: visible;
   }
 
   .line:nth-child(3) {
     top: 0;
-    transform: rotate(0);
   }
 
-  .menu_toggle.active .line:nth-child(1) {
-    top: 10px;
+  .menu-toggle.active .line:nth-child(1) {
+    top: 7px;
     transform: rotate(45deg);
   }
 
-  .menu_toggle.active .line:nth-child(2) {
+  .menu-toggle.active .line:nth-child(2) {
     opacity: 0;
-    visibility: hidden;
+    transform: scaleX(0);
   }
 
-  .menu_toggle.active .line:nth-child(3) {
-    top: -10px;
+  .menu-toggle.active .line:nth-child(3) {
+    top: -7px;
     transform: rotate(-45deg);
   }
 
-  /* Mobile Menu Styles */
-  .mobile_menu {
+  /* Mobile Menu */
+  .mobile-menu {
     display: none;
     overflow: hidden;
     max-height: 0;
-    transform: translateY(-250px);
+    opacity: 0;
     transition:
-      max-height 0.3s ease,
-      transform 0.3s ease,
-      opacity 0.3s ease;
+      max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease;
   }
 
-  .mobile_menu.active {
+  .mobile-menu.active {
     display: block;
-    max-height: 500px;
+    max-height: 350px;
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  .mobile-menu-inner {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 0.5rem;
   }
 
   @media (width >= 640px) {
-    .mobile_menu {
-      max-height: 500px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .mobile_menu.active {
-      display: none;
+    .mobile-menu {
+      display: none !important;
     }
   }
 
-  .mobile_menu li {
-    animation: slideInItem 0.4s ease forwards;
+  .mobile-menu li {
     opacity: 0;
+    transform: translateY(-8px);
   }
-  @keyframes slideInItem {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
+
+  .mobile-menu.active li {
+    animation: menuSlideIn 0.3s ease forwards;
+  }
+
+  @keyframes menuSlideIn {
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 </style>
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const menu_toggle = document.querySelector('.menu_toggle') as HTMLDivElement
-    const mobile_menu = document.querySelector('.mobile_menu') as HTMLElement
+    const wrapper = document.querySelector('#header-wrapper')
+    const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement
+    const menu = document.querySelector('.mobile-menu') as HTMLElement
 
-    if (menu_toggle && mobile_menu) {
-      menu_toggle.addEventListener('click', () => {
-        menu_toggle.classList.toggle('active')
-        mobile_menu.classList.toggle('active')
-      })
-
-      // Close menu when clicking on a link
-      const menuLinks = mobile_menu.querySelectorAll('a')
-      menuLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-          menu_toggle.classList.remove('active')
-          mobile_menu.classList.remove('active')
-        })
-      })
+    // Sticky header with backdrop blur on scroll
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        wrapper?.classList.add('scrolled')
+      } else {
+        wrapper?.classList.remove('scrolled')
+      }
     }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    if (!toggle || !menu) return
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.classList.toggle('active')
+      menu.classList.toggle('active')
+      toggle.setAttribute('aria-expanded', String(isOpen))
+      menu.setAttribute('aria-hidden', String(!isOpen))
+      toggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+      )
+    })
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active')
+        menu.classList.remove('active')
+        toggle.setAttribute('aria-expanded', 'false')
+        menu.setAttribute('aria-hidden', 'true')
+        toggle.setAttribute('aria-label', 'Abrir menú de navegación')
+      })
+    })
   })
 </script>
