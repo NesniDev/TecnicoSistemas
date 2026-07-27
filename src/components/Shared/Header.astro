@@ -1,6 +1,6 @@
 ---
-import Button from '@components/Shared/Button.astro'
 import { Picture } from 'astro:assets'
+import Login from '@components/Shared/Login.astro'
 
 const { isLoggedIn, displayName, photoURL } = Astro.locals
 const pathname = Astro.url.pathname
@@ -16,9 +16,9 @@ const navLinks = [
   ...(isLoggedIn
     ? [
         { href: '/loginEstudiante', label: 'Perfil' },
-        { href: '/recursos', label: 'Recursos' },
+        { href: '/recursos', label: 'Recursos' }
       ]
-    : []),
+    : [])
 ]
 ---
 
@@ -46,7 +46,7 @@ const navLinks = [
                     'relative py-2 px-3.5 rounded-lg text-sm font-medium transition-all duration-200',
                     pathname === link.href
                       ? 'text-[var(--colorAquamarine)] bg-[var(--colorAquamarine)]/10'
-                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5',
+                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5'
                   ]}
                 >
                   {link.label}
@@ -64,7 +64,11 @@ const navLinks = [
       <div class="flex items-center gap-2">
         {
           isLoggedIn ? (
-            <a href="/loginEstudiante" aria-label="Mi perfil" class="relative group">
+            <a
+              href="/loginEstudiante"
+              aria-label="Mi perfil"
+              class="relative group"
+            >
               <div class="absolute -inset-0.5 bg-[var(--colorAquamarine)]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 blur-sm" />
               <Picture
                 transition:name={`image-${displayName}`}
@@ -75,9 +79,13 @@ const navLinks = [
               />
             </a>
           ) : (
-            <Button href="/inicioSesion" className="px-4 py-2 text-xs sm:text-sm">
+            <button
+              id="btn-open-login"
+              type="button"
+              class="px-4 py-2 text-xs sm:text-sm bg-[var(--colorAquamarine)] hover:bg-[var(--colorAquamarine)]/90 text-[#0b192f] font-semibold rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
+            >
               Iniciar Sesión
-            </Button>
+            </button>
           )
         }
 
@@ -114,7 +122,7 @@ const navLinks = [
                     'block py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200',
                     pathname === link.href
                       ? 'text-[var(--colorAquamarine)] bg-[var(--colorAquamarine)]/10'
-                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5',
+                      : 'text-[var(--letter)]/70 hover:text-white hover:bg-white/5'
                   ]}
                 >
                   {link.label}
@@ -127,6 +135,8 @@ const navLinks = [
     </nav>
   </header>
 </div>
+
+<Login />
 
 <style>
   .header-wrapper {
@@ -241,7 +251,6 @@ const navLinks = [
     const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement
     const menu = document.querySelector('.mobile-menu') as HTMLElement
 
-    // Sticky header with backdrop blur on scroll
     const handleScroll = () => {
       if (window.scrollY > 20) {
         wrapper?.classList.add('scrolled')

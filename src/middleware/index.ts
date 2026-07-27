@@ -2,7 +2,7 @@ import type { MiddlewareNext } from "astro";
 import { defineMiddleware } from "astro:middleware";
 
 const privateRoutes = ['/loginEstudiante', '/courses', '/recursos']
-const notAuthenticatedRoutes = ['/inicioSesion']
+const notAuthenticatedRoutes: string[] = []
 
 export const onRequest = defineMiddleware((context, next) => {
     let isLoggedIn = false
@@ -30,7 +30,7 @@ export const onRequest = defineMiddleware((context, next) => {
     );
 
     if(isPrivate && !isLoggedIn){
-        return context.redirect('/inicioSesion')
+        return context.redirect('/')
     }
 
     if(isLoggedIn && notAuthenticatedRoutes.includes(context.url.pathname)){

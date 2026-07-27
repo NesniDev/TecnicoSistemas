@@ -23,7 +23,7 @@ if (firebaseUser === null) {
     } catch {}
   }
   if (!sessionUser) {
-    return Astro.redirect('/inicioSesion')
+    return Astro.redirect('/')
   }
 }
 
@@ -407,7 +407,7 @@ const userProgress = progressData?.progress ?? {}
     const logout = document.getElementById('logout') as HTMLButtonElement
     logout?.addEventListener('click', () => {
       actions.logout()
-      window.location.href = '/inicioSesion'
+      window.location.href = '/'
     })
 
     const date = document.querySelectorAll(
