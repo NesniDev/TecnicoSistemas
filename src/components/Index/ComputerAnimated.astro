@@ -1,0 +1,267 @@
+<!-- Computer Center Stage -->
+<section class="hero-visual">
+  <div class="computer">
+    <div class="monitor">
+      <div class="monitor-screen">
+        <div class="screen-code">
+          <div class="code-line code-line-1"></div>
+          <div class="code-line code-line-2"></div>
+          <div class="code-line code-line-3"></div>
+          <div class="code-line code-line-4"></div>
+          <div class="code-line code-line-5"></div>
+          <div class="code-line code-line-6"></div>
+          <div class="code-cursor"></div>
+        </div>
+        <div class="screen-glow"></div>
+      </div>
+      <div class="monitor-dot"></div>
+    </div>
+    <div class="monitor-stand"></div>
+    <div class="monitor-base"></div>
+    <div class="keyboard">
+      <div class="key-row">
+        <span class="key"></span><span class="key"></span><span class="key"
+        ></span><span class="key"></span><span class="key"></span><span
+          class="key"></span><span class="key"></span><span class="key"
+        ></span><span class="key"></span><span class="key"></span><span
+          class="key"></span><span class="key"></span>
+      </div>
+      <div class="key-row">
+        <span class="key"></span><span class="key"></span><span class="key"
+        ></span><span class="key"></span><span class="key"></span><span
+          class="key"></span><span class="key"></span><span class="key"
+        ></span><span class="key"></span><span class="key"></span><span
+          class="key"></span>
+      </div>
+      <div class="key-row">
+        <span class="key"></span><span class="key"></span><span class="key"
+        ></span><span class="key key-space"></span><span class="key"
+        ></span><span class="key"></span><span class="key"></span>
+      </div>
+    </div>
+    <div class="float-element float-1">
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        ><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"
+        ></path><path d="M2 12l10 5 10-5"></path></svg
+      >
+    </div>
+    <div class="float-element float-2">
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        ><circle cx="12" cy="12" r="3"></circle><path
+          d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+        ></path></svg
+      >
+    </div>
+    <div class="float-element float-3">
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        ><polyline points="16 18 22 12 16 6"></polyline><polyline
+          points="8 6 2 12 8 18"></polyline></svg
+      >
+    </div>
+    <div class="computer-glow"></div>
+  </div>
+</section>
+
+<style>
+  /* Computer */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: heroUp 0.7s ease 0.4s both;
+  }
+
+  .computer {
+    position: relative;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .monitor {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .monitor-screen {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    background: #0a0f1a;
+    border-radius: 8px 8px 3px 3px;
+    border: 2px solid rgba(100, 255, 218, 0.12);
+    overflow: hidden;
+    box-shadow:
+      0 0 25px rgba(100, 255, 218, 0.06),
+      inset 0 0 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .screen-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .screen-code {
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .code-line {
+    height: 5px;
+    border-radius: 3px;
+    animation: codeAppear 0.5s ease both;
+  }
+
+  .code-line-1 { width: 55%; background: rgba(100, 255, 218, 0.5); animation-delay: 0.8s; }
+  .code-line-2 { width: 75%; background: rgba(59, 130, 246, 0.4); animation-delay: 1s; }
+  .code-line-3 { width: 40%; background: rgba(100, 255, 218, 0.35); animation-delay: 1.2s; }
+  .code-line-4 { width: 65%; background: rgba(168, 85, 247, 0.4); animation-delay: 1.4s; }
+  .code-line-5 { width: 50%; background: rgba(100, 255, 218, 0.3); animation-delay: 1.6s; }
+  .code-line-6 { width: 30%; background: rgba(59, 130, 246, 0.35); animation-delay: 1.8s; }
+
+  @keyframes codeAppear {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .code-cursor {
+    width: 7px;
+    height: 12px;
+    background: var(--colorAquamarine);
+    border-radius: 1px;
+    margin-top: 3px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .monitor-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(100, 255, 218, 0.35);
+    margin: 5px auto 0;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { background: rgba(100, 255, 218, 0.35); }
+    50% { background: rgba(100, 255, 218, 0.7); }
+  }
+
+  .monitor-stand {
+    width: 3px;
+    height: 14px;
+    background: linear-gradient(to bottom, rgba(100, 255, 218, 0.18), rgba(100, 255, 218, 0.04));
+    margin: 0 auto;
+  }
+
+  .monitor-base {
+    width: 50px;
+    height: 3px;
+    background: rgba(100, 255, 218, 0.12);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .keyboard {
+    width: 160px;
+    margin: 6px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .key-row {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+  }
+
+  .key {
+    width: 10px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1.5px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    animation: keyGlow 3s ease-in-out infinite;
+  }
+
+  .key:nth-child(odd) { animation-delay: 0.5s; }
+  .key:nth-child(3n) { animation-delay: 1s; }
+  .key-space { width: 42px; }
+
+  @keyframes keyGlow {
+    0%, 100% { background: rgba(255, 255, 255, 0.05); }
+    50% { background: rgba(100, 255, 218, 0.1); }
+  }
+
+  .float-element {
+    position: absolute;
+    padding: 7px;
+    border-radius: 7px;
+    background: rgba(100, 255, 218, 0.06);
+    border: 1px solid rgba(100, 255, 218, 0.12);
+    color: var(--colorAquamarine);
+    animation: floatEl 4s ease-in-out infinite;
+  }
+
+  .float-1 { top: 5px; right: -8px; animation-delay: 0s; }
+  .float-2 { top: 50%; left: -18px; animation-delay: 1.3s; }
+  .float-3 { bottom: 25px; right: -12px; animation-delay: 2.6s; }
+
+  @keyframes floatEl {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-8px); opacity: 1; }
+  }
+
+  .computer-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: compGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes compGlow {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  @keyframes heroUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
