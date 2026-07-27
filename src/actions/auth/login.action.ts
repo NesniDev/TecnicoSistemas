@@ -11,10 +11,11 @@ export const loginUser = defineAction({
         remember_me: z.boolean().optional()
     }),
     handler: async ({ email, password, remember_me}, context) => {
-        //cookies
-        console.log(remember_me)
         if(remember_me){
             context.cookies.set('email', email, {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'lax',
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
                 path: '/',
             })
@@ -52,7 +53,6 @@ export const loginUser = defineAction({
         }catch(error){
             const firebaseError = error as AuthError
 
-            console.log(error)
             if(firebaseError.code === 'auth/invalid-credential'){
                 throw new Error('Credenciales Incorrectas')
             }

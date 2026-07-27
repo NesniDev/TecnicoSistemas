@@ -6,6 +6,7 @@ export const logout = defineAction({
     accept: 'json',
     handler: async (_, { cookies }) => {
         cookies.delete('session', { path: '/' })
+        cookies.delete('email', { path: '/' })
         return await signOut(firebase.auth)
     }
 
